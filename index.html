@@ -106,7 +106,58 @@
     }
 
     /* ==========================================================================
-       COSMIC CANVAS — TWINKLING STARS & SHOOTING STARS
+       SCROLL-TRIGGERED MOTION REVEALS & PARALLAX
+       ========================================================================== */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(36px) scale(0.985);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .reveal-from-left {
+      opacity: 0;
+      transform: translateX(-38px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-from-left.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-from-right {
+      opacity: 0;
+      transform: translateX(38px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-from-right.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.24s; }
+    .delay-3 { transition-delay: 0.36s; }
+    .delay-4 { transition-delay: 0.48s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-on-scroll,
+      .reveal-from-left,
+      .reveal-from-right {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* ==========================================================================
+       COSMIC CANVAS — TWINKLING STARS WITH VELOCITY DRIFT & SHOOTING STARS
        ========================================================================== */
     .cosmic-canvas {
       position: fixed;
@@ -120,7 +171,7 @@
       transition: opacity 0.5s ease;
     }
     html[data-theme="light"] .cosmic-canvas {
-      opacity: 0.45; /* Dreamy golden celestial sparkles in light mode */
+      opacity: 0.45;
     }
 
     a {
@@ -201,7 +252,7 @@
     }
 
     /* ==========================================================================
-       TOPBAR & LUNAR SCROLL TRACKER
+       TOPBAR & LUNAR SCROLL PROGRESS LINE
        ========================================================================== */
     .topbar {
       position: sticky;
@@ -211,10 +262,29 @@
       border-bottom: 1px solid var(--surface-border);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      transition: background 0.3s ease, border-color 0.3s ease;
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
     html[data-theme="dark"] .topbar {
       background: rgba(20, 18, 17, 0.92);
+    }
+    .topbar.is-scrolled {
+      box-shadow: 0 8px 30px rgba(48, 38, 33, 0.08);
+    }
+    html[data-theme="dark"] .topbar.is-scrolled {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Golden Moonlit Scroll Progress Line */
+    .scroll-progress-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2.5px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-warm), var(--accent-peach), #ffffff);
+      box-shadow: 0 0 10px rgba(228, 189, 145, 0.8);
+      transition: width 0.1s cubic-bezier(0.1, 1, 0.1, 1);
+      z-index: 1001;
     }
 
     .nav {
@@ -282,10 +352,12 @@
       background: var(--accent-warm);
       transition: width 0.25s ease;
     }
-    .nav-link:hover {
+    .nav-link:hover,
+    .nav-link.is-active {
       color: var(--ink-primary);
     }
-    .nav-link:hover::after {
+    .nav-link:hover::after,
+    .nav-link.is-active::after {
       width: 100%;
     }
 
@@ -507,6 +579,7 @@
       position: relative;
       min-height: 500px;
       perspective: 1000px;
+      transition: transform 0.4s ease-out;
     }
 
     .hero-photo-wrap {
@@ -773,7 +846,7 @@
       transition: var(--transition-base);
     }
     .poem-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-hover);
       border-color: var(--accent-warm);
     }
@@ -791,7 +864,7 @@
       transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .poem-card:hover .poem-image {
-      transform: scale(1.05);
+      transform: scale(1.06);
     }
     .poem-read-time {
       position: absolute;
@@ -1024,7 +1097,7 @@
       transition: var(--transition-base);
     }
     .bribooks-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-hover);
       border-color: var(--accent-warm);
     }
@@ -1400,7 +1473,7 @@
 
     /* ==========================================================================
        FOOTER
-       ========================================================================== */
+       ======================================================================== */
     footer {
       padding-block: 36px;
       background: #1c1816;
@@ -1728,7 +1801,7 @@
 </head>
 <body>
 
-  <!-- Twinkling Cosmic Starfield Canvas -->
+  <!-- Twinkling Cosmic Starfield Canvas with Velocity Response -->
   <canvas id="cosmic-canvas" class="cosmic-canvas" aria-hidden="true"></canvas>
 
   <!-- Swinging Moon Intro -->
@@ -1739,8 +1812,10 @@
     </div>
   </div>
 
-  <!-- Header & Navigation -->
-  <header class="topbar">
+  <!-- Header & Navigation with Scroll Progress Line -->
+  <header class="topbar" id="topbar">
+    <div class="scroll-progress-line" id="scroll-progress-line" aria-hidden="true"></div>
+
     <nav class="nav wrap" aria-label="Main navigation">
       <a class="brand" href="#home" aria-label="Luna's World home">
         <span class="brand-mark" aria-hidden="true">☾</span>
@@ -1748,12 +1823,12 @@
       </a>
 
       <ul class="nav-links">
-        <li><a class="nav-link" href="#home">Home</a></li>
-        <li><a class="nav-link" href="#poetry">Poetry</a></li>
-        <li><a class="nav-link" href="#works">Works</a></li>
-        <li><a class="nav-link" href="#about">About</a></li>
-        <li><a class="nav-link" href="#contact">Contact</a></li>
-        <li><a class="nav-link" href="#owl-perch">Owl 🦉</a></li>
+        <li><a class="nav-link" href="#home" data-nav="home">Home</a></li>
+        <li><a class="nav-link" href="#poetry" data-nav="poetry">Poetry</a></li>
+        <li><a class="nav-link" href="#works" data-nav="works">Works</a></li>
+        <li><a class="nav-link" href="#about" data-nav="about">About</a></li>
+        <li><a class="nav-link" href="#contact" data-nav="contact">Contact</a></li>
+        <li><a class="nav-link" href="#owl-perch" data-nav="owl-perch">Owl 🦉</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -1771,10 +1846,10 @@
 
   <main>
     <!-- ======================================================================
-         HERO SECTION WITH GLOWING HIGHLIGHTED MOON
+         HERO SECTION WITH GLOWING HIGHLIGHTED MOON & PARALLAX
          ====================================================================== -->
     <section class="hero wrap" id="home" aria-labelledby="hero-title">
-      <div class="hero-copy">
+      <div class="hero-copy reveal-from-left is-visible">
         <p class="eyebrow">✦ Author &amp; Cosmic Poet · G Daffini Shiyalin</p>
         <h1 class="hero-title" id="hero-title">Welcome to <em>Luna's</em> World</h1>
         <p class="hero-lede">Stories, poetry, dreams, and worlds spun between starlight and reality.</p>
@@ -1788,7 +1863,7 @@
         </div>
       </div>
 
-      <div class="hero-art" aria-label="A writer's desk bathed in evening light">
+      <div class="hero-art reveal-from-right is-visible" id="hero-art-parallax" aria-label="A writer's desk bathed in evening light">
         <div class="hero-photo-wrap">
           <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="A writer's desk with journal and ink pen">
           <span class="photo-caption">Somewhere between a thought and a story.</span>
@@ -1808,7 +1883,7 @@
          INTRO BAND ("A NOTE FROM LUNA")
          ====================================================================== -->
     <section class="intro-band" id="about" aria-label="About Luna">
-      <div class="intro-inner wrap">
+      <div class="intro-inner wrap reveal-on-scroll">
         <div class="intro-meta">
           <p class="intro-label">✦ A Note From Luna</p>
           <div class="intro-monogram" aria-hidden="true">GDS</div>
@@ -1824,10 +1899,10 @@
     </section>
 
     <!-- ======================================================================
-         POETRY SECTION — 7 HORIZONTAL SPLIT CARDS
+         POETRY SECTION — 7 HORIZONTAL SPLIT CARDS (REVEAL ON SCROLL)
          ====================================================================== -->
     <section class="section wrap" id="poetry" aria-labelledby="poetry-title">
-      <div class="section-head">
+      <div class="section-head reveal-on-scroll">
         <div>
           <p class="eyebrow">Words for the in-between</p>
           <h2 class="section-title" id="poetry-title">Poetry</h2>
@@ -1837,7 +1912,7 @@
 
       <div class="poem-grid">
         <!-- Entry 01 -->
-        <article class="poem-card" aria-labelledby="poem-01-title">
+        <article class="poem-card reveal-on-scroll" aria-labelledby="poem-01-title">
           <div class="poem-image-wrap">
             <span class="poem-read-time">✦ 2 Min Read</span>
             <img class="poem-image" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Sunlight filtering through deep forest rain" loading="lazy">
@@ -1851,7 +1926,7 @@
         </article>
 
         <!-- Entry 02 -->
-        <article class="poem-card" aria-labelledby="poem-02-title">
+        <article class="poem-card reveal-on-scroll delay-1" aria-labelledby="poem-02-title">
           <div class="poem-image-wrap">
             <span class="poem-read-time">✦ 2 Min Read</span>
             <img class="poem-image" src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Deep starry cosmic night sky" loading="lazy">
@@ -1865,7 +1940,7 @@
         </article>
 
         <!-- Entry 03 -->
-        <article class="poem-card" aria-labelledby="poem-03-title">
+        <article class="poem-card reveal-on-scroll delay-1" aria-labelledby="poem-03-title">
           <div class="poem-image-wrap">
             <span class="poem-read-time">✦ 3 Min Read</span>
             <img class="poem-image" src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Misty forest trees shrouded in twilight" loading="lazy">
@@ -1879,7 +1954,7 @@
         </article>
 
         <!-- Entry 04 -->
-        <article class="poem-card" aria-labelledby="poem-04-title">
+        <article class="poem-card reveal-on-scroll" aria-labelledby="poem-04-title">
           <div class="poem-image-wrap">
             <span class="poem-read-time">✦ 2 Min Read</span>
             <img class="poem-image" src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Warm golden dawn over quiet hills" loading="lazy">
@@ -1893,7 +1968,7 @@
         </article>
 
         <!-- Entry 05 -->
-        <article class="poem-card" aria-labelledby="poem-05-title">
+        <article class="poem-card reveal-on-scroll delay-1" aria-labelledby="poem-05-title">
           <div class="poem-image-wrap">
             <span class="poem-read-time">✦ 3 Min Read</span>
             <img class="poem-image" src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Warm candle flame burning steadily in dark room" loading="lazy">
@@ -1907,7 +1982,7 @@
         </article>
 
         <!-- Entry 06 -->
-        <article class="poem-card" aria-labelledby="poem-06-title">
+        <article class="poem-card reveal-on-scroll" aria-labelledby="poem-06-title">
           <div class="poem-image-wrap">
             <span class="poem-read-time">✦ 3 Min Read</span>
             <img class="poem-image" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Ancient forest canopy and mossy roots" loading="lazy">
@@ -1921,7 +1996,7 @@
         </article>
 
         <!-- Entry 07 -->
-        <article class="poem-card" aria-labelledby="poem-07-title">
+        <article class="poem-card reveal-on-scroll delay-1" aria-labelledby="poem-07-title">
           <div class="poem-image-wrap">
             <span class="poem-read-time">✦ 2 Min Read</span>
             <img class="poem-image" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Night mountain peak under vast star constellation" loading="lazy">
@@ -1941,7 +2016,7 @@
          ====================================================================== -->
     <section class="section works" id="works" aria-labelledby="works-title">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal-on-scroll">
           <div>
             <p class="eyebrow">Stories with a pulse</p>
             <h2 class="section-title" id="works-title">Works</h2>
@@ -1950,7 +2025,7 @@
         </div>
 
         <!-- Featured Novel: The Hidden Bloodline -->
-        <article class="work-feature" aria-labelledby="featured-work-title">
+        <article class="work-feature reveal-on-scroll" aria-labelledby="featured-work-title">
           <div class="work-cover">
             <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Misty enchanted twilight forest" loading="lazy">
             <div class="work-cover-overlay">
@@ -1976,15 +2051,15 @@
           </div>
         </article>
 
-        <!-- BriBooks Collection Grid -->
+        <!-- BriBooks Collection Grid (Staggered Reveals) -->
         <div class="bribooks-shelf">
-          <div class="bribooks-head">
+          <div class="bribooks-head reveal-on-scroll">
             <p class="eyebrow">Published Anthologies</p>
             <h3>BriBooks Collections</h3>
           </div>
           <div class="bribooks-grid">
             <!-- Book 1 -->
-            <article class="bribooks-card">
+            <article class="bribooks-card reveal-on-scroll delay-1">
               <div class="bribooks-cover">
                 <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Forest foliage in soft sunlight" loading="lazy">
               </div>
@@ -1999,7 +2074,7 @@
             </article>
 
             <!-- Book 2 -->
-            <article class="bribooks-card">
+            <article class="bribooks-card reveal-on-scroll delay-2">
               <div class="bribooks-cover">
                 <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Calm lake under dusky clouds" loading="lazy">
               </div>
@@ -2013,7 +2088,7 @@
             </article>
 
             <!-- Book 3 -->
-            <article class="bribooks-card">
+            <article class="bribooks-card reveal-on-scroll delay-3">
               <div class="bribooks-cover">
                 <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Warm fire flame glowing in shadows" loading="lazy">
               </div>
@@ -2032,11 +2107,11 @@
     </section>
 
     <!-- ======================================================================
-         CONTACT SECTION
+         CONTACT SECTION (DUAL DIRECTIONAL REVEAL)
          ====================================================================== -->
     <section class="contact-section" id="contact" aria-labelledby="contact-title">
       <div class="wrap contact-grid">
-        <div class="contact-info">
+        <div class="contact-info reveal-from-left">
           <p class="eyebrow">A door is always open</p>
           <h2 id="contact-title">Get in Touch</h2>
           <p class="contact-lede">
@@ -2062,7 +2137,7 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contact-form" novalidate>
+        <form class="contact-form reveal-from-right" id="contact-form" novalidate>
           <div class="form-group">
             <label for="name">Your Name</label>
             <input class="form-control" id="name" name="name" type="text" placeholder="What should Luna call you?" required>
@@ -2089,7 +2164,7 @@
     <!-- ======================================================================
          PAGE DOWN — THE OWL SANCTUARY (LUNA'S NOCTURNAL WATCHER)
          ====================================================================== -->
-    <section class="owl-sanctuary wrap" id="owl-perch" aria-label="Luna's Nocturnal Watcher">
+    <section class="owl-sanctuary wrap reveal-on-scroll" id="owl-perch" aria-label="Luna's Nocturnal Watcher">
       <div class="owl-moonlight-beam" aria-hidden="true"></div>
 
       <!-- Speech Bubble -->
@@ -2242,11 +2317,96 @@
   </aside>
 
   <!-- ========================================================================
-       SCRIPTS: COSMIC STARFIELD, MOON TRACKER, OWL INTERACTION, NAV, CHAT
+       SCRIPTS: SCROLL MOTION, STARFIELD, MOON TRACKER, OWL INTERACTION
        ======================================================================== -->
   <script>
     /* ==========================================================================
-       1. TWINKLING STARS & SHOOTING STARS CANVAS ANIMATION
+       1. SCROLL-TRIGGERED MOTION REVEALS & ACTIVE SECTION NAV
+       ========================================================================== */
+    (() => {
+      const reveals = document.querySelectorAll('.reveal-on-scroll, .reveal-from-left, .reveal-from-right');
+      const topbar = document.getElementById('topbar');
+      const progressBar = document.getElementById('scroll-progress-line');
+      const navLinks = document.querySelectorAll('.nav-link[data-nav]');
+      const heroArt = document.getElementById('hero-art-parallax');
+
+      // Intersection Observer for silky scroll entrances
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              // Unobserve after reveal to avoid unnecessary re-triggers
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: '0px 0px -40px 0px',
+          threshold: 0.12
+        });
+
+        reveals.forEach(el => observer.observe(el));
+      } else {
+        // Fallback for older browsers
+        reveals.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // Parallax and Scroll Progress Tracker
+      let ticking = false;
+      function handleScroll() {
+        const scrollY = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = Math.max(0, Math.min(100, (scrollY / (docHeight || 1)) * 100));
+
+        // 1. Update progress line
+        if (progressBar) {
+          progressBar.style.width = `${progress}%`;
+        }
+
+        // 2. Sticky topbar elevation shadow
+        if (topbar) {
+          if (scrollY > 30) topbar.classList.add('is-scrolled');
+          else topbar.classList.remove('is-scrolled');
+        }
+
+        // 3. Subtle Parallax on Hero Art
+        if (heroArt && scrollY < 900 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          heroArt.style.transform = `translateY(${scrollY * 0.16}px)`;
+        }
+
+        // 4. Scroll-Spy: Highlight active section in nav
+        const sections = ['home', 'poetry', 'works', 'about', 'contact', 'owl-perch'];
+        let activeSection = 'home';
+        for (let i = 0; i < sections.length; i++) {
+          const sec = document.getElementById(sections[i]);
+          if (sec) {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top <= 140 && rect.bottom >= 140) {
+              activeSection = sections[i];
+              break;
+            }
+          }
+        }
+        navLinks.forEach(link => {
+          link.classList.toggle('is-active', link.dataset.nav === activeSection);
+        });
+
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(handleScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      handleScroll();
+    })();
+
+    /* ==========================================================================
+       2. TWINKLING STARS & VELOCITY DRIFT ANIMATION
        ========================================================================== */
     (() => {
       const canvas = document.getElementById('cosmic-canvas');
@@ -2264,6 +2424,16 @@
       let targetMouseX = 0;
       let targetMouseY = 0;
 
+      // Scroll velocity dynamics
+      let lastScrollY = window.scrollY;
+      let scrollVelocity = 0;
+
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        scrollVelocity = (currentScrollY - lastScrollY);
+        lastScrollY = currentScrollY;
+      }, { passive: true });
+
       function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
@@ -2271,7 +2441,7 @@
       }
 
       function initStars() {
-        const starCount = Math.floor((width * height) / 8000); // Responsive star density
+        const starCount = Math.floor((width * height) / 7500);
         stars = [];
         for (let i = 0; i < starCount; i++) {
           stars.push({
@@ -2282,7 +2452,7 @@
             baseAlpha: Math.random() * 0.6 + 0.2,
             twinkleSpeed: Math.random() * 0.02 + 0.008,
             twinklePhase: Math.random() * Math.PI * 2,
-            parallaxFactor: Math.random() * 0.03 + 0.01,
+            parallaxFactor: Math.random() * 0.035 + 0.015,
             colorHue: Math.random() > 0.4 ? 'golden' : 'lavender'
           });
         }
@@ -2315,14 +2485,20 @@
         mouseX += (targetMouseX - mouseX) * 0.05;
         mouseY += (targetMouseY - mouseY) * 0.05;
 
+        // Smooth scroll velocity decay
+        scrollVelocity *= 0.92;
+
         const isDark = document.documentElement.dataset.theme === 'dark';
 
-        // Draw Twinkling Stars
+        // Draw Twinkling Stars with vertical scroll motion
         for (let i = 0; i < stars.length; i++) {
           const s = stars[i];
           s.twinklePhase += s.twinkleSpeed;
           const currentAlpha = s.baseAlpha + Math.sin(s.twinklePhase) * 0.35;
           const clampedAlpha = Math.max(0.08, Math.min(1, currentAlpha));
+
+          // Motionary star drift driven by scroll velocity!
+          s.y -= scrollVelocity * s.parallaxFactor * 1.6;
 
           const posX = (s.x + mouseX * s.parallaxFactor + width) % width;
           const posY = (s.y + mouseY * s.parallaxFactor + height) % height;
@@ -2335,7 +2511,6 @@
               ? `rgba(245, 215, 165, ${clampedAlpha})`
               : `rgba(215, 205, 250, ${clampedAlpha * 0.9})`;
           } else {
-            // Dreamy warm golden stars in paper light mode
             ctx.fillStyle = `rgba(180, 130, 80, ${clampedAlpha * 0.6})`;
           }
           ctx.fill();
@@ -2392,7 +2567,7 @@
     })();
 
     /* ==========================================================================
-       2. MOON ALONG HIGHLIGHTED (SCROLL-BASED LUNAR PHASE TRACKER)
+       3. MOON ALONG HIGHLIGHTED (SCROLL-BASED LUNAR PHASE TRACKER)
        ========================================================================== */
     (() => {
       const tracker = document.getElementById('lunar-tracker');
@@ -2443,7 +2618,7 @@
     })();
 
     /* ==========================================================================
-       3. INTERACTIVE OWL ON PAGE DOWN
+       4. INTERACTIVE OWL ON PAGE DOWN
        ========================================================================== */
     (() => {
       const owl = document.getElementById('owl-interactive');
@@ -2500,7 +2675,7 @@
     })();
 
     /* ==========================================================================
-       4. HERO GLOWING MOON INTERACTION
+       5. HERO GLOWING MOON INTERACTION
        ========================================================================== */
     (() => {
       const heroMoon = document.getElementById('hero-moon');
@@ -2514,20 +2689,20 @@
     })();
 
     /* ==========================================================================
-       5. NAVIGATION, EMAIL DISPATCH, ASTRA CHAT, BACK TO TOP
+       6. NAVIGATION, EMAIL DISPATCH, ASTRA CHAT, BACK TO TOP
        ========================================================================== */
     // Mobile navigation toggle
     const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    if (menuToggle && navLinks) {
+    const navLinksList = document.querySelector('.nav-links');
+    if (menuToggle && navLinksList) {
       menuToggle.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('is-open');
+        const isOpen = navLinksList.classList.toggle('is-open');
         menuToggle.setAttribute('aria-expanded', String(isOpen));
         menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
       });
-      navLinks.addEventListener('click', (event) => {
+      navLinksList.addEventListener('click', (event) => {
         if (event.target.closest('a')) {
-          navLinks.classList.remove('is-open');
+          navLinksList.classList.remove('is-open');
           menuToggle.setAttribute('aria-expanded', 'false');
         }
       });
@@ -2645,16 +2820,16 @@
     });
 
     // 3D Tilt interaction on Hero collage
-    const heroArt = document.querySelector('.hero-art');
+    const heroArtCollage = document.getElementById('hero-art-parallax');
     const heroPhoto = document.querySelector('.hero-photo-wrap');
-    if (heroArt && heroPhoto && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      heroArt.addEventListener('mousemove', (e) => {
-        const rect = heroArt.getBoundingClientRect();
+    if (heroArtCollage && heroPhoto && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      heroArtCollage.addEventListener('mousemove', (e) => {
+        const rect = heroArtCollage.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         heroPhoto.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-4px)`;
       });
-      heroArt.addEventListener('mouseleave', () => {
+      heroArtCollage.addEventListener('mouseleave', () => {
         heroPhoto.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0)';
       });
     }
