@@ -1,154 +1,129 @@
 /* ==========================================================================
-   LUNA'S WORLD — UNIFIED LUXURY COSMIC THEME SYSTEM
-   Applies consistent modern dark night-sky luxury styling across all pages
+   LUNA'S WORLD — SHARED THEME & COMPONENT STYLES
+   Ensures seamless light & dark themes across all poem & story subpages
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
 
-:root,
-html,
-html[data-theme="dark"],
-html[data-theme="light"] {
+/* Dark Mode Variables & Resets */
+html[data-theme="dark"] {
   color-scheme: dark;
-  --bg-void: #060714;
-  --paper: #060714;
-  --paper-bright: #0e112c;
-  --ink: #f4efe4;
-  --ink-soft: #9fa5c4;
-  --charcoal: #fcfbf9;
-  --brown: #e5c07b;
-  --peach: #e5c07b;
-  --cream: rgba(22, 27, 68, 0.75);
-  --soft-gray: rgba(255, 255, 255, 0.1);
-  --olive: #c4b5fd;
-  --line: rgba(229, 192, 123, 0.3);
+  --bg: #141211;
+  --paper: #141211;
+  --card-bg: #1e1b19;
+  --card-alt: #26221f;
   
-  --gold: #e5c07b;
-  --lavender: #c4b5fd;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --charcoal: #f8f5ee;
+  --ink: #f8f5ee;
+  --ink-soft: #cec4b7;
+  --ink-muted: #968c80;
+
+  --brown: #e4bd91;
+  --peach: #e8c69f;
+  --cream: #362d25;
+  --olive: #a6a870;
+  --soft-gray: rgba(228, 189, 145, 0.15);
+  --line: rgba(255, 255, 255, 0.08);
 }
 
-body {
-  background-color: #060714 !important;
-  background-image: 
-    radial-gradient(circle 800px at 50% 0%, rgba(99, 102, 241, 0.12), transparent 70%),
-    radial-gradient(circle 700px at 90% 40%, rgba(229, 192, 123, 0.05), transparent 60%) !important;
-  background-attachment: fixed !important;
-  color: #f4efe4 !important;
-  font-family: var(--font-sans) !important;
-  min-height: 100vh;
+/* Global Dark Mode Overrides */
+html[data-theme="dark"] body {
+  background-color: var(--paper);
+  color: var(--charcoal);
 }
 
-/* Glassmorphism Topbar */
-.topbar {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: rgba(10, 13, 34, 0.82) !important;
-  backdrop-filter: blur(24px) !important;
-  -webkit-backdrop-filter: blur(24px) !important;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+html[data-theme="dark"] .topbar {
+  background: rgba(20, 18, 17, 0.92);
+  border-bottom: 1px solid var(--line);
 }
 
-.brand {
-  font-family: var(--font-serif) !important;
-  color: #fcfbf9 !important;
-  font-size: 1.5rem !important;
-  font-weight: 500 !important;
+html[data-theme="dark"] .brand {
+  color: var(--charcoal);
 }
 
-.brand-mark {
-  background: rgba(229, 192, 123, 0.15) !important;
-  border: 1px solid rgba(229, 192, 123, 0.35) !important;
-  color: #e5c07b !important;
-  border-radius: 50% !important;
+html[data-theme="dark"] .brand-mark {
+  background: var(--peach);
+  color: #221a16;
 }
 
-.back-link,
-.poem-return {
-  color: #e5c07b !important;
-  font-family: var(--font-sans) !important;
-  font-size: 0.85rem !important;
-  font-weight: 500 !important;
-  text-decoration: none !important;
-  padding: 6px 16px !important;
-  border-radius: 9999px !important;
-  border: 1px solid rgba(229, 192, 123, 0.35) !important;
-  background: rgba(229, 192, 123, 0.08) !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  transition: all 0.25s ease !important;
+html[data-theme="dark"] .back-link,
+html[data-theme="dark"] .poem-return {
+  color: var(--peach);
 }
 
-.back-link:hover,
-.poem-return:hover {
-  background: #e5c07b !important;
-  color: #060714 !important;
-  border-color: #e5c07b !important;
-  transform: translateY(-2px);
+html[data-theme="dark"] .back-link:hover,
+html[data-theme="dark"] .poem-return:hover {
+  color: #ffffff;
 }
 
-/* Poem Manuscript Typography */
-.poem-heading {
-  border-block: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding-block: 32px 28px !important;
-  margin-bottom: 40px !important;
+html[data-theme="dark"] .poem-heading,
+html[data-theme="dark"] .story-heading {
+  border-block-color: var(--line);
 }
 
-.poem-number {
-  color: #e5c07b !important;
-  font-size: 0.74rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.14em !important;
-  text-transform: uppercase !important;
+html[data-theme="dark"] .poem-number,
+html[data-theme="dark"] .eyebrow {
+  color: var(--peach);
 }
 
-h1 {
-  font-family: var(--font-serif) !important;
-  font-size: clamp(2.4rem, 5vw, 3.8rem) !important;
-  font-weight: 500 !important;
-  color: #fcfbf9 !important;
-  letter-spacing: -0.01em !important;
-  line-height: 1.15 !important;
+html[data-theme="dark"] h1 {
+  color: var(--charcoal);
 }
 
-.poem-body {
-  border-left: 2px solid rgba(229, 192, 123, 0.4) !important;
-  padding-left: clamp(24px, 5vw, 48px) !important;
-  max-width: 720px !important;
+html[data-theme="dark"] .poem-body,
+html[data-theme="dark"] .story-body {
+  border-left-color: var(--peach);
 }
 
-.poem-body p {
-  font-family: var(--font-serif) !important;
-  font-size: 1.2rem !important;
-  line-height: 1.95 !important;
-  color: #f4efe4 !important;
-  margin-bottom: 24px !important;
+html[data-theme="dark"] .poem-body p,
+html[data-theme="dark"] .story-body p {
+  color: var(--charcoal);
 }
 
-.poem-body p:first-of-type::first-letter {
-  float: left;
-  font-size: 3.2em;
-  line-height: 0.8;
-  padding-right: 12px;
-  padding-top: 4px;
-  color: #e5c07b;
+html[data-theme="dark"] footer {
+  background: #100e0d;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
 }
 
-/* Footer */
-footer {
-  background: #04050e !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  color: #9fa5c4 !important;
-  padding-block: 36px !important;
+html[data-theme="dark"] footer p {
+  color: var(--ink-muted);
 }
 
-footer p {
-  color: #9fa5c4 !important;
-  font-size: 0.82rem !important;
-}
-
+/* Unified Theme Toggle Button */
 .theme-toggle {
-  display: none !important;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--soft-gray);
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 19px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle:hover {
+  border-color: var(--peach);
+  transform: rotate(20deg) scale(1.06);
+  color: var(--brown);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--peach);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle {
+    transition: none;
+  }
 }
