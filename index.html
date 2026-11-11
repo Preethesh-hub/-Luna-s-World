@@ -380,48 +380,6 @@
       gap: 12px;
     }
 
-    /* Highlighted Moon Scroll Progress Tracker */
-    .lunar-scroll-tracker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 15px;
-      background: var(--card-bg);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-pill);
-      box-shadow: var(--shadow-subtle);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--ink-secondary);
-      cursor: pointer;
-      transition: var(--transition-base);
-    }
-    .lunar-scroll-tracker:hover {
-      border-color: var(--accent-warm);
-      transform: translateY(-1px);
-    }
-    .lunar-phase-icon {
-      font-size: 17px;
-      display: inline-block;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      filter: drop-shadow(0 0 5px rgba(228, 189, 145, 0.45));
-    }
-    .lunar-scroll-tracker.is-full-moon {
-      border-color: var(--accent-warm);
-      background: var(--card-alt);
-      box-shadow: 0 0 18px rgba(228, 189, 145, 0.4);
-      color: var(--accent-warm);
-    }
-    .lunar-scroll-tracker.is-full-moon .lunar-phase-icon {
-      filter: drop-shadow(0 0 10px rgba(228, 189, 145, 0.9));
-      animation: moon-pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes moon-pulse {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(228, 189, 145, 0.7)); }
-      50% { transform: scale(1.18); filter: drop-shadow(0 0 14px rgba(228, 189, 145, 1)); }
-    }
 
     .nav-contact-btn {
       display: inline-flex;
@@ -2189,9 +2147,6 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      .lunar-scroll-tracker span.lunar-phase-text {
-        display: none; /* Icon only on mobile */
-      }
     }
   </style>
 </head>
@@ -2230,12 +2185,6 @@
       </ul>
 
       <div class="nav-actions">
-        <!-- Moon Phase Highlight Scroll Tracker -->
-        <div class="lunar-scroll-tracker" id="lunar-tracker" title="Scroll down to travel through moon phases">
-          <span class="lunar-phase-icon" id="lunar-phase-icon">🌒</span>
-          <span class="lunar-phase-text" id="lunar-phase-text">Waxing Crescent</span>
-        </div>
-
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" title="Switch to dark theme">☾</button>
         <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
       </div>
@@ -3289,58 +3238,7 @@
     })();
 
     /* ==========================================================================
-       3. MOON ALONG HIGHLIGHTED (SCROLL-BASED LUNAR PHASE TRACKER)
-       ========================================================================== */
-    (() => {
-      const tracker = document.getElementById('lunar-tracker');
-      const icon = document.getElementById('lunar-phase-icon');
-      const text = document.getElementById('lunar-phase-text');
-      if (!tracker || !icon || !text) return;
-
-      const phases = [
-        { icon: '🌑', name: 'New Moon' },
-        { icon: '🌒', name: 'Waxing Crescent' },
-        { icon: '🌓', name: 'First Quarter' },
-        { icon: '🌔', name: 'Waxing Gibbous' },
-        { icon: '🌕', name: 'Full Moon · Highlighted' }
-      ];
-
-      function updateMoonScroll() {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = Math.max(0, Math.min(1, window.scrollY / (docHeight || 1)));
-
-        // Select phase based on scroll progress down the page
-        const index = Math.min(phases.length - 1, Math.floor(progress * phases.length));
-        const current = phases[index];
-
-        icon.textContent = current.icon;
-        text.textContent = current.name;
-
-        // When user scrolls all the way down ("PAGE DOWN"), activate full moon highlight!
-        if (progress >= 0.88 || index === phases.length - 1) {
-          tracker.classList.add('is-full-moon');
-        } else {
-          tracker.classList.remove('is-full-moon');
-        }
-      }
-
-      window.addEventListener('scroll', updateMoonScroll, { passive: true });
-      updateMoonScroll();
-
-      // Clicking tracker scrolls smoothly to the Contact section or Top
-      tracker.addEventListener('click', () => {
-        const isAtBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100;
-        if (isAtBottom) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          const contactSec = document.getElementById('contact');
-          if (contactSec) contactSec.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    })();
-
-    /* ==========================================================================
-       4. HERO GLOWING MOON INTERACTION
+       3. HERO GLOWING MOON INTERACTION
        ========================================================================== */
     (() => {
       const heroMoon = document.getElementById('hero-moon');
@@ -3354,7 +3252,7 @@
     })();
 
     /* ==========================================================================
-       5. NOCTURNAL OWL AT DOWN SIDE (LUNA'S NIGHT WATCHER - FLIGHT & PERCH)
+       4. NOCTURNAL OWL AT DOWN SIDE (LUNA'S NIGHT WATCHER - FLIGHT & PERCH)
        ========================================================================== */
     (() => {
       const downsideWrap = document.getElementById('owl-downside');
@@ -3511,7 +3409,7 @@
     })();
 
     /* ==========================================================================
-       6. NAVIGATION, EMAIL DISPATCH, ASTRA CHAT, BACK TO TOP
+       5. NAVIGATION, EMAIL DISPATCH, ASTRA CHAT, BACK TO TOP
        ========================================================================== */
     // Mobile navigation toggle
     const menuToggle = document.querySelector('.menu-toggle');
@@ -3604,8 +3502,8 @@
         reply = 'That’s Luna’s Nocturnal Watcher! Perched quietly on the oak branch at the down side of the page, he keeps guard over the night library. Tap him down there to hear him hoot!';
       } else if (q.includes('butterfly') || q.includes('wings') || q.includes('insect') || q.includes('moth')) {
         reply = 'That’s Luna’s Celestial Four-Winged Butterfly! As you scroll up and down the page, she flutters gracefully across the screen, taking different celestial flight paths each way. Click on her to watch her do a stardust loop!';
-      } else if (q.includes('moon') || q.includes('phase')) {
-        reply = 'The glowing moon at the top and the moon phase tracker in the navigation highlight Luna’s cosmic theme. As you scroll down the page, watch the moon wax until it reaches a glowing Full Moon at the bottom!';
+      } else if (q.includes('moon') || q.includes('lunar')) {
+        reply = 'The glowing moon shines directly behind Luna’s portrait in the hero section, surrounded by luminous craters, starlight halos, and orbital rings. Click on it to see it shimmer and rotate!';
       } else if (q.includes('who') || q.includes('about') || q.includes('author') || q.includes('luna') || q.includes('daffini')) {
         reply = 'G Daffini Shiyalin (Luna) is a cosmic poet and storyteller known for spinning surreal worlds, twisted verse, and poignant prose between starlight and emotion.';
       } else if (q.includes('poem') || q.includes('poetry') || q.includes('shelf') || q.includes('read')) {
