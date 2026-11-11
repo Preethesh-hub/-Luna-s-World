@@ -864,12 +864,34 @@
       border-radius: var(--radius-md);
       overflow: hidden;
       box-shadow: var(--shadow-card);
-      transition: var(--transition-base);
+      position: relative;
+      transform-style: preserve-3d;
+      perspective: 1200px;
+      will-change: transform;
+      transition: box-shadow 0.28s ease, border-color 0.28s ease;
     }
     .poem-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
+      box-shadow: 0 16px 38px rgba(48, 38, 33, 0.16);
       border-color: var(--accent-warm);
+    }
+    html[data-theme="dark"] .poem-card:hover {
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.65);
+    }
+
+    /* Holographic Metallic Foil Sheen on Cards */
+    .card-foil-sheen {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 6;
+      transition: opacity 0.35s ease;
+      mix-blend-mode: overlay;
+      will-change: opacity, background;
+    }
+    html[data-theme="dark"] .card-foil-sheen {
+      mix-blend-mode: screen;
     }
 
     .poem-image-wrap {
@@ -981,12 +1003,18 @@
       overflow: hidden;
       box-shadow: var(--shadow-card);
       margin-bottom: 64px;
-      transition: var(--transition-base);
+      position: relative;
+      transform-style: preserve-3d;
+      perspective: 1200px;
+      will-change: transform;
+      transition: box-shadow 0.28s ease, border-color 0.28s ease;
     }
     .work-feature:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
+      box-shadow: 0 18px 42px rgba(48, 38, 33, 0.16);
       border-color: var(--accent-warm);
+    }
+    html[data-theme="dark"] .work-feature:hover {
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65);
     }
 
     .work-cover {
@@ -1115,12 +1143,18 @@
       display: flex;
       flex-direction: column;
       box-shadow: var(--shadow-card);
-      transition: var(--transition-base);
+      position: relative;
+      transform-style: preserve-3d;
+      perspective: 1200px;
+      will-change: transform;
+      transition: box-shadow 0.28s ease, border-color 0.28s ease;
     }
     .bribooks-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
+      box-shadow: 0 16px 36px rgba(48, 38, 33, 0.16);
       border-color: var(--accent-warm);
+    }
+    html[data-theme="dark"] .bribooks-card:hover {
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.65);
     }
 
     .bribooks-cover {
@@ -2944,6 +2978,7 @@
       let width = 0;
       let height = 0;
       let stars = [];
+      let fireflies = [];
       let shootingStars = [];
       let magicSparkles = [];
       let animationFrameId;
@@ -2951,6 +2986,8 @@
       let mouseY = 0;
       let targetMouseX = 0;
       let targetMouseY = 0;
+      let clientMouseX = -9999;
+      let clientMouseY = -9999;
 
       // Scroll velocity dynamics
       let lastScrollY = window.scrollY;
@@ -2960,6 +2997,7 @@
         width = canvas.width = sparkleCanvas.width = window.innerWidth;
         height = canvas.height = sparkleCanvas.height = window.innerHeight;
         initStars();
+        initFireflies();
       }
 
       function initStars() {
@@ -2980,6 +3018,25 @@
         }
       }
 
+      // Swarm of Living Enchanted Golden Fireflies
+      function initFireflies() {
+        const fireflyCount = Math.min(22, Math.max(12, Math.floor(width / 75)));
+        fireflies = [];
+        for (let i = 0; i < fireflyCount; i++) {
+          fireflies.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.55,
+            vy: (Math.random() - 0.5) * 0.55,
+            radius: Math.random() * 1.8 + 1.5,
+            phase: Math.random() * Math.PI * 2,
+            pulseSpeed: Math.random() * 0.03 + 0.018,
+            scatterX: 0,
+            scatterY: 0
+          });
+        }
+      }
+
       function createShootingStar() {
         if (Math.random() > 0.6) return;
         shootingStars.push({
@@ -2994,6 +3051,29 @@
       }
 
       setInterval(createShootingStar, 5500);
+
+      // Interactive Meteor Shooter (Wish Upon a Star)
+      function launchInteractiveMeteor(targetX, targetY) {
+        if (shootingStars.length > 5) return;
+        const fromLeft = targetX < width / 2;
+        const startX = fromLeft ? Math.max(10, targetX - (Math.random() * 220 + 140)) : Math.min(width - 10, targetX + (Math.random() * 220 + 140));
+        const startY = Math.max(10, targetY - (Math.random() * 220 + 140));
+        const angle = Math.atan2(targetY - startY, targetX - startX);
+        const dist = Math.hypot(targetX - startX, targetY - startY);
+
+        shootingStars.push({
+          x: startX,
+          y: startY,
+          length: Math.min(140, Math.max(80, dist * 0.7)),
+          speed: 15,
+          angle: angle,
+          opacity: 1,
+          decay: 0.022,
+          isInteractive: true,
+          targetX: targetX,
+          targetY: targetY
+        });
+      }
 
       // Magical Sparkle Pool Generator
       function addSparkle(x, y, count = 1, speedMul = 1, type = null) {
@@ -3031,6 +3111,8 @@
 
       // 1. Magical Sparkles while moving cursor / mouse
       window.addEventListener('mousemove', (e) => {
+        clientMouseX = e.clientX;
+        clientMouseY = e.clientY;
         targetMouseX = (e.clientX - width / 2) * 0.05;
         targetMouseY = (e.clientY - height / 2) * 0.05;
 
@@ -3054,9 +3136,15 @@
         }
       }, { passive: true });
 
-      // 3. Magical Sparkles on Click / Tap
+      // 3. Magical Sparkles & Interactive Sky Meteor on Click / Tap
       window.addEventListener('click', (e) => {
         addSparkle(e.clientX, e.clientY, 15, 2.4);
+
+        // If clicking on an open background area, shoot a brilliant meteor across the sky!
+        const interactiveTarget = e.target.closest('button, a, input, textarea, select, .owl-interactive-wrap, .celestial-butterfly-wrap, .form-control');
+        if (!interactiveTarget) {
+          launchInteractiveMeteor(e.clientX, e.clientY);
+        }
       });
 
       // 4. Extra Sparkle Bursts on Moon hover
@@ -3168,14 +3256,77 @@
           }
         }
 
-        // Draw Shooting Stars
+        // Draw Enchanted Golden Fireflies (Living Night Companions)
+        for (let i = 0; i < fireflies.length; i++) {
+          const ff = fireflies[i];
+          ff.phase += ff.pulseSpeed;
+
+          // Natural organic meandering motion
+          ff.x += ff.vx + Math.sin(ff.phase * 0.7) * 0.45;
+          ff.y += ff.vy + Math.cos(ff.phase * 0.5) * 0.45;
+
+          // React to cursor proximity: gently scatter away
+          const distToMouse = Math.hypot(ff.x - clientMouseX, ff.y - clientMouseY);
+          if (distToMouse < 110) {
+            const push = (110 - distToMouse) / 110;
+            const pushAngle = Math.atan2(ff.y - clientMouseY, ff.x - clientMouseX);
+            ff.scatterX += Math.cos(pushAngle) * push * 2.2;
+            ff.scatterY += Math.sin(pushAngle) * push * 2.2;
+          }
+          ff.scatterX *= 0.91;
+          ff.scatterY *= 0.91;
+          ff.x += ff.scatterX;
+          ff.y += ff.scatterY;
+
+          // Wrap around canvas edges
+          if (ff.x < -30) ff.x = width + 30;
+          if (ff.x > width + 30) ff.x = -30;
+          if (ff.y < -30) ff.y = height + 30;
+          if (ff.y > height + 30) ff.y = -30;
+
+          // Bioluminescent warm golden pulse
+          const pulse = Math.sin(ff.phase) * 0.42 + 0.58;
+          const outerGlow = ff.radius * 7;
+          const glowGrad = ctx.createRadialGradient(ff.x, ff.y, 0, ff.x, ff.y, outerGlow);
+
+          if (isDark) {
+            glowGrad.addColorStop(0, `rgba(255, 235, 175, ${pulse * 0.9})`);
+            glowGrad.addColorStop(0.35, `rgba(245, 194, 107, ${pulse * 0.42})`);
+            glowGrad.addColorStop(1, 'rgba(245, 194, 107, 0)');
+          } else {
+            glowGrad.addColorStop(0, `rgba(200, 138, 88, ${pulse * 0.85})`);
+            glowGrad.addColorStop(0.4, `rgba(228, 189, 145, ${pulse * 0.4})`);
+            glowGrad.addColorStop(1, 'rgba(228, 189, 145, 0)');
+          }
+
+          ctx.beginPath();
+          ctx.arc(ff.x, ff.y, outerGlow, 0, Math.PI * 2);
+          ctx.fillStyle = glowGrad;
+          ctx.fill();
+
+          // Bright inner bioluminescent spark
+          ctx.beginPath();
+          ctx.arc(ff.x, ff.y, ff.radius * pulse, 0, Math.PI * 2);
+          ctx.fillStyle = isDark ? `rgba(255, 255, 235, ${pulse})` : `rgba(160, 95, 45, ${pulse * 0.95})`;
+          ctx.fill();
+        }
+
+        // Draw Shooting Stars & Interactive Meteors
         for (let i = shootingStars.length - 1; i >= 0; i--) {
           const ss = shootingStars[i];
           ss.x += Math.cos(ss.angle) * ss.speed;
           ss.y += Math.sin(ss.angle) * ss.speed;
           ss.opacity -= ss.decay;
 
+          // Interactive shooting stars emit stardust trails as they fly
+          if (ss.isInteractive && Math.random() > 0.45) {
+            addSparkle(ss.x, ss.y, 1, 0.7, 'star');
+          }
+
           if (ss.opacity <= 0 || ss.x > width || ss.y > height) {
+            if (ss.isInteractive) {
+              addSparkle(ss.x, ss.y, 8, 1.8, 'star');
+            }
             shootingStars.splice(i, 1);
             continue;
           }
@@ -3189,7 +3340,7 @@
           grad.addColorStop(1, `rgba(255, 255, 255, ${ss.opacity})`);
 
           ctx.strokeStyle = grad;
-          ctx.lineWidth = 1.6;
+          ctx.lineWidth = ss.isInteractive ? 2.4 : 1.6;
           ctx.beginPath();
           ctx.moveTo(tailX, tailY);
           ctx.lineTo(ss.x, ss.y);
@@ -3746,6 +3897,46 @@
             isLooping = false;
           }, 1600);
         }, 750);
+      });
+    })();
+
+    /* ==========================================================================
+       6. LUXURY 3D TILT & METALLIC FOIL SHEEN ON CARDS
+       ========================================================================== */
+    (() => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const tiltTargets = document.querySelectorAll('.poem-card, .work-feature, .bribooks-card');
+      tiltTargets.forEach((card) => {
+        let sheen = card.querySelector('.card-foil-sheen');
+        if (!sheen) {
+          sheen = document.createElement('div');
+          sheen.className = 'card-foil-sheen';
+          sheen.setAttribute('aria-hidden', 'true');
+          card.appendChild(sheen);
+        }
+
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+
+          // Subtle, elegant tilt angles: max ±7 degrees
+          const rotX = ((0.5 - y) * 9.5).toFixed(2);
+          const rotY = ((x - 0.5) * 9.5).toFixed(2);
+
+          card.style.transform = `perspective(1100px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-5px) scale3d(1.015, 1.015, 1.015)`;
+
+          const sheenX = Math.round(x * 100);
+          const sheenY = Math.round(y * 100);
+          sheen.style.opacity = '1';
+          sheen.style.background = `radial-gradient(circle at ${sheenX}% ${sheenY}%, rgba(255, 248, 225, 0.45) 0%, rgba(228, 189, 145, 0.16) 35%, transparent 68%)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          sheen.style.opacity = '0';
+        });
       });
     })();
   </script>
