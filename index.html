@@ -1841,10 +1841,74 @@
       transform: translateY(-50%) scale(1);
     }
 
+    /* Two Tiny Blue Morpho Companion Butterflies */
+    .mini-butterfly-wrap {
+      position: fixed;
+      top: 12vh;
+      left: 78vw;
+      z-index: 919;
+      pointer-events: auto;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      perspective: 600px;
+      will-change: transform, left, top;
+      filter: drop-shadow(0 5px 10px rgba(18, 28, 45, 0.24));
+    }
+    html[data-theme="dark"] .mini-butterfly-wrap {
+      filter: drop-shadow(0 6px 14px rgba(56, 178, 255, 0.45));
+    }
+    .mini-butterfly-1 {
+      width: 44px;
+      height: 38px;
+    }
+    .mini-butterfly-2 {
+      width: 34px;
+      height: 29px;
+    }
+    .mini-butterfly-1 .butterfly-left-wings {
+      animation: butterfly-flap-left 0.2s ease-in-out infinite alternate;
+      animation-delay: -0.1s;
+    }
+    .mini-butterfly-1 .butterfly-right-wings {
+      animation: butterfly-flap-right 0.2s ease-in-out infinite alternate;
+      animation-delay: -0.1s;
+    }
+    .mini-butterfly-2 .butterfly-left-wings {
+      animation: butterfly-flap-left 0.17s ease-in-out infinite alternate;
+      animation-delay: -0.06s;
+    }
+    .mini-butterfly-2 .butterfly-right-wings {
+      animation: butterfly-flap-right 0.17s ease-in-out infinite alternate;
+      animation-delay: -0.06s;
+    }
+    .mini-butterfly-wrap.is-hovering.mini-butterfly-1 .butterfly-left-wings {
+      animation: butterfly-flap-left-slow 0.85s ease-in-out infinite alternate;
+    }
+    .mini-butterfly-wrap.is-hovering.mini-butterfly-1 .butterfly-right-wings {
+      animation: butterfly-flap-right-slow 0.85s ease-in-out infinite alternate;
+    }
+    .mini-butterfly-wrap.is-hovering.mini-butterfly-2 .butterfly-left-wings {
+      animation: butterfly-flap-left-slow 0.72s ease-in-out infinite alternate;
+      animation-delay: -0.25s;
+    }
+    .mini-butterfly-wrap.is-hovering.mini-butterfly-2 .butterfly-right-wings {
+      animation: butterfly-flap-right-slow 0.72s ease-in-out infinite alternate;
+      animation-delay: -0.25s;
+    }
+
     @media (max-width: 768px) {
       .celestial-butterfly-wrap {
         width: 84px;
         height: 72px;
+      }
+      .mini-butterfly-1 {
+        width: 34px;
+        height: 29px;
+      }
+      .mini-butterfly-2 {
+        width: 26px;
+        height: 23px;
       }
       .butterfly-bubble {
         display: none;
@@ -1853,6 +1917,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       .celestial-butterfly-wrap,
+      .mini-butterfly-wrap,
       .butterfly-rotator,
       .butterfly-left-wings,
       .butterfly-right-wings {
@@ -2978,6 +3043,136 @@
     </div>
   </div>
 
+  <!-- Tiny Companion Butterfly 1 -->
+  <div class="mini-butterfly-wrap mini-butterfly-1" id="mini-butterfly-1" role="img" aria-label="Tiny Blue Morpho butterfly companion 1" title="Tiny azure butterfly companion">
+    <div class="butterfly-rotator" id="mini-rotator-1">
+      <svg class="butterfly-svg" viewBox="0 0 220 190" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="mini1BlueL" x1="108" y1="86" x2="20" y2="56" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0d397a"/>
+            <stop offset="35%" stop-color="#288ee4"/>
+            <stop offset="68%" stop-color="#96e6ff"/>
+            <stop offset="100%" stop-color="#1761b8"/>
+          </linearGradient>
+          <linearGradient id="mini1BlueR" x1="112" y1="86" x2="200" y2="56" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0d397a"/>
+            <stop offset="35%" stop-color="#2d95eb"/>
+            <stop offset="68%" stop-color="#aef0ff"/>
+            <stop offset="100%" stop-color="#1761b8"/>
+          </linearGradient>
+          <linearGradient id="mini1Body" x1="110" y1="52" x2="110" y2="122" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#2c2628"/>
+            <stop offset="100%" stop-color="#0d0a0b"/>
+          </linearGradient>
+        </defs>
+        <g class="butterfly-left-wings">
+          <path d="M 108,82 C 92,84 65,91 46,98 C 37,104 35,112 38,118 C 36,123 39,130 45,134 C 46,140 52,146 59,149 C 62,155 69,159 76,159 C 81,163 89,162 94,158 C 99,156 102,148 103,140 C 104,124 106,104 108,82 Z" fill="#110d0f"/>
+          <path d="M 107,84 C 92,88 66,95 51,103 C 46,108 46,113 49,117 C 46,121 49,127 54,130 C 55,135 60,140 65,142 C 68,146 74,149 80,148 C 84,150 90,149 94,144 C 98,136 101,116 107,84 Z" fill="url(#mini1BlueL)"/>
+          <path d="M 108,66 C 90,46 58,39 24,47 C 13,50 9,59 11,68 C 11,74 14,80 18,84 C 18,90 22,96 28,99 C 29,105 34,110 41,112 C 44,116 52,118 59,116 C 78,113 94,104 108,88 Z" fill="#110d0f"/>
+          <path d="M 106,68 C 88,52 60,47 32,54 C 24,57 22,63 25,68 C 23,73 26,78 31,81 C 30,86 34,92 40,94 C 41,99 46,104 52,104 C 66,105 88,97 106,86 Z" fill="url(#mini1BlueL)"/>
+          <g stroke="#101520" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.85">
+            <path d="M 76,61 L 69,73"/>
+            <path d="M 74,63 Q 50,59 24,66"/>
+            <path d="M 71,69 Q 50,76 34,88"/>
+            <path d="M 90,98 Q 70,111 54,128"/>
+          </g>
+          <g fill="#f5fbff">
+            <circle cx="18" cy="60" r="2.2"/>
+            <circle cx="17" cy="69" r="2.1"/>
+            <circle cx="21" cy="79" r="2.0"/>
+          </g>
+        </g>
+        <g class="butterfly-right-wings">
+          <path d="M 112,82 C 128,84 155,91 174,98 C 183,104 185,112 182,118 C 184,123 181,130 175,134 C 174,140 168,146 161,149 C 158,155 151,159 144,159 C 139,163 131,162 126,158 C 121,156 118,148 117,140 C 116,124 114,104 112,82 Z" fill="#110d0f"/>
+          <path d="M 113,84 C 128,88 154,95 169,103 C 174,108 174,113 171,117 C 174,121 171,127 166,130 C 165,135 160,140 155,142 C 152,146 146,149 140,148 C 136,150 130,149 126,144 C 122,136 119,116 113,84 Z" fill="url(#mini1BlueR)"/>
+          <path d="M 112,66 C 130,46 162,39 196,47 C 207,50 211,59 209,68 C 209,74 206,80 202,84 C 202,90 198,96 192,99 C 191,105 186,110 179,112 C 176,116 168,118 161,116 C 142,113 126,104 112,88 Z" fill="#110d0f"/>
+          <path d="M 114,68 C 132,52 160,47 188,54 C 196,57 198,63 195,68 C 197,73 194,78 189,81 C 190,86 186,92 180,94 C 179,99 174,104 168,104 C 154,105 132,97 114,86 Z" fill="url(#mini1BlueR)"/>
+          <g stroke="#101520" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.85">
+            <path d="M 144,61 L 151,73"/>
+            <path d="M 146,63 Q 170,59 196,66"/>
+            <path d="M 149,69 Q 170,76 186,88"/>
+            <path d="M 130,98 Q 150,111 166,128"/>
+          </g>
+          <g fill="#f5fbff">
+            <circle cx="202" cy="60" r="2.2"/>
+            <circle cx="203" cy="69" r="2.1"/>
+            <circle cx="199" cy="79" r="2.0"/>
+          </g>
+        </g>
+        <g>
+          <path d="M 108.5,52 Q 97,32 80,15" stroke="#181312" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M 111.5,52 Q 123,32 140,15" stroke="#181312" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <ellipse cx="110" cy="54" rx="3.8" ry="3.6" fill="#171415"/>
+          <ellipse cx="110" cy="70" rx="5.0" ry="12" fill="url(#mini1Body)"/>
+          <path d="M 106,80 C 105.6,92 106.5,108 108.5,119 C 109.2,122 110.8,122 111.5,119 C 113.5,108 114.4,92 114,80 Z" fill="url(#mini1Body)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Tiny Companion Butterfly 2 -->
+  <div class="mini-butterfly-wrap mini-butterfly-2" id="mini-butterfly-2" role="img" aria-label="Tiny Blue Morpho butterfly companion 2" title="Tiny azure butterfly companion">
+    <div class="butterfly-rotator" id="mini-rotator-2">
+      <svg class="butterfly-svg" viewBox="0 0 220 190" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="mini2BlueL" x1="108" y1="86" x2="20" y2="56" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0f3e84"/>
+            <stop offset="35%" stop-color="#3399eb"/>
+            <stop offset="68%" stop-color="#aef0ff"/>
+            <stop offset="100%" stop-color="#1969c7"/>
+          </linearGradient>
+          <linearGradient id="mini2BlueR" x1="112" y1="86" x2="200" y2="56" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0f3e84"/>
+            <stop offset="35%" stop-color="#3aa0ef"/>
+            <stop offset="68%" stop-color="#bdf4ff"/>
+            <stop offset="100%" stop-color="#1969c7"/>
+          </linearGradient>
+          <linearGradient id="mini2Body" x1="110" y1="52" x2="110" y2="122" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#2c2628"/>
+            <stop offset="100%" stop-color="#0d0a0b"/>
+          </linearGradient>
+        </defs>
+        <g class="butterfly-left-wings">
+          <path d="M 108,82 C 92,84 65,91 46,98 C 37,104 35,112 38,118 C 36,123 39,130 45,134 C 46,140 52,146 59,149 C 62,155 69,159 76,159 C 81,163 89,162 94,158 C 99,156 102,148 103,140 C 104,124 106,104 108,82 Z" fill="#110d0f"/>
+          <path d="M 107,84 C 92,88 66,95 51,103 C 46,108 46,113 49,117 C 46,121 49,127 54,130 C 55,135 60,140 65,142 C 68,146 74,149 80,148 C 84,150 90,149 94,144 C 98,136 101,116 107,84 Z" fill="url(#mini2BlueL)"/>
+          <path d="M 108,66 C 90,46 58,39 24,47 C 13,50 9,59 11,68 C 11,74 14,80 18,84 C 18,90 22,96 28,99 C 29,105 34,110 41,112 C 44,116 52,118 59,116 C 78,113 94,104 108,88 Z" fill="#110d0f"/>
+          <path d="M 106,68 C 88,52 60,47 32,54 C 24,57 22,63 25,68 C 23,73 26,78 31,81 C 30,86 34,92 40,94 C 41,99 46,104 52,104 C 66,105 88,97 106,86 Z" fill="url(#mini2BlueL)"/>
+          <g stroke="#101520" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.85">
+            <path d="M 76,61 L 69,73"/>
+            <path d="M 74,63 Q 50,59 24,66"/>
+            <path d="M 71,69 Q 50,76 34,88"/>
+          </g>
+          <g fill="#f5fbff">
+            <circle cx="18" cy="60" r="2.4"/>
+            <circle cx="17" cy="69" r="2.2"/>
+          </g>
+        </g>
+        <g class="butterfly-right-wings">
+          <path d="M 112,82 C 128,84 155,91 174,98 C 183,104 185,112 182,118 C 184,123 181,130 175,134 C 174,140 168,146 161,149 C 158,155 151,159 144,159 C 139,163 131,162 126,158 C 121,156 118,148 117,140 C 116,124 114,104 112,82 Z" fill="#110d0f"/>
+          <path d="M 113,84 C 128,88 154,95 169,103 C 174,108 174,113 171,117 C 174,121 171,127 166,130 C 165,135 160,140 155,142 C 152,146 146,149 140,148 C 136,150 130,149 126,144 C 122,136 119,116 113,84 Z" fill="url(#mini2BlueR)"/>
+          <path d="M 112,66 C 130,46 162,39 196,47 C 207,50 211,59 209,68 C 209,74 206,80 202,84 C 202,90 198,96 192,99 C 191,105 186,110 179,112 C 176,116 168,118 161,116 C 142,113 126,104 112,88 Z" fill="#110d0f"/>
+          <path d="M 114,68 C 132,52 160,47 188,54 C 196,57 198,63 195,68 C 197,73 194,78 189,81 C 190,86 186,92 180,94 C 179,99 174,104 168,104 C 154,105 132,97 114,86 Z" fill="url(#mini2BlueR)"/>
+          <g stroke="#101520" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.85">
+            <path d="M 144,61 L 151,73"/>
+            <path d="M 146,63 Q 170,59 196,66"/>
+            <path d="M 149,69 Q 170,76 186,88"/>
+          </g>
+          <g fill="#f5fbff">
+            <circle cx="202" cy="60" r="2.4"/>
+            <circle cx="203" cy="69" r="2.2"/>
+          </g>
+        </g>
+        <g>
+          <path d="M 108.5,52 Q 97,32 80,15" stroke="#181312" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M 111.5,52 Q 123,32 140,15" stroke="#181312" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <ellipse cx="110" cy="54" rx="3.8" ry="3.6" fill="#171415"/>
+          <ellipse cx="110" cy="70" rx="5.0" ry="12" fill="url(#mini2Body)"/>
+          <path d="M 106,80 C 105.6,92 106.5,108 108.5,119 C 109.2,122 110.8,122 111.5,119 C 113.5,108 114.4,92 114,80 Z" fill="url(#mini2Body)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
   <!-- ========================================================================
        ASTRA CHAT ASSISTANT
        ======================================================================== -->
@@ -3285,7 +3480,7 @@
         addSparkle(e.clientX, e.clientY, 15, 2.4);
 
         // If clicking on an open background area, shoot a brilliant meteor across the sky!
-        const interactiveTarget = e.target.closest('button, a, input, textarea, select, .owl-interactive-wrap, .celestial-butterfly-wrap, .form-control');
+        const interactiveTarget = e.target.closest('button, a, input, textarea, select, .owl-interactive-wrap, .celestial-butterfly-wrap, .mini-butterfly-wrap, .form-control');
         if (!interactiveTarget) {
           launchInteractiveMeteor(e.clientX, e.clientY);
         }
@@ -3798,7 +3993,7 @@
       } else if (q.includes('firefl') || q.includes('wisp')) {
         reply = 'Those are Luna’s enchanted golden fireflies! They drift peacefully around the poetry cards and scatter away when your cursor gets close!';
       } else if (q.includes('butterfly') || q.includes('morpho') || q.includes('blue') || q.includes('wings')) {
-        reply = 'That’s Luna’s iridescent Blue Morpho butterfly! With electric azure wings fringed in black and pearls, she flutters gracefully across the screen along different flight paths when you scroll up or down. Click her to watch an aerial spin!';
+        reply = 'That’s Luna’s iridescent Blue Morpho butterfly accompanied by two tiny azure companion butterflies! As you scroll up and down, all three glide across the page along luminous sky paths. Click any of them to see them twirl and scatter stardust!';
       } else if (q.includes('moon') || q.includes('lunar')) {
         reply = 'The glowing moon shines directly behind Luna’s portrait in the hero section, surrounded by luminous craters, starlight halos, and orbital rings. Click on it to see it shimmer and rotate!';
       } else if (q.includes('who') || q.includes('about') || q.includes('author') || q.includes('luna') || q.includes('daffini')) {
@@ -3812,7 +4007,7 @@
       } else if (q.includes('contact') || q.includes('email') || q.includes('message') || q.includes('reach')) {
         reply = 'You can email Luna at daffini1908@gmail.com, use the contact form at the bottom of the page, or connect on Wattpad @author_luna1.';
       } else {
-        reply = 'I’m happy to guide you! Ask me about Luna’s poems, her novel The Hidden Bloodline, the glowing Moon rising behind her photo, or the Blue Morpho butterfly!';
+        reply = 'I’m happy to guide you! Ask me about Luna’s poems, her novel The Hidden Bloodline, the glowing Moon rising behind her photo, or the Blue Morpho butterfly trio!';
       }
 
       setTimeout(() => appendMessage(reply, false), 350);
@@ -3854,13 +4049,52 @@
     }
 
     /* ==========================================================================
-       7. IRIDESCENT BLUE MORPHO BUTTERFLY (BIDIRECTIONAL SCROLL & DUAL PATHS)
+       7. IRIDESCENT BLUE MORPHO BUTTERFLY TRIO (MAIN + 2 TINY COMPANIONS)
        ========================================================================== */
     (() => {
       const butterflyWrap = document.getElementById('celestial-butterfly');
       const butterflyRotator = document.getElementById('butterfly-rotator');
       const bubble = document.getElementById('butterfly-bubble');
       if (!butterflyWrap || !butterflyRotator) return;
+
+      const miniCompanions = [
+        {
+          wrap: document.getElementById('mini-butterfly-1'),
+          rotator: document.getElementById('mini-rotator-1'),
+          offsetX: -5.2,
+          offsetY: -4.4,
+          orbitRx: 2.8,
+          orbitRy: 2.4,
+          freqX: 1.45,
+          freqY: 1.15,
+          phase: 0.7,
+          easeFlight: 0.068,
+          easeIdle: 0.036,
+          x: 73,
+          y: 8,
+          angle: -14,
+          targetAngle: -14,
+          isLooping: false
+        },
+        {
+          wrap: document.getElementById('mini-butterfly-2'),
+          rotator: document.getElementById('mini-rotator-2'),
+          offsetX: 6.0,
+          offsetY: 4.8,
+          orbitRx: 3.1,
+          orbitRy: 2.5,
+          freqX: 1.75,
+          freqY: 1.35,
+          phase: 2.3,
+          easeFlight: 0.056,
+          easeIdle: 0.042,
+          x: 84,
+          y: 17,
+          angle: 18,
+          targetAngle: 18,
+          isLooping: false
+        }
+      ].filter((m) => m.wrap && m.rotator);
 
       let lastScrollY = window.scrollY;
       let isIdle = true;
@@ -3875,15 +4109,16 @@
       let currentAngle = -20;
       let targetAngle = -20;
 
-      // Start with serene basking wing flutter
+      // Start with serene basking wing flutter on all butterflies
       butterflyWrap.classList.add('is-hovering');
+      miniCompanions.forEach((m) => m.wrap.classList.add('is-hovering'));
 
       const butterflySayings = [
         '“Hey, butterfly, do you hate the rain, too? ✦”',
         '“Azure wings catching starlight over Luna’s verses... ✨”',
-        '“Gliding quietly between ink, petals, and dreamscapes. ☾”',
-        '“Shimmering in cobalt blue along every scroll path! ✦”',
-        '“Drifting lightly over poetry and ancient paper... ✨”'
+        '“Three cobalt companions gliding across dreamscapes! ☾”',
+        '“Shimmering in electric blue along every scroll path! ✦”',
+        '“Little azure wings dancing lightly through the night sky... ✨”'
       ];
       let sayingIdx = 0;
 
@@ -3907,7 +4142,7 @@
         };
       }
 
-      // Initialize position based on initial scroll
+      // Initialize positions based on initial scroll
       const initialDocHeight = document.documentElement.scrollHeight - window.innerHeight;
       const initialProgress = Math.max(0, Math.min(1, window.scrollY / (initialDocHeight || 1)));
       const initPt = getDownwardPath(initialProgress);
@@ -3915,6 +4150,18 @@
       currentY = targetY = initPt.y;
       butterflyWrap.style.left = `${currentX}vw`;
       butterflyWrap.style.top = `${currentY}vh`;
+
+      miniCompanions.forEach((m) => {
+        m.x = Math.max(3, Math.min(92, currentX + m.offsetX));
+        m.y = Math.max(3, Math.min(90, currentY + m.offsetY));
+        m.wrap.style.left = `${m.x}vw`;
+        m.wrap.style.top = `${m.y}vh`;
+      });
+
+      function setHoveringState(hovering) {
+        butterflyWrap.classList.toggle('is-hovering', hovering);
+        miniCompanions.forEach((m) => m.wrap.classList.toggle('is-hovering', hovering));
+      }
 
       function onScroll() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -3926,10 +4173,9 @@
 
         if (Math.abs(delta) > 1.2) {
           isIdle = false;
-          butterflyWrap.classList.remove('is-hovering');
+          setHoveringState(false);
 
           if (delta > 0) {
-            // SCROLLING DOWNWARDS: fly along Downward Path
             const pt = getDownwardPath(progress);
             targetX = pt.x;
             targetY = pt.y;
@@ -3943,7 +4189,6 @@
               window.addMagicalSparkle(rect.left + rect.width * 0.5, rect.top + rect.height * 0.5, 1, 1.2, 'star');
             }
           } else {
-            // SCROLLING UPWARDS: fly along Upward Path
             const pt = getUpwardPath(progress);
             targetX = pt.x;
             targetY = pt.y;
@@ -3961,17 +4206,16 @@
 
         lastScrollY = scrollY;
 
-        // When scroll stops, settle into calm basking flutter
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
           isIdle = true;
-          butterflyWrap.classList.add('is-hovering');
+          setHoveringState(true);
         }, 180);
       }
 
       window.addEventListener('scroll', onScroll, { passive: true });
 
-      // Silky Smooth Physics Animation Loop
+      // Silky Smooth Physics Animation Loop for Main Butterfly & 2 Tiny Companions
       function animateButterfly() {
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           const ease = isIdle ? 0.04 : 0.085;
@@ -3989,7 +4233,7 @@
             renderY += Math.cos(time * 0.8) * 0.5;
           }
 
-          // Align head & antennae smoothly into direction of flight (+90 because SVG head points -Y)
+          // Align main butterfly head into flight direction (+90 because SVG head points -Y)
           const dx = currentX - prevX;
           const dy = currentY - prevY;
           if (!isIdle && Math.hypot(dx, dy) > 0.035) {
@@ -4008,29 +4252,89 @@
           if (!isLooping) {
             butterflyRotator.style.transform = `rotate(${renderAngle}deg)`;
           }
+
+          // Update both tiny accompanying butterflies along playful swirling paths
+          miniCompanions.forEach((m) => {
+            const prevMX = m.x;
+            const prevMY = m.y;
+
+            const swirlX = Math.sin(time * m.freqX + m.phase) * m.orbitRx;
+            const swirlY = Math.cos(time * m.freqY + m.phase * 1.3) * m.orbitRy;
+            const mTargetX = Math.max(3, Math.min(92, renderX + m.offsetX + swirlX));
+            const mTargetY = Math.max(3, Math.min(90, renderY + m.offsetY + swirlY));
+
+            const mEase = isIdle ? m.easeIdle : m.easeFlight;
+            m.x += (mTargetX - m.x) * mEase;
+            m.y += (mTargetY - m.y) * mEase;
+
+            const mdx = m.x - prevMX;
+            const mdy = m.y - prevMY;
+            if (Math.hypot(mdx, mdy) > 0.015) {
+              const mRawAngle = Math.atan2(mdy, mdx) * (180 / Math.PI) + 90;
+              let mDiff = mRawAngle - m.targetAngle;
+              while (mDiff > 180) mDiff -= 360;
+              while (mDiff < -180) mDiff += 360;
+              m.targetAngle += mDiff;
+            }
+            m.angle += (m.targetAngle - m.angle) * 0.14;
+
+            m.wrap.style.left = `${m.x}vw`;
+            m.wrap.style.top = `${m.y}vh`;
+            if (!m.isLooping) {
+              m.rotator.style.transform = `rotate(${m.angle}deg)`;
+            }
+          });
         }
 
         requestAnimationFrame(animateButterfly);
       }
       requestAnimationFrame(animateButterfly);
 
-      // Interactive Click: Playful 360-degree Aerial Loop & Sparkle Shower
-      butterflyWrap.addEventListener('click', (e) => {
-        e.stopPropagation();
+      function triggerMiniLoop(m, delayMs = 0) {
+        if (m.isLooping) return;
+        setTimeout(() => {
+          m.isLooping = true;
+          m.rotator.style.transition = 'transform 0.68s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          m.rotator.style.transform = `rotate(${m.angle + 360}deg) scale(1.28)`;
+
+          if (window.addMagicalSparkle) {
+            const rect = m.wrap.getBoundingClientRect();
+            window.addMagicalSparkle(rect.left + rect.width * 0.5, rect.top + rect.height * 0.5, 10, 1.8, 'star');
+          }
+
+          setTimeout(() => {
+            m.rotator.style.transition = '';
+            m.angle = ((m.angle % 360) + 360) % 360;
+            if (m.angle > 180) m.angle -= 360;
+            m.targetAngle = m.angle;
+            m.rotator.style.transform = `rotate(${m.angle}deg)`;
+            m.isLooping = false;
+          }, 700);
+        }, delayMs);
+      }
+
+      function triggerTrioSpeechAndLoop(showCustomLine = null) {
         if (isLooping) return;
         isLooping = true;
         butterflyWrap.classList.add('is-speaking');
 
-        sayingIdx = (sayingIdx + 1) % butterflySayings.length;
-        if (bubble) bubble.textContent = butterflySayings[sayingIdx];
+        if (showCustomLine && bubble) {
+          bubble.textContent = showCustomLine;
+        } else {
+          sayingIdx = (sayingIdx + 1) % butterflySayings.length;
+          if (bubble) bubble.textContent = butterflySayings[sayingIdx];
+        }
 
         butterflyRotator.style.transition = 'transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1)';
         butterflyRotator.style.transform = `rotate(${currentAngle + 360}deg) scale(1.22)`;
 
         if (window.addMagicalSparkle) {
           const rect = butterflyWrap.getBoundingClientRect();
-          window.addMagicalSparkle(rect.left + rect.width * 0.5, rect.top + rect.height * 0.5, 24, 2.5, 'star');
+          window.addMagicalSparkle(rect.left + rect.width * 0.5, rect.top + rect.height * 0.5, 22, 2.5, 'star');
         }
+
+        // Companions twirl along in staggered harmony
+        miniCompanions.forEach((m, idx) => triggerMiniLoop(m, (idx + 1) * 90));
 
         setTimeout(() => {
           butterflyRotator.style.transition = '';
@@ -4043,6 +4347,23 @@
             isLooping = false;
           }, 1600);
         }, 750);
+      }
+
+      butterflyWrap.addEventListener('click', (e) => {
+        e.stopPropagation();
+        triggerTrioSpeechAndLoop();
+      });
+
+      miniCompanions.forEach((m, idx) => {
+        m.wrap.addEventListener('click', (e) => {
+          e.stopPropagation();
+          triggerMiniLoop(m, 0);
+          triggerTrioSpeechAndLoop(
+            idx === 0
+              ? '“Little cobalt wings fluttering beside me in the breeze! ✨”'
+              : '“Three azure butterflies chasing starlight together! ✦”'
+          );
+        });
       });
     })();
 
