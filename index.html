@@ -843,160 +843,6 @@
       line-height: 1.1;
       color: var(--ink-primary);
     }
-
-    /* ==========================================================================
-       SLEEPING COSMIC CAT ON THE POETRY SHELF
-       ========================================================================== */
-    .poetry-title-row {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .sleeping-cat-shelf-wrap {
-      position: relative;
-      cursor: pointer;
-      user-select: none;
-      -webkit-user-select: none;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px;
-    }
-    .sleeping-cat-shelf-wrap:hover {
-      transform: scale(1.05);
-    }
-    .sleeping-cat-shelf-wrap:active {
-      transform: scale(0.97);
-    }
-
-    .sleeping-cat-svg {
-      width: 135px;
-      height: 82px;
-      overflow: visible;
-      filter: drop-shadow(0 8px 18px rgba(48, 38, 33, 0.14));
-    }
-    html[data-theme="dark"] .sleeping-cat-svg {
-      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.55));
-    }
-
-    /* Rhythmic Peaceful Breathing */
-    .cat-body-group {
-      animation: cat-breathe 3.4s ease-in-out infinite alternate;
-      transform-origin: 75px 70px;
-    }
-    @keyframes cat-breathe {
-      0% { transform: scaleY(1); }
-      100% { transform: scaleY(1.04) translateY(-1.5px); }
-    }
-
-    /* Ear twitch */
-    .cat-ear-left, .cat-ear-right {
-      transform-origin: center;
-      animation: cat-ear-twitch 6s ease-in-out infinite;
-    }
-    .cat-ear-right {
-      animation-delay: 0.2s;
-    }
-    @keyframes cat-ear-twitch {
-      0%, 92%, 100% { transform: rotate(0deg); }
-      94% { transform: rotate(-5deg); }
-      97% { transform: rotate(4deg); }
-    }
-
-    /* Tail gentle flick & hover response */
-    .cat-tail-group {
-      transform-origin: 115px 62px;
-      animation: cat-tail-idle 4.5s ease-in-out infinite alternate;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    @keyframes cat-tail-idle {
-      0% { transform: rotate(0deg); }
-      50% { transform: rotate(-5deg); }
-      100% { transform: rotate(4deg); }
-    }
-    .sleeping-cat-shelf-wrap:hover .cat-tail-group,
-    .sleeping-cat-shelf-wrap.is-purring .cat-tail-group {
-      animation: cat-tail-flick 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate;
-    }
-    @keyframes cat-tail-flick {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(-22deg) scale(1.05); }
-    }
-
-    /* Floating Zzz bubbles */
-    .cat-zzz-float {
-      position: absolute;
-      color: var(--accent-warm);
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 700;
-      opacity: 0;
-      pointer-events: none;
-      animation: cat-zzz-drift 3.8s ease-in-out infinite;
-    }
-    .cat-zzz-1 {
-      top: 14px;
-      left: 18px;
-      font-size: 13px;
-      animation-delay: 0s;
-    }
-    .cat-zzz-2 {
-      top: 2px;
-      left: 8px;
-      font-size: 16px;
-      animation-delay: 1.2s;
-    }
-    .cat-zzz-3 {
-      top: -10px;
-      left: 2px;
-      font-size: 12px;
-      animation-delay: 2.4s;
-    }
-    @keyframes cat-zzz-drift {
-      0% {
-        opacity: 0;
-        transform: translate(0, 0) scale(0.6);
-      }
-      35% {
-        opacity: 0.85;
-      }
-      70% {
-        opacity: 0.4;
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-14px, -22px) scale(1.15);
-      }
-    }
-
-    /* Interactive Purr Speech Bubble */
-    .cat-purr-bubble {
-      position: absolute;
-      top: -24px;
-      right: 10px;
-      background: var(--card-bg);
-      border: 1px solid var(--accent-warm);
-      border-radius: var(--radius-pill);
-      padding: 4px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent-warm);
-      box-shadow: 0 6px 16px rgba(48, 38, 33, 0.12);
-      opacity: 0;
-      transform: translateY(6px) scale(0.9);
-      pointer-events: none;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 5;
-      white-space: nowrap;
-    }
-    .sleeping-cat-shelf-wrap:hover .cat-purr-bubble,
-    .sleeping-cat-shelf-wrap.is-purring .cat-purr-bubble {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
     .section-description {
       max-width: 400px;
       color: var(--ink-secondary);
@@ -2446,71 +2292,7 @@
       <div class="section-head reveal-on-scroll">
         <div>
           <p class="eyebrow">Words for the in-between</p>
-          <div class="poetry-title-row">
-            <h2 class="section-title" id="poetry-title">Poetry</h2>
-
-            <!-- Sleeping Cosmic Cat Curled on the Poetry Shelf -->
-            <div class="sleeping-cat-shelf-wrap" id="sleeping-cosmic-cat" title="Luna's Cosmic Cat · Curled up asleep on the poetry shelf. Hover or tap to hear her purr!" aria-label="Sleeping cosmic cat curled up peacefully on the poetry shelf">
-              <span class="cat-purr-bubble" id="cat-purr-bubble">♫ Purrr... ✨</span>
-              <span class="cat-zzz-float cat-zzz-1" aria-hidden="true">z</span>
-              <span class="cat-zzz-float cat-zzz-2" aria-hidden="true">z</span>
-              <span class="cat-zzz-float cat-zzz-3" aria-hidden="true">✦</span>
-
-              <svg class="sleeping-cat-svg" viewBox="0 0 150 90" aria-hidden="true">
-                <!-- Celestial Starlight Aura -->
-                <ellipse cx="75" cy="52" rx="56" ry="28" fill="rgba(228, 189, 145, 0.14)" />
-                <!-- Ground Shadow on Shelf -->
-                <ellipse cx="75" cy="74" rx="52" ry="7.5" fill="rgba(24, 18, 14, 0.22)" />
-
-                <!-- Sleeping Body with Breathing Motion -->
-                <g class="cat-body-group">
-                  <!-- Main Curled Torso -->
-                  <path d="M 32,56 C 30,34 50,18 78,20 C 108,22 124,40 120,62 C 116,74 96,78 68,76 C 44,74 34,70 32,56 Z" fill="#30251e" stroke="#201712" stroke-width="1.6" />
-                  <!-- Cream Breast / Underbelly -->
-                  <path d="M 52,58 C 50,46 62,38 78,38 C 96,38 106,46 102,58 C 98,66 84,68 68,68 C 58,68 53,64 52,58 Z" fill="#e8c69f" />
-                  <!-- Paws tucked under chin -->
-                  <ellipse cx="58" cy="65" rx="7" ry="4.5" fill="#f5ecd8" stroke="#30251e" stroke-width="0.8" />
-                  <ellipse cx="47" cy="64" rx="6" ry="4" fill="#f5ecd8" stroke="#30251e" stroke-width="0.8" />
-                </g>
-
-                <!-- Sleeping Head -->
-                <g class="cat-head-group">
-                  <circle cx="45" cy="48" r="19" fill="#30251e" stroke="#201712" stroke-width="1.6" />
-                  <!-- Ears with subtle twitch -->
-                  <g class="cat-ear-left">
-                    <polygon points="34,36 29,15 45,27" fill="#30251e" stroke="#201712" stroke-width="1.4" />
-                    <polygon points="35,32 32,19 43,26" fill="#e8a88a" opacity="0.85" />
-                  </g>
-                  <g class="cat-ear-right">
-                    <polygon points="50,32 61,13 63,33" fill="#30251e" stroke="#201712" stroke-width="1.4" />
-                    <polygon points="52,30 59,17 61,30" fill="#e8a88a" opacity="0.85" />
-                  </g>
-                  <!-- Closed Sleeping Eyes -->
-                  <path d="M 34,48 Q 38,53 42,48" stroke="#9a7b64" stroke-width="1.8" fill="none" stroke-linecap="round" />
-                  <path d="M 46,47 Q 50,52 54,47" stroke="#9a7b64" stroke-width="1.8" fill="none" stroke-linecap="round" />
-                  <!-- Cute Nose & Whiskers -->
-                  <polygon points="43,53 47,53 45,56" fill="#e8a88a" />
-                  <path d="M 30,52 L 20,50 M 30,55 L 18,56" stroke="#9a7b64" stroke-width="0.9" opacity="0.75" />
-                  <path d="M 58,51 L 68,49 M 58,54 L 70,55" stroke="#9a7b64" stroke-width="0.9" opacity="0.75" />
-                  <!-- Rosy Cheek Blush -->
-                  <ellipse cx="32" cy="52" rx="4" ry="2.2" fill="rgba(235, 150, 130, 0.45)" />
-                  <ellipse cx="55" cy="51" rx="4" ry="2.2" fill="rgba(235, 150, 130, 0.45)" />
-                  <!-- Cosmic Forehead Crescent Mark -->
-                  <path d="M 44,34 Q 45,39 47,38 Q 44.5,41 42,39 Z" fill="#f5c26b" />
-                  <circle cx="44.5" cy="38" r="1.2" fill="#fff5dd" />
-                </g>
-
-                <!-- Curled Tail (Flicks playfully on hover and click) -->
-                <g class="cat-tail-group" id="cat-tail">
-                  <path d="M 115,62 C 128,52 138,40 134,26 C 130,13 115,13 109,24 C 105,32 109,48 98,58 C 93,62 84,64 72,65" stroke="#30251e" stroke-width="8.5" stroke-linecap="round" fill="none" />
-                  <path d="M 115,62 C 128,52 138,40 134,26 C 130,13 115,13 109,24 C 105,32 109,48 98,58 C 93,62 84,64 72,65" stroke="#e8c69f" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.5" />
-                  <!-- Fluffy Creamy Tail Tip with Golden Star Mark -->
-                  <circle cx="121" cy="18" r="4.8" fill="#f5ecd8" />
-                  <circle cx="121" cy="18" r="2.2" fill="#f5c26b" />
-                </g>
-              </svg>
-            </div>
-          </div>
+          <h2 class="section-title" id="poetry-title">Poetry</h2>
         </div>
         <p class="section-description">Little pieces of the heart, set loose beneath an open sky. Free to read and experience.</p>
       </div>
@@ -3980,8 +3762,6 @@
 
       if (q.includes('owl') || q.includes('watcher') || q.includes('bird')) {
         reply = 'That’s Luna’s Nocturnal Watcher! Perched quietly on the oak branch at the down side of the page, he keeps guard over the night library. Tap him down there to hear him hoot!';
-      } else if (q.includes('cat') || q.includes('fox') || q.includes('pet') || q.includes('sleeping')) {
-        reply = 'That’s Luna’s Sleeping Cosmic Cat! She curls up peacefully on top of the Poetry Shelf, dreaming of starlight and flicking her fluffy tail. Tap or hover over her to hear her purr!';
       } else if (q.includes('firefl') || q.includes('wisp') || q.includes('leaf') || q.includes('leaves') || q.includes('petal')) {
         reply = 'Those are Luna’s enchanted golden fireflies and drifting autumn petals! The fireflies scatter away when your cursor nears, and the stardust leaves tumble and glide with the breeze as you scroll!';
       } else if (q.includes('butterfly') || q.includes('wings') || q.includes('insect') || q.includes('moth')) {
@@ -4270,36 +4050,6 @@
           card.style.transform = '';
           sheen.style.opacity = '0';
         });
-      });
-    })();
-
-    /* ==========================================================================
-       7. SLEEPING COSMIC CAT INTERACTION
-       ========================================================================== */
-    (() => {
-      const cat = document.getElementById('sleeping-cosmic-cat');
-      const purrBubble = document.getElementById('cat-purr-bubble');
-      if (!cat) return;
-
-      const purrs = [
-        '♫ Purrr... ✨',
-        '☾ Meow... zzz',
-        '✦ Sweet starlight dreams... ✨',
-        '♫ Purrr... purrr ✦'
-      ];
-      let pIdx = 0;
-
-      cat.addEventListener('click', () => {
-        cat.classList.add('is-purring');
-        pIdx = (pIdx + 1) % purrs.length;
-        if (purrBubble) purrBubble.textContent = purrs[pIdx];
-
-        if (window.addMagicalSparkle) {
-          const rect = cat.getBoundingClientRect();
-          window.addMagicalSparkle(rect.left + rect.width / 2, rect.top + 35, 16, 2.0, 'star');
-        }
-
-        setTimeout(() => cat.classList.remove('is-purring'), 1600);
       });
     })();
   </script>
