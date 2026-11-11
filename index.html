@@ -1350,10 +1350,10 @@
     }
 
     /* ==========================================================================
-       NOCTURNAL OWL AT DOWN SIDE (LUNA'S NIGHT WATCHER)
+       NOCTURNAL OWL AT DOWN SIDE (LUNA'S NIGHT WATCHER - FLIGHT & PERCH)
        ========================================================================== */
     .owl-downside-wrap {
-      padding-block: 48px 36px;
+      padding-block: 54px 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1361,16 +1361,17 @@
       position: relative;
       text-align: center;
       z-index: 10;
+      overflow: visible;
     }
 
     .owl-moonlight-beam {
       position: absolute;
-      top: -90px;
+      top: -100px;
       left: 50%;
       transform: translateX(-50%);
-      width: min(640px, 92vw);
-      height: 280px;
-      background: radial-gradient(ellipse at 50% 10%, rgba(228, 189, 145, 0.16) 0%, rgba(200, 138, 88, 0.04) 50%, transparent 80%);
+      width: min(680px, 94vw);
+      height: 320px;
+      background: radial-gradient(ellipse at 50% 12%, rgba(228, 189, 145, 0.2) 0%, rgba(200, 138, 88, 0.05) 50%, transparent 80%);
       pointer-events: none;
       z-index: -1;
     }
@@ -1387,10 +1388,18 @@
       font-size: 14.5px;
       color: var(--ink-primary);
       box-shadow: 0 10px 28px rgba(48, 38, 33, 0.1);
-      max-width: 420px;
-      animation: float-gentle 3.6s ease-in-out infinite alternate;
+      max-width: 440px;
       cursor: pointer;
-      transition: var(--transition-base);
+      opacity: 0;
+      transform: translateY(14px) scale(0.92);
+      pointer-events: none;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .owl-downside-wrap.has-landed .owl-speech-bubble {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      animation: float-gentle 3.6s ease-in-out infinite alternate;
     }
     .owl-speech-bubble::after {
       content: "";
@@ -1433,24 +1442,166 @@
       -webkit-user-select: none;
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .owl-interactive-wrap:hover {
+    .owl-downside-wrap.has-landed .owl-interactive-wrap:hover {
       transform: scale(1.04);
     }
-    .owl-interactive-wrap:active {
+    .owl-downside-wrap.has-landed .owl-interactive-wrap:active {
       transform: scale(0.97);
     }
 
     .owl-svg {
-      width: 170px;
-      height: 190px;
+      width: 230px;
+      height: 205px;
       overflow: visible;
-      filter: drop-shadow(0 12px 25px rgba(48, 38, 33, 0.15));
+      filter: drop-shadow(0 14px 28px rgba(48, 38, 33, 0.16));
     }
     html[data-theme="dark"] .owl-svg {
-      filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.6));
+      filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.65));
     }
 
+    /* Branch physics: anchored on the left, flexes and springs back when owl touches down */
+    .branch-group {
+      transform-origin: 12px 162px;
+      transition: transform 0.1s ease-out;
+    }
+    .branch-group.is-rebounding {
+      animation: branch-landing-spring 0.85s cubic-bezier(0.25, 1.25, 0.5, 1) forwards;
+    }
+    @keyframes branch-landing-spring {
+      0% { transform: rotate(0deg) translateY(0); }
+      24% { transform: rotate(3.4deg) translateY(5px); }
+      52% { transform: rotate(-1.6deg) translateY(-2px); }
+      76% { transform: rotate(0.8deg) translateY(1px); }
+      100% { transform: rotate(0deg) translateY(0); }
+    }
+
+    .branch-leaf {
+      transform-origin: center;
+      animation: leaf-rustle 4s ease-in-out infinite alternate;
+    }
+    @keyframes leaf-rustle {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(8deg); }
+    }
+
+    /* Owl Flyer Group */
+    .owl-flyer {
+      transform-origin: 85px 156px;
+      will-change: transform;
+    }
+
+    /* Initial state before landing: owl is poised up in the moonlit sky */
+    .owl-downside-wrap:not(.has-landed):not(.is-flying) .owl-flyer {
+      opacity: 0;
+      transform: translate3d(240px, -340px, 0) scale(0.35) rotate(-22deg);
+    }
+
+    /* Fly-in and perch animation from the sky down to the branch */
+    .owl-downside-wrap.is-landing .owl-flyer {
+      animation: owl-swoop-in-perch 2.4s cubic-bezier(0.22, 0.85, 0.36, 1) forwards;
+    }
+    @keyframes owl-swoop-in-perch {
+      0% {
+        opacity: 0;
+        transform: translate3d(260px, -340px, 0) scale(0.35) rotate(-22deg);
+      }
+      15% {
+        opacity: 1;
+        transform: translate3d(180px, -240px, 0) scale(0.55) rotate(-16deg);
+      }
+      40% {
+        opacity: 1;
+        transform: translate3d(40px, -110px, 0) scale(0.8) rotate(-6deg);
+      }
+      65% {
+        opacity: 1;
+        transform: translate3d(-35px, -35px, 0) scale(0.96) rotate(6deg);
+      }
+      82% {
+        opacity: 1;
+        transform: translate3d(6px, -14px, 0) scale(1.06) rotate(-3deg);
+      }
+      92% {
+        opacity: 1;
+        transform: translate3d(0, 4px, 0) scale(1) rotate(0.8deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    /* Re-flight loop: takes off, swoops in starry circle, lands back on branch */
+    .owl-downside-wrap.is-re-flying .owl-flyer {
+      animation: owl-flight-loop-perch 2.6s cubic-bezier(0.25, 0.8, 0.35, 1) forwards;
+    }
+    @keyframes owl-flight-loop-perch {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+      12% {
+        transform: translate3d(-20px, -45px, 0) scale(1.04) rotate(-8deg);
+      }
+      28% {
+        transform: translate3d(-140px, -170px, 0) scale(0.72) rotate(-20deg);
+      }
+      48% {
+        transform: translate3d(10px, -290px, 0) scale(0.48) rotate(4deg);
+      }
+      68% {
+        transform: translate3d(180px, -180px, 0) scale(0.7) rotate(18deg);
+      }
+      84% {
+        transform: translate3d(12px, -16px, 0) scale(1.06) rotate(-4deg);
+      }
+      94% {
+        transform: translate3d(0, 4px, 0) scale(1) rotate(0.8deg);
+      }
+      100% {
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    /* Spread wings flapping during flight */
+    .owl-spread-wings {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .owl-downside-wrap.is-flying .owl-spread-wings {
+      opacity: 1;
+    }
+    .owl-downside-wrap.is-flying .owl-spread-wing-left {
+      transform-origin: 58px 92px;
+      animation: owl-wing-flap-left 0.22s ease-in-out infinite alternate;
+    }
+    .owl-downside-wrap.is-flying .owl-spread-wing-right {
+      transform-origin: 112px 92px;
+      animation: owl-wing-flap-right 0.22s ease-in-out infinite alternate;
+    }
+    @keyframes owl-wing-flap-left {
+      0% { transform: rotate(-24deg) scaleY(1.06); }
+      100% { transform: rotate(26deg) scaleY(0.92); }
+    }
+    @keyframes owl-wing-flap-right {
+      0% { transform: rotate(24deg) scaleY(1.06); }
+      100% { transform: rotate(-26deg) scaleY(0.92); }
+    }
+
+    /* Folded wings at rest when perched */
+    .owl-folded-wings {
+      opacity: 1;
+      transition: opacity 0.25s ease;
+    }
+    .owl-downside-wrap.is-flying .owl-folded-wings {
+      opacity: 0;
+    }
+
+    /* Perched breathing & head tilt */
     .owl-body-group {
       animation: owl-breathe 3.6s ease-in-out infinite alternate;
       transform-origin: center 135px;
@@ -1494,15 +1645,6 @@
       transform: rotate(25deg);
     }
 
-    .branch-leaf {
-      transform-origin: center;
-      animation: leaf-rustle 4s ease-in-out infinite alternate;
-    }
-    @keyframes leaf-rustle {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(8deg); }
-    }
-
     /* Floating music / hoot indicator */
     .owl-hoot-float {
       position: absolute;
@@ -1514,10 +1656,46 @@
       opacity: 0;
       pointer-events: none;
       transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 5;
     }
     .owl-interactive-wrap.is-hooting .owl-hoot-float {
       opacity: 1;
       transform: translateY(-40px) scale(1.25);
+    }
+
+    /* Owl Action Trigger Button */
+    .owl-actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+    .owl-fly-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 22px;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: var(--radius-xl);
+      background: var(--card-bg);
+      color: var(--accent-warm);
+      border: 1px solid var(--accent-warm);
+      box-shadow: 0 6px 18px rgba(48, 38, 33, 0.08);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+    .owl-fly-btn:hover {
+      background: var(--accent-warm);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(200, 138, 88, 0.25);
+    }
+    .owl-fly-btn:active {
+      transform: translateY(0) scale(0.97);
     }
 
     .owl-caption {
@@ -1532,6 +1710,27 @@
       font-size: 13px;
       color: var(--ink-muted);
       margin-top: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .owl-flyer, .branch-group, .owl-spread-wing-left, .owl-spread-wing-right {
+        animation: none !important;
+        transform: none !important;
+      }
+      .owl-downside-wrap:not(.has-landed):not(.is-flying) .owl-flyer {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .owl-speech-bubble {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .owl-spread-wings {
+        display: none !important;
+      }
+      .owl-folded-wings {
+        opacity: 1 !important;
+      }
     }
 
     /* ==========================================================================
@@ -2372,92 +2571,142 @@
     <div class="owl-downside-wrap wrap reveal-on-scroll" id="owl-downside" aria-label="Luna's Nocturnal Watcher at down side">
       <div class="owl-moonlight-beam" aria-hidden="true"></div>
 
-      <!-- Speech Bubble -->
-      <div class="owl-speech-bubble" id="owl-bubble" title="Click the owl to hear him hoot!">
-        “Hoo... You've journeyed all the way down to Luna's night library. Tap me to say hello! ✦”
+      <!-- Speech Bubble (Reveals after landing) -->
+      <div class="owl-speech-bubble" id="owl-bubble" title="Click the owl to watch him take flight!">
+        “Hoo... You've journeyed all the way down to Luna's night library. Tap me to watch me take flight! ✦”
       </div>
 
       <!-- Interactive Animated Owl on Branch -->
-      <div class="owl-interactive-wrap" id="owl-interactive" title="Click me to hoot!" aria-label="Interactive nocturnal owl perched on a branch">
+      <div class="owl-interactive-wrap" id="owl-interactive" title="Click me to fly and hoot!" aria-label="Interactive nocturnal owl perched on an oak branch">
         <span class="owl-hoot-float" id="owl-hoot-note">♫ Hoo! Hoo! ✨</span>
 
-        <svg class="owl-svg" viewBox="0 0 170 190" aria-hidden="true">
+        <svg class="owl-svg" id="owl-svg-elem" viewBox="-50 -10 270 210" aria-hidden="true">
           <!-- Ambient Moonlight Halo -->
-          <circle cx="85" cy="75" r="54" fill="rgba(228, 189, 145, 0.15)" />
+          <circle cx="85" cy="85" r="68" fill="rgba(228, 189, 145, 0.14)" />
 
-          <!-- Mossy Oak Branch -->
-          <g class="branch-group">
+          <!-- Mossy Oak Branch (Rooted on the left, flexes & springs when owl touches down) -->
+          <g class="branch-group" id="owl-branch">
             <path d="M 8,162 C 48,153 112,168 162,154 C 166,153 168,157 163,160 C 120,174 58,160 8,170 Z" fill="#42342b" stroke="#251b14" stroke-width="1.5" />
             <path d="M 28,164 C 44,158 80,163 118,160" stroke="rgba(228, 189, 145, 0.25)" stroke-width="1.5" fill="none" />
             <!-- Branch Leaves -->
             <path class="branch-leaf" d="M 28,158 C 18,146 14,138 22,134 C 30,130 36,142 28,158 Z" fill="#686b3a" />
             <path class="branch-leaf" d="M 146,154 C 156,144 162,143 158,136 C 154,129 146,139 146,154 Z" fill="#a6a870" />
             <circle cx="34" cy="144" r="2.5" fill="#e4bd91" opacity="0.8" />
+            <circle cx="152" cy="140" r="2" fill="#e4bd91" opacity="0.7" />
           </g>
 
-          <!-- Golden Talons Grasping Branch -->
-          <g class="owl-talons">
-            <path d="M 68,152 L 68,160 M 74,152 L 74,161 M 80,152 L 80,160" stroke="#e4bd91" stroke-width="3" stroke-linecap="round" />
-            <path d="M 90,152 L 90,160 M 96,152 L 96,161 M 102,152 L 102,160" stroke="#e4bd91" stroke-width="3" stroke-linecap="round" />
-          </g>
+          <!-- Owl Flyer Group: swoops in from the moonlit sky, flaps spread wings, and perches onto branch -->
+          <g class="owl-flyer" id="owl-flyer">
+            <!-- Spread Wings (Active during flight with flapping animation) -->
+            <g class="owl-spread-wings" id="owl-spread-wings" aria-hidden="true">
+              <!-- Left Spread Flight Wing -->
+              <g class="owl-spread-wing owl-spread-wing-left">
+                <!-- Primary flight feathers silhouette -->
+                <path d="M 58,92 C 38,62 -8,46 -40,54 C -43,66 -35,80 -22,96 C -12,108 8,122 34,118 C 48,114 56,104 58,92 Z" fill="#362922" stroke="#201712" stroke-width="1.4" />
+                <!-- Secondary feather row -->
+                <path d="M 54,94 C 36,72 -2,60 -24,68 C -26,80 -18,94 -6,104 C 14,114 36,112 50,102 Z" fill="#4d3c32" />
+                <!-- Coverts & warm golden feather fringes -->
+                <path d="M 48,96 C 35,82 8,74 -6,82 C -4,92 6,102 18,106 C 30,110 42,106 48,96 Z" fill="#c88a58" opacity="0.45" />
+                <!-- Starlight Feather Quills -->
+                <path d="M 54,94 Q 10,72 -34,58" stroke="rgba(245, 194, 107, 0.7)" stroke-width="1.6" fill="none" stroke-linecap="round" />
+                <path d="M 46,98 Q 12,82 -16,74" stroke="rgba(245, 194, 107, 0.5)" stroke-width="1.3" fill="none" stroke-linecap="round" />
+                <!-- Shimmer dots on feather tips -->
+                <circle cx="-38" cy="56" r="2" fill="#fff5dd" />
+                <circle cx="-20" cy="74" r="1.6" fill="#fff5dd" />
+                <circle cx="-4" cy="98" r="1.4" fill="#f5c26b" />
+              </g>
 
-          <!-- Owl Body with Breathing Motion -->
-          <g class="owl-body-group">
-            <!-- Main Body Egg Shape -->
-            <ellipse cx="85" cy="116" rx="38" ry="42" fill="#302621" stroke="#221a16" stroke-width="1.8" />
-
-            <!-- Cream Feathered Breast -->
-            <ellipse cx="85" cy="120" rx="24" ry="28" fill="#e8c69f" />
-            
-            <!-- Delicate Chevron Feather Motifs -->
-            <path d="M 78,106 L 85,112 L 92,106" stroke="#8a6c56" stroke-width="1.8" fill="none" stroke-linecap="round" />
-            <path d="M 74,118 L 85,126 L 96,118" stroke="#8a6c56" stroke-width="1.8" fill="none" stroke-linecap="round" />
-            <path d="M 78,130 L 85,137 L 92,130" stroke="#8a6c56" stroke-width="1.8" fill="none" stroke-linecap="round" />
-            <path d="M 81,142 L 85,146 L 89,142" stroke="#8a6c56" stroke-width="1.5" fill="none" stroke-linecap="round" />
-
-            <!-- Folded Left & Right Wings -->
-            <path class="owl-wing-left" d="M 50,88 C 40,105 40,135 60,148 C 53,136 50,110 58,92 Z" fill="#453830" stroke="#241a14" stroke-width="1.5" />
-            <path class="owl-wing-right" d="M 120,88 C 130,105 130,135 110,148 C 117,136 120,110 112,92 Z" fill="#453830" stroke="#241a14" stroke-width="1.5" />
-          </g>
-
-          <!-- Owl Head with Natural Blinking & Tilting -->
-          <g class="owl-head-group">
-            <!-- Pointed Ear Tufts -->
-            <polygon points="54,42 66,16 76,38" fill="#302621" stroke="#221a16" stroke-width="1.5" />
-            <polygon points="116,42 104,16 94,38" fill="#302621" stroke="#221a16" stroke-width="1.5" />
-            <path d="M 64,24 L 70,36 M 106,24 L 100,36" stroke="#e4bd91" stroke-width="1.2" opacity="0.6" />
-
-            <!-- Main Head Circle -->
-            <circle cx="85" cy="62" r="32" fill="#302621" stroke="#221a16" stroke-width="1.8" />
-
-            <!-- Light Cream Facial Discs -->
-            <circle cx="73" cy="62" r="16" fill="#f8eedf" />
-            <circle cx="97" cy="62" r="16" fill="#f8eedf" />
-
-            <!-- Big Glowing Golden Irises -->
-            <circle cx="73" cy="62" r="9.5" fill="#f5c26b" stroke="#c88a58" stroke-width="1" />
-            <circle cx="97" cy="62" r="9.5" fill="#f5c26b" stroke="#c88a58" stroke-width="1" />
-
-            <!-- Deep Nocturnal Pupils -->
-            <circle class="owl-pupil" id="owl-pupil-left" cx="73" cy="62" r="5.5" fill="#201814" />
-            <circle class="owl-pupil" id="owl-pupil-right" cx="97" cy="62" r="5.5" fill="#201814" />
-
-            <!-- Reflective Starlight Glints -->
-            <circle cx="71" cy="59.5" r="2.2" fill="#ffffff" />
-            <circle cx="95" cy="59.5" r="2.2" fill="#ffffff" />
-            <circle cx="75" cy="64.5" r="1" fill="#ffffff" opacity="0.7" />
-            <circle cx="99" cy="64.5" r="1" fill="#ffffff" opacity="0.7" />
-
-            <!-- Eyelids for Natural Blinking Animation -->
-            <g class="owl-eyelids">
-              <path class="owl-eyelid" d="M 57,62 Q 73,79 89,62 Z" fill="#302621" />
-              <path class="owl-eyelid" d="M 81,62 Q 97,79 113,62 Z" fill="#302621" />
+              <!-- Right Spread Flight Wing -->
+              <g class="owl-spread-wing owl-spread-wing-right">
+                <!-- Primary flight feathers silhouette -->
+                <path d="M 112,92 C 132,62 178,46 210,54 C 213,66 205,80 192,96 C 182,108 162,122 136,118 C 122,114 114,104 112,92 Z" fill="#362922" stroke="#201712" stroke-width="1.4" />
+                <!-- Secondary feather row -->
+                <path d="M 116,94 C 134,72 172,60 194,68 C 196,80 188,94 176,104 C 156,114 134,112 120,102 Z" fill="#4d3c32" />
+                <!-- Coverts & warm golden feather fringes -->
+                <path d="M 122,96 C 135,82 162,74 176,82 C 174,92 164,102 152,106 C 140,110 128,106 122,96 Z" fill="#c88a58" opacity="0.45" />
+                <!-- Starlight Feather Quills -->
+                <path d="M 116,94 Q 160,72 204,58" stroke="rgba(245, 194, 107, 0.7)" stroke-width="1.6" fill="none" stroke-linecap="round" />
+                <path d="M 124,98 Q 158,82 186,74" stroke="rgba(245, 194, 107, 0.5)" stroke-width="1.3" fill="none" stroke-linecap="round" />
+                <!-- Shimmer dots on feather tips -->
+                <circle cx="208" cy="56" r="2" fill="#fff5dd" />
+                <circle cx="190" cy="74" r="1.6" fill="#fff5dd" />
+                <circle cx="174" cy="98" r="1.4" fill="#f5c26b" />
+              </g>
             </g>
 
-            <!-- Amber Bronze Beak -->
-            <polygon points="81,68 89,68 85,78" fill="#c88a58" stroke="#8a4f20" stroke-width="0.8" />
+            <!-- Golden Talons (Grasp branch upon landing) -->
+            <g class="owl-talons" id="owl-talons">
+              <path d="M 68,152 L 68,160 M 74,152 L 74,161 M 80,152 L 80,160" stroke="#e4bd91" stroke-width="3" stroke-linecap="round" />
+              <path d="M 90,152 L 90,160 M 96,152 L 96,161 M 102,152 L 102,160" stroke="#e4bd91" stroke-width="3" stroke-linecap="round" />
+            </g>
+
+            <!-- Owl Body with Breathing Motion -->
+            <g class="owl-body-group">
+              <!-- Main Body Egg Shape -->
+              <ellipse cx="85" cy="116" rx="38" ry="42" fill="#302621" stroke="#221a16" stroke-width="1.8" />
+
+              <!-- Cream Feathered Breast -->
+              <ellipse cx="85" cy="120" rx="24" ry="28" fill="#e8c69f" />
+              
+              <!-- Delicate Chevron Feather Motifs -->
+              <path d="M 78,106 L 85,112 L 92,106" stroke="#8a6c56" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              <path d="M 74,118 L 85,126 L 96,118" stroke="#8a6c56" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              <path d="M 78,130 L 85,137 L 92,130" stroke="#8a6c56" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              <path d="M 81,142 L 85,146 L 89,142" stroke="#8a6c56" stroke-width="1.5" fill="none" stroke-linecap="round" />
+
+              <!-- Folded Resting Wings (Visible when perched on branch) -->
+              <g class="owl-folded-wings" id="owl-folded-wings">
+                <path class="owl-wing-left" d="M 50,88 C 40,105 40,135 60,148 C 53,136 50,110 58,92 Z" fill="#453830" stroke="#241a14" stroke-width="1.5" />
+                <path class="owl-wing-right" d="M 120,88 C 130,105 130,135 110,148 C 117,136 120,110 112,92 Z" fill="#453830" stroke="#241a14" stroke-width="1.5" />
+              </g>
+            </g>
+
+            <!-- Owl Head with Natural Blinking & Tilting -->
+            <g class="owl-head-group">
+              <!-- Pointed Ear Tufts -->
+              <polygon points="54,42 66,16 76,38" fill="#302621" stroke="#221a16" stroke-width="1.5" />
+              <polygon points="116,42 104,16 94,38" fill="#302621" stroke="#221a16" stroke-width="1.5" />
+              <path d="M 64,24 L 70,36 M 106,24 L 100,36" stroke="#e4bd91" stroke-width="1.2" opacity="0.6" />
+
+              <!-- Main Head Circle -->
+              <circle cx="85" cy="62" r="32" fill="#302621" stroke="#221a16" stroke-width="1.8" />
+
+              <!-- Light Cream Facial Discs -->
+              <circle cx="73" cy="62" r="16" fill="#f8eedf" />
+              <circle cx="97" cy="62" r="16" fill="#f8eedf" />
+
+              <!-- Big Glowing Golden Irises -->
+              <circle cx="73" cy="62" r="9.5" fill="#f5c26b" stroke="#c88a58" stroke-width="1" />
+              <circle cx="97" cy="62" r="9.5" fill="#f5c26b" stroke="#c88a58" stroke-width="1" />
+
+              <!-- Deep Nocturnal Pupils -->
+              <circle class="owl-pupil" id="owl-pupil-left" cx="73" cy="62" r="5.5" fill="#201814" />
+              <circle class="owl-pupil" id="owl-pupil-right" cx="97" cy="62" r="5.5" fill="#201814" />
+
+              <!-- Reflective Starlight Glints -->
+              <circle cx="71" cy="59.5" r="2.2" fill="#ffffff" />
+              <circle cx="95" cy="59.5" r="2.2" fill="#ffffff" />
+              <circle cx="75" cy="64.5" r="1" fill="#ffffff" opacity="0.7" />
+              <circle cx="99" cy="64.5" r="1" fill="#ffffff" opacity="0.7" />
+
+              <!-- Eyelids for Natural Blinking Animation -->
+              <g class="owl-eyelids">
+                <path class="owl-eyelid" d="M 57,62 Q 73,79 89,62 Z" fill="#302621" />
+                <path class="owl-eyelid" d="M 81,62 Q 97,79 113,62 Z" fill="#302621" />
+              </g>
+
+              <!-- Amber Bronze Beak -->
+              <polygon points="81,68 89,68 85,78" fill="#c88a58" stroke="#8a4f20" stroke-width="0.8" />
+            </g>
           </g>
         </svg>
+      </div>
+
+      <!-- Interactive flight trigger button -->
+      <div class="owl-actions">
+        <button type="button" class="owl-fly-btn" id="owl-fly-trigger" aria-label="Watch Luna's owl fly and land on the branch">
+          ✦ Watch Owl Fly &amp; Perch 🦉
+        </button>
       </div>
 
       <p class="owl-caption">✦ Luna's Nocturnal Watcher · Perched Under the Stars ✦</p>
@@ -3105,49 +3354,144 @@
     })();
 
     /* ==========================================================================
-       5. NOCTURNAL OWL AT DOWN SIDE (LUNA'S NIGHT WATCHER)
+       5. NOCTURNAL OWL AT DOWN SIDE (LUNA'S NIGHT WATCHER - FLIGHT & PERCH)
        ========================================================================== */
     (() => {
-      const owl = document.getElementById('owl-interactive');
+      const downsideWrap = document.getElementById('owl-downside');
+      const owlInteractive = document.getElementById('owl-interactive');
+      const branch = document.getElementById('owl-branch');
       const bubble = document.getElementById('owl-bubble');
+      const flyTriggerBtn = document.getElementById('owl-fly-trigger');
       const leftPupil = document.getElementById('owl-pupil-left');
       const rightPupil = document.getElementById('owl-pupil-right');
-      if (!owl || !bubble) return;
+
+      if (!downsideWrap || !owlInteractive) return;
 
       const sayings = [
-        '“Hoo! You’ve found me perched under the Full Moon! ✨”',
-        '“In the quietest hour of the night, every line becomes a constellation. ✦”',
-        '“G Daffini Shiyalin’s words live here in the dark. Keep dreaming! ☾”',
+        '“Hoo! I just flew down from the starlit sky to greet you! Tap me to watch me fly again! ✦”',
+        '“In the quietest hour of the night, every line becomes a constellation. ☾”',
+        '“G Daffini Shiyalin’s words live here in the dark. Keep dreaming! ✨”',
         '“Hoo... Did you know? Luna has 7 original verses waiting for you above! 📜”',
-        '“Hoo! The stars shine brightest when you open your favorite book. ✨”'
+        '“Hoo! The stars shine brightest when you open your favorite book. ✦”'
       ];
       let sayingIndex = 0;
+      let isFlying = false;
+      let hasFlownInOnce = false;
 
-      // Click / Tap to hoot and cycle messages
-      owl.addEventListener('click', () => {
-        owl.classList.add('is-hooting');
+      // Function: trigger fly-in from sky and perch onto branch
+      function triggerFlyInAndPerch() {
+        if (isFlying) return;
+        isFlying = true;
+
+        downsideWrap.classList.remove('has-landed', 'is-perched', 'is-re-flying');
+        downsideWrap.classList.add('is-landing', 'is-flying');
+
+        // Touchdown sound / sparkle & branch bounce timing: 2100ms
+        setTimeout(() => {
+          if (branch) {
+            branch.classList.add('is-rebounding');
+            setTimeout(() => branch.classList.remove('is-rebounding'), 850);
+          }
+
+          if (window.addMagicalSparkle) {
+            const rect = (branch || owlInteractive).getBoundingClientRect();
+            window.addMagicalSparkle(rect.left + rect.width / 2, rect.top + 30, 20, 2.5, 'star');
+          }
+        }, 2100);
+
+        // Completion timing: 2400ms
+        setTimeout(() => {
+          downsideWrap.classList.remove('is-landing', 'is-flying');
+          downsideWrap.classList.add('has-landed', 'is-perched');
+          isFlying = false;
+        }, 2400);
+      }
+
+      // Function: take flight loop & land again
+      function triggerTakeFlightLoop() {
+        if (isFlying) return;
+        isFlying = true;
+
+        // Show hoot speech / float note
+        owlInteractive.classList.add('is-hooting');
         sayingIndex = (sayingIndex + 1) % sayings.length;
-        bubble.textContent = sayings[sayingIndex];
-
-        if (window.addMagicalSparkle) {
-          const rect = owl.getBoundingClientRect();
-          window.addMagicalSparkle(rect.left + rect.width / 2, rect.top + 60, 16, 2.2, 'star');
-        }
+        if (bubble) bubble.textContent = sayings[sayingIndex];
 
         setTimeout(() => {
-          owl.classList.remove('is-hooting');
+          owlInteractive.classList.remove('is-hooting');
         }, 1200);
+
+        downsideWrap.classList.remove('has-landed', 'is-perched', 'is-landing');
+        void downsideWrap.offsetWidth; // force reflow for re-animation
+        downsideWrap.classList.add('is-re-flying', 'is-flying');
+
+        // Touchdown timing: 2280ms
+        setTimeout(() => {
+          if (branch) {
+            branch.classList.add('is-rebounding');
+            setTimeout(() => branch.classList.remove('is-rebounding'), 850);
+          }
+
+          if (window.addMagicalSparkle) {
+            const rect = (branch || owlInteractive).getBoundingClientRect();
+            window.addMagicalSparkle(rect.left + rect.width / 2, rect.top + 30, 22, 2.6, 'star');
+          }
+        }, 2280);
+
+        // Completion timing: 2600ms
+        setTimeout(() => {
+          downsideWrap.classList.remove('is-re-flying', 'is-flying');
+          downsideWrap.classList.add('has-landed', 'is-perched');
+          isFlying = false;
+        }, 2600);
+      }
+
+      // Click owl to take flight & cycle messages
+      owlInteractive.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (downsideWrap.classList.contains('has-landed')) {
+          triggerTakeFlightLoop();
+        } else {
+          triggerFlyInAndPerch();
+        }
       });
 
-      bubble.addEventListener('click', () => {
-        sayingIndex = (sayingIndex + 1) % sayings.length;
-        bubble.textContent = sayings[sayingIndex];
-      });
+      // Fly trigger button
+      if (flyTriggerBtn) {
+        flyTriggerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          triggerTakeFlightLoop();
+        });
+      }
 
-      // Owl pupils follow visitor cursor when near the bottom
+      // Speech bubble click
+      if (bubble) {
+        bubble.addEventListener('click', () => {
+          sayingIndex = (sayingIndex + 1) % sayings.length;
+          bubble.textContent = sayings[sayingIndex];
+        });
+      }
+
+      // IntersectionObserver: trigger initial fly-in when scrolled into view
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !hasFlownInOnce) {
+              hasFlownInOnce = true;
+              triggerFlyInAndPerch();
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '80px 0px 0px 0px' });
+        observer.observe(downsideWrap);
+      } else {
+        // Fallback
+        setTimeout(triggerFlyInAndPerch, 1000);
+      }
+
+      // Owl pupils follow visitor cursor when perched near the bottom
       window.addEventListener('mousemove', (e) => {
-        if (!leftPupil || !rightPupil) return;
-        const rect = owl.getBoundingClientRect();
+        if (!leftPupil || !rightPupil || isFlying) return;
+        const rect = owlInteractive.getBoundingClientRect();
         if (rect.top > window.innerHeight || rect.bottom < 0) return;
 
         const centerX = rect.left + rect.width / 2;
