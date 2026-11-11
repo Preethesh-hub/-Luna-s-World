@@ -42,9 +42,11 @@
       --serif: "Playfair Display", Georgia, "Times New Roman", serif;
       --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
+      --radius-xs: 8px;
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
       --radius-pill: 9999px;
 
       --shadow-subtle: 0 4px 20px rgba(48, 38, 33, 0.05);
@@ -595,14 +597,15 @@
 
     .hero-photo-wrap {
       position: absolute;
-      inset: 24px 20px 20px 48px;
-      border-radius: var(--radius-md);
+      z-index: 2;
+      inset: 28px 20px 20px 48px;
+      border-radius: var(--radius-lg);
       overflow: hidden;
       background: var(--espresso);
-      box-shadow: var(--shadow-hover);
-      border: 1px solid var(--surface-border);
+      box-shadow: 0 20px 50px -10px rgba(25, 18, 14, 0.4), 0 0 35px rgba(228, 189, 145, 0.22);
+      border: 1.5px solid rgba(228, 189, 145, 0.45);
       transform-style: preserve-3d;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     }
     .hero-photo-wrap img {
       width: 100%;
@@ -635,47 +638,96 @@
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
     }
 
-    /* The Highlighted Glowing Moon */
+    /* The Highlighted Glowing Moon Rising Prominently Behind Picture */
     .hero-glowing-moon {
       position: absolute;
-      z-index: 5;
-      top: -15px;
-      right: -10px;
-      width: 120px;
-      height: 120px;
+      z-index: 1;
+      top: -55px;
+      right: -25px;
+      width: 290px;
+      height: 290px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #fffdf8 0%, #fae6cb 38%, #e4bd91 75%, #b57a46 100%);
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fffbf0 25%, #fae6cb 50%, #e4bd91 75%, #a66e3c 100%);
       box-shadow: 
-        0 0 35px rgba(228, 189, 145, 0.6),
-        0 0 75px rgba(200, 138, 88, 0.35),
-        inset -10px -10px 22px rgba(65, 40, 25, 0.45);
+        0 0 50px rgba(228, 189, 145, 0.85),
+        0 0 100px rgba(200, 138, 88, 0.6),
+        0 0 180px rgba(228, 189, 145, 0.35),
+        inset -16px -16px 36px rgba(65, 40, 25, 0.45),
+        inset 12px 12px 28px rgba(255, 255, 255, 0.9);
       display: grid;
       place-items: center;
       cursor: pointer;
-      animation: moon-orbit-float 5s ease-in-out infinite alternate;
+      animation: moon-orbit-float 6s ease-in-out infinite alternate;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
+      filter: drop-shadow(0 0 25px rgba(228, 189, 145, 0.7));
+      overflow: visible;
+    }
+    html[data-theme="dark"] .hero-glowing-moon {
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fff5e4 22%, #f5d8b6 46%, #caa47e 75%, #6a492f 100%);
+      box-shadow: 
+        0 0 70px rgba(240, 205, 165, 0.95),
+        0 0 130px rgba(228, 189, 145, 0.7),
+        0 0 240px rgba(200, 138, 88, 0.45),
+        inset -20px -20px 42px rgba(35, 20, 12, 0.6),
+        inset 14px 14px 30px rgba(255, 255, 255, 0.95);
     }
     .hero-glowing-moon:hover {
-      transform: scale(1.08) rotate(10deg);
+      transform: scale(1.05) rotate(6deg);
       box-shadow: 
-        0 0 50px rgba(228, 189, 145, 0.8),
-        0 0 100px rgba(200, 138, 88, 0.55),
-        inset -10px -10px 22px rgba(65, 40, 25, 0.45);
+        0 0 75px rgba(228, 189, 145, 1),
+        0 0 150px rgba(200, 138, 88, 0.8),
+        0 0 260px rgba(228, 189, 145, 0.55);
     }
+
+    /* Concentric Orbital Rings Around the Moon */
     .hero-glowing-moon::before {
       content: "";
       position: absolute;
-      inset: -10px;
-      border: 1px dashed rgba(228, 189, 145, 0.5);
+      inset: -14px;
+      border: 1.5px dashed rgba(228, 189, 145, 0.6);
       border-radius: 50%;
-      animation: spin-slow 28s linear infinite;
+      animation: spin-slow 32s linear infinite;
+      pointer-events: none;
     }
+    .hero-glowing-moon::after {
+      content: "";
+      position: absolute;
+      inset: -34px;
+      border: 1px dotted rgba(228, 189, 145, 0.35);
+      border-radius: 50%;
+      animation: spin-slow 54s linear infinite reverse;
+      pointer-events: none;
+    }
+
+    /* Lunar craters on the moon */
+    .moon-crater-group {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .moon-crater {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(145, 96, 52, 0.16);
+      box-shadow: inset 1px 1px 3px rgba(60, 36, 18, 0.3), 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+    .moon-crater.mc-1 { width: 44px; height: 38px; top: 40px; right: 65px; }
+    .moon-crater.mc-2 { width: 30px; height: 26px; top: 88px; right: 35px; }
+    .moon-crater.mc-3 { width: 55px; height: 48px; bottom: 50px; right: 75px; opacity: 0.22; }
+    .moon-crater.mc-4 { width: 22px; height: 20px; top: 120px; left: 60px; }
+
     .hero-glowing-moon span.moon-glyph {
       font-family: var(--serif);
-      font-size: 38px;
-      color: #241a14;
+      font-size: 54px;
+      color: rgba(36, 26, 20, 0.65);
       line-height: 1;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+      position: absolute;
+      top: 36px;
+      right: 44px;
+      pointer-events: none;
     }
 
     @keyframes moon-orbit-float {
@@ -967,7 +1019,7 @@
       min-height: 420px;
       background: var(--card-bg);
       border: 1px solid var(--surface-border);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-card);
       margin-bottom: 64px;
@@ -1255,7 +1307,7 @@
       gap: 20px;
       background: var(--card-bg);
       border: 1px solid var(--surface-border);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       padding: clamp(28px, 4vw, 44px);
       box-shadow: var(--shadow-card);
     }
@@ -1483,6 +1535,140 @@
     }
 
     /* ==========================================================================
+       CELESTIAL FOUR-WINGED BUTTERFLY (BIDIRECTIONAL SCROLL FLIGHT & DUAL PATHS)
+       ========================================================================== */
+    .celestial-butterfly-wrap {
+      position: fixed;
+      top: 12vh;
+      left: 78vw;
+      width: 88px;
+      height: 88px;
+      z-index: 920;
+      pointer-events: auto;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      filter: drop-shadow(0 6px 18px rgba(200, 138, 88, 0.45));
+      perspective: 800px;
+      transition: filter 0.3s ease;
+      will-change: transform, left, top;
+    }
+    html[data-theme="dark"] .celestial-butterfly-wrap {
+      filter: drop-shadow(0 8px 24px rgba(228, 189, 145, 0.7));
+    }
+
+    .butterfly-rotator {
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 50%;
+      transform-style: preserve-3d;
+      transition: transform 0.12s linear;
+    }
+
+    .butterfly-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      transform-style: preserve-3d;
+    }
+
+    /* 3D Flapping of the 4 Layered Wings */
+    .butterfly-left-wings {
+      transform-origin: 50px 45px;
+      animation: butterfly-flap-left 0.24s ease-in-out infinite alternate;
+      transform-style: preserve-3d;
+    }
+    .butterfly-right-wings {
+      transform-origin: 50px 45px;
+      animation: butterfly-flap-right 0.24s ease-in-out infinite alternate;
+      transform-style: preserve-3d;
+    }
+
+    /* Resting / Hovering Flap when not scrolling */
+    .celestial-butterfly-wrap.is-hovering .butterfly-left-wings {
+      animation: butterfly-flap-left-slow 0.8s ease-in-out infinite alternate;
+    }
+    .celestial-butterfly-wrap.is-hovering .butterfly-right-wings {
+      animation: butterfly-flap-right-slow 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes butterfly-flap-left {
+      0% { transform: rotateY(0deg) translateZ(0); }
+      100% { transform: rotateY(64deg) translateZ(6px); }
+    }
+    @keyframes butterfly-flap-right {
+      0% { transform: rotateY(0deg) translateZ(0); }
+      100% { transform: rotateY(-64deg) translateZ(6px); }
+    }
+
+    @keyframes butterfly-flap-left-slow {
+      0% { transform: rotateY(4deg); }
+      50% { transform: rotateY(28deg); }
+      100% { transform: rotateY(8deg); }
+    }
+    @keyframes butterfly-flap-right-slow {
+      0% { transform: rotateY(-4deg); }
+      50% { transform: rotateY(-28deg); }
+      100% { transform: rotateY(-8deg); }
+    }
+
+    /* Speech bubble for the butterfly */
+    .butterfly-bubble {
+      position: absolute;
+      right: 94px;
+      top: 50%;
+      transform: translateY(-50%) scale(0.9);
+      background: var(--card-bg);
+      border: 1px solid var(--accent-warm);
+      border-radius: var(--radius-md);
+      padding: 8px 14px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-primary);
+      box-shadow: var(--shadow-card);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .butterfly-bubble::after {
+      content: "";
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 6px 0 6px 6px;
+      border-style: solid;
+      border-color: transparent transparent transparent var(--card-bg);
+    }
+    .celestial-butterfly-wrap:hover .butterfly-bubble,
+    .celestial-butterfly-wrap.is-speaking .butterfly-bubble {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+
+    @media (max-width: 768px) {
+      .celestial-butterfly-wrap {
+        width: 68px;
+        height: 68px;
+      }
+      .butterfly-bubble {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .celestial-butterfly-wrap,
+      .butterfly-rotator,
+      .butterfly-left-wings,
+      .butterfly-right-wings {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* ==========================================================================
        FOOTER
        ======================================================================== */
     footer {
@@ -1583,7 +1769,7 @@
       flex-direction: column;
       overflow: hidden;
       border: 1px solid var(--surface-border);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       background: var(--card-bg);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
@@ -1878,14 +2064,20 @@
       </div>
 
       <div class="hero-art reveal-from-right is-visible" id="hero-art-parallax" aria-label="A writer's desk bathed in evening light">
+        <!-- Highlighted Glowing Celestial Moon Rising Prominently Behind Picture -->
+        <div class="hero-glowing-moon" id="hero-moon" title="Luna's Glowing Moon — Click to sparkle" aria-label="Luna's glowing celestial moon rising behind photo">
+          <div class="moon-crater-group" aria-hidden="true">
+            <span class="moon-crater mc-1"></span>
+            <span class="moon-crater mc-2"></span>
+            <span class="moon-crater mc-3"></span>
+            <span class="moon-crater mc-4"></span>
+          </div>
+          <span class="moon-glyph" aria-hidden="true">☾</span>
+        </div>
+
         <div class="hero-photo-wrap">
           <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="A writer's desk with journal and ink pen">
           <span class="photo-caption">Somewhere between a thought and a story.</span>
-        </div>
-
-        <!-- Highlighted Glowing Moon Orb -->
-        <div class="hero-glowing-moon" id="hero-moon" title="Luna's Glowing Moon — Click to sparkle" aria-label="Luna's glowing celestial moon">
-          <span class="moon-glyph" aria-hidden="true">☾</span>
         </div>
 
         <div class="art-parchment-note" aria-hidden="true">A universe in every line ✨</div>
@@ -2291,6 +2483,127 @@
   </footer>
 
   <!-- ========================================================================
+       CELESTIAL FOUR-WINGED BUTTERFLY (BIDIRECTIONAL SCROLL FLIGHT & DUAL PATHS)
+       ======================================================================== -->
+  <div class="celestial-butterfly-wrap" id="celestial-butterfly" role="img" aria-label="Luna's Celestial Four-Winged Butterfly fluttering as you scroll" title="Click to flutter with Luna's butterfly!">
+    <div class="butterfly-bubble" id="butterfly-bubble">
+      Fluttering across the cosmic night! ✦
+    </div>
+    <div class="butterfly-rotator" id="butterfly-rotator">
+      <svg class="butterfly-svg" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="bfWingUpperGrad" x1="10" y1="10" x2="90" y2="70" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="25%" stop-color="#fae2be"/>
+            <stop offset="60%" stop-color="#f0b4b2"/>
+            <stop offset="85%" stop-color="#c1a5de"/>
+            <stop offset="100%" stop-color="#8093d5"/>
+          </linearGradient>
+          <linearGradient id="bfWingLowerGrad" x1="20" y1="40" x2="80" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#fff4e0"/>
+            <stop offset="40%" stop-color="#f7c897"/>
+            <stop offset="75%" stop-color="#b69cd4"/>
+            <stop offset="100%" stop-color="#6e5fa3"/>
+          </linearGradient>
+          <linearGradient id="bfShimmerGrad" x1="0" y1="0" x2="100" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+            <stop offset="50%" stop-color="rgba(255,230,180,0.35)"/>
+            <stop offset="100%" stop-color="rgba(190,160,240,0.2)"/>
+          </linearGradient>
+          <linearGradient id="bfBodyGrad" x1="50" y1="20" x2="50" y2="70" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#4a3b32"/>
+            <stop offset="50%" stop-color="#241a14"/>
+            <stop offset="100%" stop-color="#140f0c"/>
+          </linearGradient>
+          <filter id="bfGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- LEFT WINGS (FOREWING 1 & HINDWING 2) -->
+        <g class="butterfly-left-wings">
+          <!-- Layer 1: Left Forewing (Upper Wing) -->
+          <g class="wing-layer-forewing-left">
+            <path d="M 49,36 C 42,16 22,6 7,16 C -3,24 0,38 12,48 C 22,56 40,52 49,44 Z" fill="url(#bfWingUpperGrad)" stroke="#e4bd91" stroke-width="0.8"/>
+            <path d="M 47,38 C 40,24 26,16 12,22 C 4,28 6,38 16,46 C 26,52 38,48 47,42 Z" fill="url(#bfShimmerGrad)"/>
+            <!-- Vein Filigree -->
+            <path d="M 48,40 Q 32,30 14,24 M 48,42 Q 30,38 12,34 M 48,43 Q 32,46 18,48" stroke="#ffffff" stroke-width="0.65" stroke-linecap="round" opacity="0.8"/>
+            <!-- Starlight Spots -->
+            <circle cx="9" cy="20" r="1.4" fill="#ffffff"/>
+            <circle cx="5" cy="28" r="1.2" fill="#ffd700"/>
+            <circle cx="8" cy="36" r="1.2" fill="#ffffff" opacity="0.9"/>
+          </g>
+
+          <!-- Layer 2: Left Hindwing (Lower Wing with Swallowtail) -->
+          <g class="wing-layer-hindwing-left">
+            <path d="M 48,45 C 36,49 18,55 13,67 C 9,78 19,85 28,83 C 35,81 38,76 42,70 L 36,88 L 40,88 L 47,66 Z" fill="url(#bfWingLowerGrad)" stroke="#e4bd91" stroke-width="0.8"/>
+            <path d="M 46,48 C 36,52 22,58 18,68 C 15,75 22,80 29,78 C 35,76 38,72 43,67 Z" fill="url(#bfShimmerGrad)"/>
+            <!-- Hindwing Veins & Eye-spot -->
+            <path d="M 47,54 Q 34,64 24,74 M 47,58 Q 38,70 34,80" stroke="#ffd700" stroke-width="0.6" stroke-linecap="round" opacity="0.75"/>
+            <!-- Celestial Eye-spot -->
+            <circle cx="26" cy="72" r="3.2" fill="#241a14"/>
+            <circle cx="26" cy="72" r="2.2" fill="#e4bd91"/>
+            <circle cx="26" cy="72" r="1" fill="#ffffff"/>
+          </g>
+        </g>
+
+        <!-- RIGHT WINGS (FOREWING 3 & HINDWING 4) -->
+        <g class="butterfly-right-wings">
+          <!-- Layer 3: Right Forewing (Upper Wing) -->
+          <g class="wing-layer-forewing-right">
+            <path d="M 51,36 C 58,16 78,6 93,16 C 103,24 100,38 88,48 C 78,56 60,52 51,44 Z" fill="url(#bfWingUpperGrad)" stroke="#e4bd91" stroke-width="0.8"/>
+            <path d="M 53,38 C 60,24 74,16 88,22 C 96,28 94,38 84,46 C 74,52 62,48 53,42 Z" fill="url(#bfShimmerGrad)"/>
+            <!-- Vein Filigree -->
+            <path d="M 52,40 Q 68,30 86,24 M 52,42 Q 70,38 88,34 M 52,43 Q 68,46 82,48" stroke="#ffffff" stroke-width="0.65" stroke-linecap="round" opacity="0.8"/>
+            <!-- Starlight Spots -->
+            <circle cx="91" cy="20" r="1.4" fill="#ffffff"/>
+            <circle cx="95" cy="28" r="1.2" fill="#ffd700"/>
+            <circle cx="92" cy="36" r="1.2" fill="#ffffff" opacity="0.9"/>
+          </g>
+
+          <!-- Layer 4: Right Hindwing (Lower Wing with Swallowtail) -->
+          <g class="wing-layer-hindwing-right">
+            <path d="M 52,45 C 64,49 82,55 87,67 C 91,78 81,85 72,83 C 65,81 62,76 58,70 L 64,88 L 60,88 L 53,66 Z" fill="url(#bfWingLowerGrad)" stroke="#e4bd91" stroke-width="0.8"/>
+            <path d="M 54,48 C 64,52 78,58 82,68 C 85,75 78,80 71,78 C 65,76 62,72 57,67 Z" fill="url(#bfShimmerGrad)"/>
+            <!-- Hindwing Veins & Eye-spot -->
+            <path d="M 53,54 Q 66,64 76,74 M 53,58 Q 62,70 66,80" stroke="#ffd700" stroke-width="0.6" stroke-linecap="round" opacity="0.75"/>
+            <!-- Celestial Eye-spot -->
+            <circle cx="74" cy="72" r="3.2" fill="#241a14"/>
+            <circle cx="74" cy="72" r="2.2" fill="#e4bd91"/>
+            <circle cx="74" cy="72" r="1" fill="#ffffff"/>
+          </g>
+        </g>
+
+        <!-- BUTTERFLY BODY & CURVED ANTENNAE -->
+        <g class="butterfly-body-group" filter="url(#bfGlow)">
+          <!-- Segmented Thorax & Abdomen -->
+          <ellipse cx="50" cy="48" rx="3.6" ry="17" fill="url(#bfBodyGrad)" stroke="#caa47e" stroke-width="0.7"/>
+          <line x1="47.5" y1="42" x2="52.5" y2="42" stroke="#e4bd91" stroke-width="0.6"/>
+          <line x1="47" y1="48" x2="53" y2="48" stroke="#e4bd91" stroke-width="0.6"/>
+          <line x1="47.5" y1="54" x2="52.5" y2="54" stroke="#e4bd91" stroke-width="0.6"/>
+          <line x1="48" y1="60" x2="52" y2="60" stroke="#e4bd91" stroke-width="0.6"/>
+
+          <!-- Head -->
+          <circle cx="50" cy="30" r="3.4" fill="#241a14" stroke="#caa47e" stroke-width="0.7"/>
+
+          <!-- Curved Antennae with Glowing Golden Orbs -->
+          <path d="M 49,28 Q 41,15 34,12" stroke="#e4bd91" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <circle cx="34" cy="12" r="1.6" fill="#ffd700"/>
+          <circle cx="34" cy="12" r="2.8" fill="rgba(255,215,0,0.3)"/>
+
+          <path d="M 51,28 Q 59,15 66,12" stroke="#e4bd91" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <circle cx="66" cy="12" r="1.6" fill="#ffd700"/>
+          <circle cx="66" cy="12" r="2.8" fill="rgba(255,215,0,0.3)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ========================================================================
        ASTRA CHAT ASSISTANT
        ======================================================================== -->
   <button class="chat-launcher" id="chat-launcher" type="button" aria-expanded="false" aria-controls="chat-panel">
@@ -2321,6 +2634,7 @@
       <button class="chat-pill-btn" type="button" data-prompt="What poems can I read?">Poetry shelf</button>
       <button class="chat-pill-btn" type="button" data-prompt="Where can I read The Hidden Bloodline?">The Hidden Bloodline</button>
       <button class="chat-pill-btn" type="button" data-prompt="Tell me about the Owl down below">The Owl 🦉</button>
+      <button class="chat-pill-btn" type="button" data-prompt="Tell me about the Butterfly">The Butterfly 🦋</button>
     </div>
 
     <form class="chat-input-row" id="chat-form">
@@ -2948,6 +3262,8 @@
 
       if (q.includes('owl') || q.includes('watcher') || q.includes('bird')) {
         reply = 'That’s Luna’s Nocturnal Watcher! Perched on the oak branch at the bottom of the page, he guards the night library. Click on him to hear him hoot!';
+      } else if (q.includes('butterfly') || q.includes('wings') || q.includes('insect') || q.includes('moth')) {
+        reply = 'That’s Luna’s Celestial Four-Winged Butterfly! As you scroll up and down the page, she flutters gracefully across the screen, taking different celestial flight paths each way. Click on her to watch her do a stardust loop!';
       } else if (q.includes('moon') || q.includes('phase')) {
         reply = 'The glowing moon at the top and the moon phase tracker in the navigation highlight Luna’s cosmic theme. As you scroll down the page, watch the moon wax until it reaches a glowing Full Moon at the bottom!';
       } else if (q.includes('who') || q.includes('about') || q.includes('author') || q.includes('luna') || q.includes('daffini')) {
@@ -2961,7 +3277,7 @@
       } else if (q.includes('contact') || q.includes('email') || q.includes('message') || q.includes('reach')) {
         reply = 'You can email Luna at daffini1908@gmail.com, use the contact form at the bottom of the page, or connect on Wattpad @author_luna1.';
       } else {
-        reply = 'I’m happy to guide you! Ask me about Luna’s poems, her novel The Hidden Bloodline, the glowing Moon tracker, or the Owl guarding the bottom of the page.';
+        reply = 'I’m happy to guide you! Ask me about Luna’s poems, her novel The Hidden Bloodline, the glowing Moon rising behind her photo, the Owl at the bottom, or the Celestial Butterfly!';
       }
 
       setTimeout(() => appendMessage(reply, false), 350);
@@ -3001,6 +3317,199 @@
         heroPhoto.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0)';
       });
     }
+
+    /* ==========================================================================
+       7. CELESTIAL FOUR-WINGED BUTTERFLY (BIDIRECTIONAL SCROLL & DUAL PATHS)
+       ========================================================================== */
+    (() => {
+      const butterflyWrap = document.getElementById('celestial-butterfly');
+      const butterflyRotator = document.getElementById('butterfly-rotator');
+      const bubble = document.getElementById('butterfly-bubble');
+      if (!butterflyWrap || !butterflyRotator) return;
+
+      let lastScrollY = window.scrollY;
+      let isIdle = true;
+      let idleTimer = null;
+      let isLooping = false;
+
+      // Positions in viewport percentages (vw, vh)
+      let currentX = 78;
+      let currentY = 12;
+      let targetX = 78;
+      let targetY = 12;
+      let currentAngle = 45;
+      let targetAngle = 45;
+
+      const butterflySayings = [
+        '“Fluttering through Luna’s cosmic verses! ✦”',
+        '“Following the night breeze from star to star... ✨”',
+        '“A delicate wingbeat between words and dreams. ☾”',
+        '“Drifting over poetry and ancient paper... ✦”',
+        '“Whispering stardust over every line! ✨”'
+      ];
+      let sayingIdx = 0;
+
+      // PATH A: Downward Flight Path (Sweeps from Top-Right down through center-left, loops toward right bottom)
+      function getDownwardPath(p) {
+        const x = 52 + 28 * Math.cos(2.2 * Math.PI * p + 0.4) - 18 * Math.sin(3.6 * Math.PI * p);
+        const y = 8 + p * 78; // 8vh to 86vh
+        return {
+          x: Math.max(8, Math.min(88, x)),
+          y: Math.max(6, Math.min(88, y))
+        };
+      }
+
+      // PATH B: Upward Flight Path (Ascends along a completely different arc: far left, cuts wide right, rises center-top)
+      function getUpwardPath(p) {
+        const x = 48 - 34 * Math.sin(1.8 * Math.PI * p + 0.6) + 16 * Math.cos(4.4 * Math.PI * p);
+        const y = 8 + p * 78; // 8vh to 86vh
+        return {
+          x: Math.max(8, Math.min(88, x)),
+          y: Math.max(6, Math.min(88, y))
+        };
+      }
+
+      // Initialize position based on initial scroll
+      const initialDocHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const initialProgress = Math.max(0, Math.min(1, window.scrollY / (initialDocHeight || 1)));
+      const initPt = getDownwardPath(initialProgress);
+      currentX = targetX = initPt.x;
+      currentY = targetY = initPt.y;
+      butterflyWrap.style.left = `${currentX}vw`;
+      butterflyWrap.style.top = `${currentY}vh`;
+
+      function onScroll() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const scrollY = window.scrollY;
+        const delta = scrollY - lastScrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = Math.max(0, Math.min(1, scrollY / (docHeight || 1)));
+
+        if (Math.abs(delta) > 1.2) {
+          isIdle = false;
+          butterflyWrap.classList.remove('is-hovering');
+
+          if (delta > 0) {
+            // SCROLLING DOWNWARDS: fly along Downward Path
+            const pt = getDownwardPath(progress);
+            targetX = pt.x;
+            targetY = pt.y;
+
+            if (bubble && !butterflyWrap.classList.contains('is-speaking')) {
+              bubble.textContent = 'Fluttering down into Luna’s tales! ✦';
+            }
+
+            // Spawn fairy dust sparkles along flight
+            if (window.addMagicalSparkle && Math.random() > 0.45) {
+              const rect = butterflyWrap.getBoundingClientRect();
+              window.addMagicalSparkle(rect.left + 44, rect.top + 44, 1, 1.2, 'star');
+            }
+          } else {
+            // SCROLLING UPWARDS: fly along Upward Path (different trajectory!)
+            const pt = getUpwardPath(progress);
+            targetX = pt.x;
+            targetY = pt.y;
+
+            if (bubble && !butterflyWrap.classList.contains('is-speaking')) {
+              bubble.textContent = 'Fluttering up towards the stars! ✦';
+            }
+
+            // Spawn sparkles along flight
+            if (window.addMagicalSparkle && Math.random() > 0.45) {
+              const rect = butterflyWrap.getBoundingClientRect();
+              window.addMagicalSparkle(rect.left + 44, rect.top + 44, 1, 1.2, 'star');
+            }
+          }
+        }
+
+        lastScrollY = scrollY;
+
+        // When scroll stops, calm into gentle hovering flutter
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+          isIdle = true;
+          butterflyWrap.classList.add('is-hovering');
+        }, 180);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Silky Smooth Physics Animation Loop
+      function animateButterfly() {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          // Smooth Lerp toward target positions (fluid aerodynamics)
+          const ease = isIdle ? 0.04 : 0.085;
+          const prevX = currentX;
+          const prevY = currentY;
+
+          currentX += (targetX - currentX) * ease;
+          currentY += (targetY - currentY) * ease;
+
+          // When idling, add subtle atmospheric drift
+          let renderX = currentX;
+          let renderY = currentY;
+          if (isIdle) {
+            const time = performance.now() * 0.002;
+            renderX += Math.sin(time) * 0.7;
+            renderY += Math.cos(time * 0.8) * 0.5;
+          }
+
+          // Calculate banking angle into direction of flight
+          const dx = currentX - prevX;
+          const dy = currentY - prevY;
+          if (Math.hypot(dx, dy) > 0.04) {
+            let rawAngle = Math.atan2(dy, dx) * (180 / Math.PI) - 90;
+            let angleDiff = rawAngle - targetAngle;
+            while (angleDiff > 180) angleDiff -= 360;
+            while (angleDiff < -180) angleDiff += 360;
+            targetAngle += angleDiff;
+          }
+
+          currentAngle += (targetAngle - currentAngle) * 0.12;
+
+          // Apply position and rotation
+          butterflyWrap.style.left = `${renderX}vw`;
+          butterflyWrap.style.top = `${renderY}vh`;
+          if (!isLooping) {
+            butterflyRotator.style.transform = `rotate(${currentAngle}deg)`;
+          }
+        }
+
+        requestAnimationFrame(animateButterfly);
+      }
+      requestAnimationFrame(animateButterfly);
+
+      // Interactive Click: Playful 360-degree Aerial Loop & Sparkle Shower
+      butterflyWrap.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isLooping) return;
+        isLooping = true;
+        butterflyWrap.classList.add('is-speaking');
+
+        sayingIdx = (sayingIdx + 1) % butterflySayings.length;
+        if (bubble) bubble.textContent = butterflySayings[sayingIdx];
+
+        // 360 Loop animation
+        butterflyRotator.style.transition = 'transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        butterflyRotator.style.transform = `rotate(${currentAngle + 360}deg) scale(1.22)`;
+
+        if (window.addMagicalSparkle) {
+          const rect = butterflyWrap.getBoundingClientRect();
+          window.addMagicalSparkle(rect.left + 44, rect.top + 44, 22, 2.5, 'star');
+        }
+
+        setTimeout(() => {
+          butterflyRotator.style.transition = '';
+          currentAngle = currentAngle % 360;
+          butterflyRotator.style.transform = `rotate(${currentAngle}deg)`;
+          setTimeout(() => {
+            butterflyWrap.classList.remove('is-speaking');
+            isLooping = false;
+          }, 1600);
+        }, 750);
+      });
+    })();
   </script>
 </body>
 </html>
