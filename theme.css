@@ -1,168 +1,154 @@
-html[data-theme="dark"] {
+/* ==========================================================================
+   LUNA'S WORLD — UNIFIED LUXURY COSMIC THEME SYSTEM
+   Applies consistent modern dark night-sky luxury styling across all pages
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root,
+html,
+html[data-theme="dark"],
+html[data-theme="light"] {
   color-scheme: dark;
-  --paper: #1f1d1a;
-  --paper-bright: #2b2824;
-  --ink: #f3eee5;
-  --ink-soft: #d0c8bd;
-  --brown: #c2a181;
-  --peach: #d7ad82;
-  --cream: #39342f;
-  --soft-gray: #635d57;
-  --olive: #a5a17a;
-  --charcoal: #f3eee5;
-  --line: #635d57;
+  --bg-void: #060714;
+  --paper: #060714;
+  --paper-bright: #0e112c;
+  --ink: #f4efe4;
+  --ink-soft: #9fa5c4;
+  --charcoal: #fcfbf9;
+  --brown: #e5c07b;
+  --peach: #e5c07b;
+  --cream: rgba(22, 27, 68, 0.75);
+  --soft-gray: rgba(255, 255, 255, 0.1);
+  --olive: #c4b5fd;
+  --line: rgba(229, 192, 123, 0.3);
+  
+  --gold: #e5c07b;
+  --lavender: #c4b5fd;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-html[data-theme="dark"] body {
-  background: var(--paper);
-  color: var(--ink);
+body {
+  background-color: #060714 !important;
+  background-image: 
+    radial-gradient(circle 800px at 50% 0%, rgba(99, 102, 241, 0.12), transparent 70%),
+    radial-gradient(circle 700px at 90% 40%, rgba(229, 192, 123, 0.05), transparent 60%) !important;
+  background-attachment: fixed !important;
+  color: #f4efe4 !important;
+  font-family: var(--font-sans) !important;
+  min-height: 100vh;
 }
 
-html[data-theme="dark"] .topbar {
-  border-color: rgb(243 238 229 / 14%);
-  background: rgb(31 29 26 / 94%);
+/* Glassmorphism Topbar */
+.topbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(10, 13, 34, 0.82) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-html[data-theme="dark"] .brand-mark {
-  color: #29231d;
+.brand {
+  font-family: var(--font-serif) !important;
+  color: #fcfbf9 !important;
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
 }
 
-html[data-theme="dark"] .intro-band {
-  background: #3a3028;
-  color: #f3eee5;
+.brand-mark {
+  background: rgba(229, 192, 123, 0.15) !important;
+  border: 1px solid rgba(229, 192, 123, 0.35) !important;
+  color: #e5c07b !important;
+  border-radius: 50% !important;
 }
 
-html[data-theme="dark"] .intro-label,
-html[data-theme="dark"] .intro-inner h2 em {
-  color: var(--peach);
+.back-link,
+.poem-return {
+  color: #e5c07b !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  padding: 6px 16px !important;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(229, 192, 123, 0.35) !important;
+  background: rgba(229, 192, 123, 0.08) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.25s ease !important;
 }
 
-html[data-theme="dark"] .art-note {
-  color: #29231d;
+.back-link:hover,
+.poem-return:hover {
+  background: #e5c07b !important;
+  color: #060714 !important;
+  border-color: #e5c07b !important;
+  transform: translateY(-2px);
 }
 
-html[data-theme="dark"] .button {
-  border-color: var(--olive);
-  background: var(--olive);
-  color: #211f1a;
+/* Poem Manuscript Typography */
+.poem-heading {
+  border-block: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-block: 32px 28px !important;
+  margin-bottom: 40px !important;
 }
 
-html[data-theme="dark"] .button:hover {
-  border-color: var(--peach);
-  background: var(--peach);
-  color: #211f1a;
+.poem-number {
+  color: #e5c07b !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
 }
 
-html[data-theme="dark"] .work-copy .button {
-  border-color: var(--ink);
-  background: transparent;
-  color: var(--ink);
+h1 {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(2.4rem, 5vw, 3.8rem) !important;
+  font-weight: 500 !important;
+  color: #fcfbf9 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.15 !important;
 }
 
-html[data-theme="dark"] .work-copy .button:hover {
-  background: var(--olive);
-  color: #211f1a;
+.poem-body {
+  border-left: 2px solid rgba(229, 192, 123, 0.4) !important;
+  padding-left: clamp(24px, 5vw, 48px) !important;
+  max-width: 720px !important;
 }
 
-html[data-theme="dark"] .contact-section {
-  background: #302b26;
+.poem-body p {
+  font-family: var(--font-serif) !important;
+  font-size: 1.2rem !important;
+  line-height: 1.95 !important;
+  color: #f4efe4 !important;
+  margin-bottom: 24px !important;
 }
 
-html[data-theme="dark"] .field input,
-html[data-theme="dark"] .field textarea {
-  border-color: var(--soft-gray);
-  background: #24211e;
-  color: var(--ink);
+.poem-body p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.2em;
+  line-height: 0.8;
+  padding-right: 12px;
+  padding-top: 4px;
+  color: #e5c07b;
 }
 
-html[data-theme="dark"] .chat-panel {
-  border-color: var(--soft-gray);
-  background: var(--paper-bright);
+/* Footer */
+footer {
+  background: #04050e !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #9fa5c4 !important;
+  padding-block: 36px !important;
 }
 
-html[data-theme="dark"] .chat-head {
-  background: #40352c;
-  color: var(--ink);
-}
-
-html[data-theme="dark"] .chat-head small {
-  color: #ded3c4;
-}
-
-html[data-theme="dark"] .chat-close {
-  color: var(--ink);
-}
-
-html[data-theme="dark"] .chat-message {
-  background: #39332d;
-  color: var(--ink);
-}
-
-html[data-theme="dark"] .chat-message.user {
-  background: #77744e;
-  color: #fffdf6;
-}
-
-html[data-theme="dark"] .chat-form input {
-  color: var(--ink);
-}
-
-html[data-theme="dark"] footer {
-  background: #151412;
-  color: var(--ink);
-}
-
-html[data-theme="dark"] footer p {
-  color: #d8d0c4;
-}
-
-html[data-theme="dark"] footer .brand {
-  color: var(--ink);
+footer p {
+  color: #9fa5c4 !important;
+  font-size: 0.82rem !important;
 }
 
 .theme-toggle {
-  flex: 0 0 42px;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-  font-size: 19px;
-  cursor: pointer;
-}
-
-.theme-toggle:hover {
-  background: var(--cream);
-}
-
-.theme-toggle:focus-visible {
-  outline: 2px solid var(--brown);
-  outline-offset: 3px;
-}
-
-@media (max-width: 760px) {
-  .theme-toggle {
-    flex-basis: 38px;
-    width: 38px;
-    height: 38px;
-  }
-}
-
-@media (max-width: 360px) {
-  .nav {
-    gap: 8px;
-  }
-  .theme-toggle {
-    flex-basis: 34px;
-    width: 34px;
-    height: 34px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .theme-toggle {
-    transition: none;
-  }
+  display: none !important;
 }

@@ -1,503 +1,2160 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f2f1e8">
-  <script src="theme.js"></script>
-  <meta name="description" content="Enter Luna's World: stories, poetry, dreams, and worlds beyond imagination by G Daffini Shiyalin.">
-  <title>Luna's World | Stories, Poetry & Other Worlds</title>
+  <meta name="theme-color" content="#060714">
+  <meta name="description" content="Luna's World — The official literary sanctuary of G Daffini Shiyalin (Luna). Modern cosmic poetry, dark fantasy sagas, and night-sky prose.">
+  <title>Luna's World | Official Literary Sanctuary</title>
+
+  <!-- Google Fonts: Cormorant Garamond & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ==========================================================================
+       NEXT-GEN MODERN COSMIC DESIGN SYSTEM
+       Aesthetic: Ultra-Premium Dark Luxury · Crisp Glassmorphism · Modern Bento
+       ========================================================================== */
     :root {
-      color-scheme: light;
-      --brown: #6b574a;
-      --peach: #e4bd91;
-      --cream: #dfd6b9;
-      --soft-gray: #c5c1c0;
-      --olive: #6d6f3a;
-      --charcoal: #353535;
-      --paper: #fbfaf7;
-      --paper-bright: #f7f4eb;
-      --ink: var(--charcoal);
-      --ink-soft: #57534f;
-      --coral: var(--peach);
-      --coral-dark: var(--brown);
-      --lime: var(--olive);
-      --line: var(--soft-gray);
-      --serif: "Playfair Display", Georgia, serif;
-      --sans: "DM Sans", sans-serif;
+      --bg-void: #060714;
+      --bg-surface: rgba(14, 17, 44, 0.6);
+      --bg-surface-elevated: rgba(22, 27, 68, 0.75);
+      --bg-pill: rgba(10, 13, 34, 0.82);
+
+      --text-white: #fcfbf9;
+      --text-cream: #f4efe4;
+      --text-muted: #9fa5c4;
+      --text-dim: #646a8c;
+
+      --gold: #e5c07b;
+      --gold-light: #f6e1b2;
+      --gold-glow: rgba(229, 192, 123, 0.25);
+      --gold-border: rgba(229, 192, 123, 0.35);
+
+      --lavender: #c4b5fd;
+      --lavender-glow: rgba(196, 181, 253, 0.2);
+      --lavender-border: rgba(196, 181, 253, 0.22);
+
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-active: rgba(229, 192, 123, 0.45);
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+
+      --shadow-card: 0 16px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(196, 181, 253, 0.04);
+      --shadow-glow: 0 0 35px rgba(229, 192, 123, 0.18);
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
-    a { color: inherit; }
-    button, input, textarea { font: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
-
-    .topbar { position: sticky; z-index: 10; top: 0; background: rgb(251 250 247 / 94%); border-bottom: 1px solid rgb(53 53 53 / 12%); backdrop-filter: blur(14px); }
-    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: inline-flex; gap: 10px; align-items: center; text-decoration: none; font-family: var(--serif); font-size: 21px; font-weight: 600; }
-    .brand-mark { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--coral); color: var(--paper-bright); font-size: 17px; }
-    .nav-links { display: flex; align-items: center; gap: 34px; }
-    .nav-links a { text-decoration: none; color: var(--ink-soft); font-size: 13px; font-weight: 600; transition: color .2s ease; }
-    .nav-links a:hover { color: var(--coral-dark); }
-    .nav-links .nav-contact { padding: 11px 17px; border: 1px solid var(--ink); border-radius: 2px; color: var(--ink); }
-    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
-
-    .hero { min-height: 635px; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 48px; padding-block: 72px 86px; }
-    .hero-copy { position: relative; z-index: 1; animation: rise-in .7s both; }
-    .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 22px; color: var(--coral-dark); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
-    .eyebrow::before { content: ""; width: 30px; height: 1px; background: currentColor; }
-    h1, h2, h3, p { margin-top: 0; }
-    .hero h1 { max-width: 610px; margin-bottom: 18px; font: 500 clamp(54px, 6vw, 82px)/1.04 var(--serif); letter-spacing: 0; }
-    .hero h1 span { color: var(--coral); font-style: italic; }
-    .hero-lede { max-width: 440px; margin-bottom: 29px; color: var(--ink-soft); font-size: 17px; line-height: 1.75; }
-    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; }
-    .button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 20px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper-bright); text-decoration: none; font-size: 13px; font-weight: 700; transition: background .2s ease, transform .2s ease; }
-    .button:hover { transform: translateY(-2px); background: var(--olive); border-color: var(--olive); }
-    .text-link { color: var(--ink); font-size: 13px; font-weight: 700; text-decoration-color: var(--coral); text-underline-offset: 5px; }
-    .hero-art { min-height: 460px; position: relative; animation: rise-in .85s .12s both; }
-    .hero-photo { position: absolute; inset: 20px 24px 12px 54px; overflow: hidden; background: var(--brown); }
-    .hero-photo img { width: 100%; height: 100%; display: block; object-fit: cover; filter: saturate(.78); }
-    .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 54%, rgb(53 53 53 / 68%)); }
-    .photo-caption { position: absolute; z-index: 1; right: 22px; bottom: 26px; left: 150px; color: white; font: italic 17px var(--serif); }
-    .orbit { position: absolute; z-index: 2; top: -3px; right: 2px; width: 118px; height: 118px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); color: var(--ink); font: 600 38px var(--serif); transform: rotate(12deg); }
-    .orbit::after { content: ""; position: absolute; inset: -10px; border: 1px solid var(--coral); border-radius: 50%; }
-    .art-note { position: absolute; z-index: 2; left: 2px; bottom: 29px; width: 115px; padding: 15px 14px; background: var(--coral); color: var(--charcoal); font: italic 15px/1.35 var(--serif); transform: rotate(-5deg); }
-    .hero-stamp { position: absolute; right: 26px; bottom: -34px; color: var(--ink-soft); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; writing-mode: vertical-rl; }
-
-    .intro-band { background: var(--brown); color: var(--paper); }
-    .intro-inner { min-height: 275px; display: grid; grid-template-columns: .7fr 1.3fr; align-items: center; gap: 70px; padding-block: 58px; }
-    .intro-label { margin: 0; color: var(--peach); font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; }
-    .intro-inner h2 { max-width: 590px; margin: 0; font: 500 clamp(25px, 3vw, 38px)/1.42 var(--serif); }
-    .intro-inner h2 em { color: var(--cream); }
-
-    .section { padding-block: 104px; }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 36px; }
-    .section-head .eyebrow { margin-bottom: 12px; }
-    .section h2 { margin: 0; font: 500 clamp(38px, 5vw, 58px)/1.12 var(--serif); }
-    .section-description { max-width: 355px; margin: 0 0 4px; color: var(--ink-soft); font-size: 14px; line-height: 1.7; }
-    .poem-card { display: grid; grid-template-columns: .95fr 1.05fr; height: 355px; background: var(--cream); }
-    .poem-card-image { width: 100%; height: 100%; min-height: 0; display: block; object-fit: cover; filter: saturate(.78); background: var(--brown); }
-    .poem-card-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(24px, 5vw, 50px); }
-    .poem-number { display: block; margin-bottom: 13px; color: var(--brown); font-size: 10px; font-weight: 700; letter-spacing: 1.6px; }
-    .poem-card h3 { max-width: 430px; margin: 0 0 14px; font: 500 clamp(27px, 3.5vw, 38px)/1.2 var(--serif); text-transform: uppercase; }
-    .poem-card-copy p { margin-bottom: 23px; color: var(--ink-soft); font-size: 14px; line-height: 1.7; }
-
-    .works { padding-top: 24px; }
-    .work-feature { display: grid; grid-template-columns: .94fr 1.06fr; min-height: 370px; background: var(--paper-bright); }
-    .work-cover { min-height: 370px; position: relative; overflow: hidden; background: var(--brown); }
-    .work-cover img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; filter: saturate(.72); }
-    .work-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, rgb(53 53 53 / 5%), rgb(53 53 53 / 62%)); }
-    .cover-title { position: absolute; z-index: 1; right: 22px; bottom: 27px; left: 27px; color: white; font: 600 32px/1.15 var(--serif); }
-    .work-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 44px clamp(28px, 5vw, 66px); }
-    .work-tag { margin-bottom: 17px; color: var(--coral-dark); font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
-    .work-copy h3 { margin-bottom: 15px; font: 500 35px/1.2 var(--serif); }
-    .work-copy p { max-width: 390px; margin-bottom: 25px; color: var(--ink-soft); font-size: 14px; line-height: 1.75; }
-    .work-copy .button { background: transparent; color: var(--ink); }
-    .work-copy .button:hover { color: white; }
-    .work-collection { margin-top: 68px; }
-    .work-collection-head { margin-bottom: 24px; }
-    .work-collection-head .eyebrow { margin-bottom: 9px; }
-    .work-collection-head h3 { margin: 0; font: 500 clamp(27px, 3vw, 36px)/1.2 var(--serif); }
-    .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-    .work-card { overflow: hidden; background: var(--paper-bright); }
-    .work-card-image { width: 100%; aspect-ratio: 4 / 3; display: block; object-fit: cover; filter: saturate(.78); background: var(--cream); }
-    .work-card-copy { padding: 20px 22px 24px; }
-    .work-card-tag { display: block; margin-bottom: 9px; color: var(--brown); font-size: 10px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; }
-    .work-card h4 { margin: 0 0 14px; font: 500 23px/1.25 var(--serif); text-transform: uppercase; }
-    .work-card-actions { display: flex; flex-wrap: wrap; gap: 12px 18px; }
-    .work-card-link { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 12px; font-weight: 700; text-decoration-color: var(--peach); text-underline-offset: 4px; }
-
-    .contact-section { padding-block: 90px; background: var(--cream); }
-    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; }
-    .contact-copy h2 { margin-bottom: 19px; }
-    .contact-copy > p:not(.eyebrow) { max-width: 390px; color: var(--ink-soft); font-size: 14px; line-height: 1.75; }
-    .email-line { display: inline-block; margin: 7px 0 21px; color: var(--ink); font-weight: 700; text-decoration-color: var(--coral); text-underline-offset: 5px; }
-    .social-link { display: inline-flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 700; text-underline-offset: 4px; }
-    .contact-form { display: grid; gap: 17px; padding-top: 6px; }
-    .field { display: grid; gap: 8px; }
-    .field label { font-size: 12px; font-weight: 700; }
-    .field input, .field textarea { width: 100%; border: 1px solid var(--soft-gray); border-radius: 0; padding: 13px 14px; background: rgb(251 250 247 / 82%); color: var(--ink); outline: none; }
-    .field input:focus, .field textarea:focus { border-color: var(--brown); box-shadow: 0 0 0 2px rgb(107 87 74 / 13%); }
-    .field textarea { min-height: 122px; resize: vertical; }
-    .contact-form .button { justify-self: start; cursor: pointer; }
-    .form-note { min-height: 18px; margin: -7px 0 0; color: var(--ink-soft); font-size: 12px; }
-
-    footer { padding-block: 23px; background: var(--charcoal); color: var(--paper); }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 11px; }
-    .footer-inner p { margin: 0; color: var(--cream); }
-    .footer-star { color: var(--lime); }
-
-    .chat-launcher { position: fixed; z-index: 20; right: 25px; bottom: 23px; display: inline-flex; align-items: center; gap: 10px; min-height: 50px; padding: 0 17px; border: 0; border-radius: 2px; background: var(--peach); color: var(--charcoal); box-shadow: 0 8px 26px rgb(53 53 53 / 20%); font-size: 13px; font-weight: 700; cursor: pointer; }
-    .is-reading-poetry .chat-launcher { visibility: hidden; opacity: 0; pointer-events: none; }
-    .chat-launcher span:first-child { font-size: 17px; }
-    .chat-panel { position: fixed; z-index: 21; right: 25px; bottom: 85px; width: min(365px, calc(100vw - 32px)); max-height: min(520px, calc(100vh - 112px)); display: none; flex-direction: column; overflow: hidden; border: 1px solid var(--line); background: var(--paper-bright); box-shadow: 0 14px 40px rgb(53 53 53 / 20%); }
-    .chat-panel.is-open { display: flex; animation: rise-in .2s both; }
-    .chat-head { display: flex; align-items: center; justify-content: space-between; padding: 17px 18px; background: var(--brown); color: var(--paper); }
-    .chat-head strong { display: block; font: 500 20px var(--serif); }
-    .chat-head small { display: block; margin-top: 3px; color: var(--cream); font-size: 11px; }
-    .chat-close { width: 36px; height: 36px; border: 0; background: transparent; color: white; font-size: 23px; cursor: pointer; }
-    .chat-messages { display: flex; flex: 1; flex-direction: column; gap: 12px; overflow: auto; padding: 18px; }
-    .chat-message { max-width: 88%; padding: 12px 13px; background: var(--cream); color: var(--ink); font-size: 13px; line-height: 1.55; }
-    .chat-message.user { align-self: flex-end; background: var(--olive); color: var(--paper); }
-    .chat-form { display: flex; border-top: 1px solid var(--line); }
-    .chat-form input { flex: 1; min-width: 0; border: 0; padding: 14px; background: transparent; outline: none; font-size: 13px; }
-    .chat-form button { width: 50px; border: 0; background: var(--peach); color: var(--charcoal); font-size: 18px; cursor: pointer; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-
-    .moon-intro { position: fixed; z-index: 100; inset: 0; display: grid; justify-items: center; align-content: start; overflow: hidden; background: var(--paper); pointer-events: none; animation: moon-fade .35s ease-in .65s forwards; }
-    .moon-hanger { display: grid; justify-items: center; transform-origin: top center; animation: moon-swing 1s ease-in-out; }
-    .moon-thread { width: 1px; height: 72px; background: var(--brown); }
-    .moon-disc { width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid var(--brown); border-radius: 50%; background: var(--peach); color: var(--brown); font: 500 28px/1 var(--serif); box-shadow: 0 5px 16px rgb(107 87 74 / 14%); }
-
-    @keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes moon-swing { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(9deg); } }
-    @keyframes moon-fade { to { opacity: 0; visibility: hidden; } }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
-    @media (prefers-reduced-motion: reduce) { .moon-intro { display: none; } }
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 36px, 560px); }
-      .nav { min-height: 66px; }
-      .menu-toggle { display: grid; place-items: center; }
-      .nav-links { position: absolute; top: 65px; right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 8px 18px 16px; border-bottom: 1px solid var(--line); background: var(--paper); }
-      .nav-links.is-open { display: grid; }
-      .nav-links a { padding: 13px 8px; }
-      .nav-links .nav-contact { margin-top: 5px; text-align: center; }
-      .hero { min-height: auto; grid-template-columns: 1fr; gap: 31px; padding-block: 59px 74px; }
-      .hero h1 { font-size: clamp(53px, 13vw, 72px); }
-      .hero-art { min-height: min(400px, 92vw); margin-inline: 8px; }
-      .hero-photo { inset: 15px 17px 11px 33px; }
-      .orbit { width: 90px; height: 90px; font-size: 31px; }
-      .art-note { left: -6px; bottom: 24px; width: 100px; font-size: 13px; }
-      .intro-inner { min-height: 0; grid-template-columns: 1fr; gap: 18px; padding-block: 40px; }
-      .section { padding-block: 72px; }
-      .section-head { align-items: flex-start; flex-direction: column; gap: 15px; margin-bottom: 27px; }
-      .poem-card { grid-template-columns: minmax(112px, 36%) 1fr; height: 235px; }
-      .poem-card-copy { padding: 19px; }
-      .poem-card h3 { font-size: 23px; }
-      .works { padding-top: 4px; }
-      .work-feature { grid-template-columns: 1fr; }
-      .work-cover { min-height: 285px; }
-      .work-copy { padding: 33px 25px 36px; }
-      .work-collection { margin-top: 52px; }
-      .work-grid { grid-template-columns: 1fr; gap: 14px; }
-      .work-card-image { aspect-ratio: 16 / 9; }
-      .work-card-copy { padding: 19px 21px 22px; }
-      .contact-section { padding-block: 69px; }
-      .contact-grid { grid-template-columns: 1fr; gap: 33px; }
-      .footer-inner { align-items: flex-start; flex-direction: column; gap: 8px; }
-      .chat-launcher { right: 15px; bottom: 15px; }
-      .chat-panel { right: 16px; bottom: 76px; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    @media (max-width: 360px) {
-      .poem-card { grid-template-columns: 1fr; height: auto; }
-      .poem-card-image { height: auto; aspect-ratio: 16 / 9; }
-      .poem-card-copy { padding: 22px; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+      background-color: var(--bg-void);
+      color: var(--text-cream);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-void);
+      background-image: 
+        radial-gradient(circle 900px at 50% 0%, rgba(99, 102, 241, 0.12), transparent 70%),
+        radial-gradient(circle 700px at 85% 35%, rgba(229, 192, 123, 0.06), transparent 60%),
+        radial-gradient(circle 800px at 15% 75%, rgba(139, 92, 246, 0.08), transparent 70%);
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: #060714;
+    }
+
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #04050e; }
+    ::-webkit-scrollbar-thumb { background: rgba(196, 181, 253, 0.2); border-radius: var(--radius-full); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    /* Ambient Canvas Starfield */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    /* Cursor Ambient Glow */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 440px;
+      height: 440px;
+      margin-top: -220px;
+      margin-left: -220px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(circle, rgba(196, 181, 253, 0.08) 0%, rgba(229, 192, 123, 0.02) 40%, transparent 70%);
+      filter: blur(40px);
+      will-change: transform;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+    @media (hover: none) and (pointer: coarse) {
+      .cursor-glow { display: none; }
+    }
+
+    /* ==========================================================================
+       FLOATING ISLAND NAVBAR (MODERN PILL NAV)
+       ========================================================================== */
+    .nav-island-wrap {
+      position: fixed;
+      top: 20px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding-inline: 16px;
+      pointer-events: none;
+    }
+
+    .nav-island {
+      pointer-events: auto;
+      width: min(920px, 100%);
+      height: 64px;
+      background: var(--bg-pill);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 8px 14px 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 20px rgba(196, 181, 253, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .brand-crescent {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold-glow);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 0.95rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sound-toggle-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 7px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sound-toggle-btn:hover {
+      background: var(--gold-glow);
+      border-color: var(--gold);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      color: var(--text-white);
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      place-items: center;
+      font-size: 1.1rem;
+    }
+
+    /* ==========================================================================
+       HERO SECTION: SLEEK, POWERFUL, IMMERSIVE
+       ========================================================================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      padding-top: 130px;
+      padding-bottom: 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      align-items: center;
+      gap: 64px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(229, 192, 123, 0.08);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-full);
+      padding: 6px 18px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 6.2vw, 5.5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--text-white);
+      margin-bottom: 24px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 1.12rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 38px;
+      font-weight: 300;
+    }
+    .hero-desc strong {
+      color: var(--text-white);
+      font-weight: 500;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 46px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 12px 26px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #060714;
+      border: 1px solid var(--gold);
+      font-weight: 600;
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(229, 192, 123, 0.35);
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-white);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(12px);
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--lavender-border);
+      color: var(--lavender-soft);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats-row {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+    .stat-txt {
+      font-size: 0.74rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 3px;
+    }
+
+    /* Hero Visual: High-Detail SVG Moon Card */
+    .hero-moon-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 38px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(20px);
+    }
+
+    .moon-canvas-orb {
+      width: 210px;
+      height: 210px;
+      display: block;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 50px rgba(229, 192, 123, 0.2), 0 0 90px rgba(196, 181, 253, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .moon-canvas-orb:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 70px rgba(229, 192, 123, 0.35);
+    }
+
+    .moon-phase-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-top: 22px;
+      margin-bottom: 4px;
+    }
+    .moon-phase-sub {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .moon-pills-shelf {
+      display: flex;
+      gap: 6px;
+      margin-top: 18px;
+    }
+    .phase-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      font-size: 0.74rem;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .phase-pill:hover, .phase-pill.active {
+      background: var(--gold);
+      color: #060714;
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       SECTION HEADERS
+       ========================================================================== */
+    .section-wrap {
+      padding-block: 100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--text-white);
+      margin-bottom: 14px;
+    }
+    .section-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    /* ==========================================================================
+       INTERACTIVE POETRY THEATRE (FEATURED STAGE + SELECTOR SHELF)
+       ========================================================================== */
+    .poetry-theatre-layout {
+      display: grid;
+      grid-template-columns: 1.22fr 0.78fr;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    /* Featured Main Poem Stage */
+    .theatre-stage {
+      background: var(--bg-surface);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 44px 48px;
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .theatre-stage-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .theatre-tag {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .theatre-theme {
+      font-size: 0.76rem;
+      color: var(--lavender-soft);
+      background: var(--lavender-glow);
+      padding: 3px 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--lavender-border);
+    }
+
+    .theatre-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--text-white);
+      margin-bottom: 24px;
+    }
+
+    .theatre-manuscript {
+      flex: 1;
+      max-height: 480px;
+      overflow-y: auto;
+      padding-right: 18px;
+      font-size: 1.15rem;
+      line-height: 1.95;
+      color: var(--text-cream);
+      font-family: var(--font-display);
+    }
+    .theatre-manuscript p {
+      margin-bottom: 22px;
+      white-space: pre-line;
+    }
+    .theatre-manuscript p:first-of-type::first-letter {
+      float: left;
+      font-size: 3.2em;
+      line-height: 0.8;
+      padding-right: 12px;
+      padding-top: 4px;
+      color: var(--gold);
+    }
+
+    .theatre-bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .copy-toast-btn {
+      background: transparent;
+      border: 1px dashed var(--gold-border);
+      color: var(--gold);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .copy-toast-btn:hover {
+      background: var(--gold-glow);
+    }
+
+    /* Shelf of 7 Poems */
+    .theatre-shelf {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 680px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .shelf-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .shelf-item:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--lavender-border);
+      transform: translateX(4px);
+    }
+    .shelf-item.active {
+      background: var(--bg-surface-elevated);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(229, 192, 123, 0.15);
+    }
+
+    .shelf-item-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .shelf-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .shelf-read {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+    .shelf-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--text-white);
+      line-height: 1.2;
+    }
+    .shelf-snippet {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ==========================================================================
+       PUBLISHED WORKS (LUXURY 3D BOOK & CARDS)
+       ========================================================================== */
+    .works-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .featured-work-card {
+      grid-column: span 2;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 0;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      box-shadow: var(--shadow-card);
+    }
+    .featured-work-card:hover {
+      border-color: var(--border-active);
+    }
+
+    .book-cover-showcase {
+      background: linear-gradient(145deg, #101235, #080920);
+      border-right: 1px solid var(--border-subtle);
+      padding: 50px 40px;
+      display: grid;
+      place-items: center;
+    }
+
+    .luxury-book-spine {
+      width: 100%;
+      max-width: 240px;
+      aspect-ratio: 2 / 3;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(160deg, #1b1938, #0a091d);
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .luxury-book-spine::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 12px;
+      bottom: 0;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .book-details-col {
+      padding: 48px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .book-badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .book-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.2vw, 2.7rem);
+      font-weight: 500;
+      color: var(--text-white);
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+    .book-synopsis {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 26px;
+    }
+    .book-tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+    .tag-pill {
+      font-size: 0.76rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 4px 12px;
+      color: var(--lavender-soft);
+    }
+
+    .bribooks-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+      transition: all 0.25s ease;
+    }
+    .bribooks-card:hover {
+      border-color: var(--border-active);
+      transform: translateY(-3px);
+    }
+    .bribooks-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      background: var(--gold-glow);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-size: 1.25rem;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+    }
+
+    /* ==========================================================================
+       AUTHOR BENTO GRID (ABOUT SECTION)
+       ========================================================================== */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .bento-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 38px 42px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .bento-quote-box {
+      background: linear-gradient(145deg, #111438, #07091d);
+      border-color: var(--gold-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 380px;
+    }
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .quote-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.35rem;
+      line-height: 1.6;
+      color: var(--text-white);
+      margin-block: auto;
+    }
+    .quote-author {
+      font-size: 0.82rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .pillars-vertical-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .pillar-row {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .pillar-row h4 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    .pillar-row p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       CONTACT SECTION
+       ========================================================================== */
+    .contact-card-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 50px clamp(24px, 5vw, 60px);
+      box-shadow: var(--shadow-card);
+      margin-top: 48px;
+    }
+
+    .contact-direct-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin-bottom: 18px;
+    }
+    .contact-direct-pill .lbl {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .contact-direct-pill .val {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--text-white);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .contact-direct-pill .val:hover {
+      color: var(--gold);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-white);
+    }
+    .form-input,
+    .form-textarea,
+    .form-select {
+      background: rgba(6, 7, 20, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: var(--text-white);
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: var(--gold);
+    }
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-select option {
+      background: #0d0f28;
+      color: var(--text-white);
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      background: #04050e;
+      padding-block: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--lavender-soft);
+      font-size: 1rem;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================================================
+       ASTRA CHAT ASSISTANT
+       ========================================================================== */
+    .chat-pill-btn {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      z-index: 990;
+      background: var(--bg-pill);
+      border: 1px solid var(--gold-border);
+      color: var(--text-white);
+      border-radius: var(--radius-full);
+      padding: 11px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(18px);
+      transition: all 0.22s ease;
+    }
+    .chat-pill-btn:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .chat-drawer {
+      position: fixed;
+      right: 28px;
+      bottom: 86px;
+      width: min(390px, calc(100vw - 32px));
+      height: min(540px, calc(100vh - 110px));
+      background: rgba(10, 12, 32, 0.96);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(28px);
+      z-index: 991;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-drawer.open {
+      display: flex;
+    }
+
+    .chat-drawer-head {
+      padding: 16px 20px;
+      background: rgba(22, 27, 68, 0.65);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chat-drawer-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--text-white);
+    }
+    .chat-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-msg {
+      max-width: 86%;
+      padding: 11px 15px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+    .chat-msg.astra {
+      align-self: flex-start;
+      background: rgba(22, 27, 68, 0.85);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-white);
+    }
+    .chat-msg.user {
+      align-self: flex-end;
+      background: var(--gold);
+      color: #060714;
+      font-weight: 500;
+    }
+
+    .chat-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 6px 16px 12px;
+    }
+    .chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 4px 11px;
+      font-size: 0.74rem;
+      color: var(--lavender-soft);
+      cursor: pointer;
+    }
+    .chip:hover {
+      background: var(--gold);
+      color: #060714;
+      border-color: var(--gold);
+    }
+
+    .chat-input-bar {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border-subtle);
+      background: rgba(6, 7, 20, 0.95);
+      display: flex;
+      gap: 8px;
+    }
+    .chat-field {
+      flex: 1;
+      background: rgba(22, 27, 68, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 8px 16px;
+      color: var(--text-white);
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .chat-submit {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: none;
+      color: #060714;
+      font-weight: 700;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    /* ==========================================================================
+       RESPONSIVENESS
+       ========================================================================== */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+      .hero-eyebrow { margin-inline: auto; }
+      .hero-desc { margin-inline: auto; }
+      .hero-cta-group { justify-content: center; }
+      .hero-stats-row { justify-content: center; }
+      .poetry-theatre-layout { grid-template-columns: 1fr; }
+      .works-layout { grid-template-columns: 1fr; }
+      .featured-work-card { grid-column: span 1; grid-template-columns: 1fr; }
+      .book-cover-showcase { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+      .bento-grid { grid-template-columns: 1fr; }
+      .contact-card-wrap { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-island { height: 56px; padding: 6px 16px; }
+      .mobile-menu-btn { display: grid; }
+      .hero { padding-top: 100px; }
+      .theatre-stage { padding: 32px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+      }
+      .cursor-glow { display: none !important; }
     }
   </style>
-  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
-  <div class="moon-intro" aria-hidden="true">
-    <div class="moon-hanger"><span class="moon-thread"></span><span class="moon-disc">☾</span></div>
-  </div>
-  <header class="topbar">
-    <nav class="nav wrap" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Luna's World home"><span class="brand-mark" aria-hidden="true">☾</span> Luna's World</a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#poetry">Poetry</a>
-        <a href="#works">Works</a>
-        <a class="nav-contact" href="#contact">Contact</a>
+
+  <!-- Serene Canvas Starfield -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- Ambient Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       FLOATING ISLAND NAVBAR
+       ======================================================================== -->
+  <div class="nav-island-wrap">
+    <header class="nav-island">
+      <a href="#home" class="brand" aria-label="Luna's World Home">
+        <span class="brand-crescent">☾</span>
+        <span>Luna's World</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#poetry">Verses</a></li>
+          <li><a href="#works">Works</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Optional Ambient Cosmic Soundscape (Web Audio API) -->
+        <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle celestial soundscape">
+          <span id="soundIcon">🔊</span>
+          <span id="soundLabel">Cosmic Ambience</span>
+        </button>
       </div>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" title="Switch to dark theme">☾</button>
-    </nav>
-  </header>
+    </header>
+  </div>
 
   <main>
-    <section class="hero wrap" id="home" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">A magical author universe</p>
-        <h1 id="hero-title">Welcome to <span>Luna's</span> World</h1>
-        <p class="hero-lede">Stories, poetry, dreams, and worlds beyond imagination.</p>
-        <div class="hero-actions">
-          <a class="button" href="#works">Explore my work <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="#poetry">Find a little poetry</a>
+    <!-- ======================================================================
+         HERO SECTION
+         ====================================================================== -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        
+        <div class="hero-left">
+          <div class="hero-eyebrow">
+            <span>✦ Literary Universe · G Daffini Shiyalin</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Where Twisted Verse Meets the <em>Infinite</em>
+          </h1>
+
+          <p class="hero-desc">
+            Welcome to the sanctuary of <strong>G Daffini Shiyalin</strong> (Luna) — exploring psychological truths, silent grief, and supernatural myths spun into twisted verse and moonlit prose.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#poetry" class="btn btn-gold">Explore Poetry Theatre ✦</a>
+            <a href="#works" class="btn btn-glass">The Hidden Bloodline ↗</a>
+            <button class="btn btn-glass" id="heroChatBtn" style="border-color: var(--gold-border); color: var(--gold);">Ask Astra ☾</button>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="hero-stat">
+              <span class="stat-val">7</span>
+              <span class="stat-txt">Poetic Verses</span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-val">3</span>
+              <span class="stat-txt">BriBooks Books</span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-val">1</span>
+              <span class="stat-txt">Wattpad Saga</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="hero-art" aria-label="A writer's desk in the evening">
-        <div class="hero-photo">
-          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="A hand writing in a notebook with a pen">
-          <span class="photo-caption">Somewhere between a thought and a story.</span>
+
+        <!-- Serene SVG Floating Moon & Phase Switcher Card -->
+        <div class="hero-right">
+          <div class="hero-moon-card">
+            <svg class="moon-canvas-orb" id="moonOrb" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="button" tabindex="0" aria-label="Interactive moon phase preview">
+              <defs>
+                <radialGradient id="moonG" cx="38%" cy="32%" r="68%">
+                  <stop offset="0%" stop-color="#fff9ef"/>
+                  <stop offset="55%" stop-color="#e8dec5"/>
+                  <stop offset="88%" stop-color="#c4b89e"/>
+                  <stop offset="100%" stop-color="#9a8f75"/>
+                </radialGradient>
+              </defs>
+
+              <circle cx="100" cy="100" r="98" fill="url(#moonG)"/>
+
+              <g fill="#93866c" opacity="0.38">
+                <ellipse cx="68" cy="72" rx="14" ry="10" transform="rotate(-15 68 72)"/>
+                <ellipse cx="132" cy="88" rx="17" ry="11" transform="rotate(20 132 88)"/>
+                <ellipse cx="98" cy="138" rx="20" ry="14" transform="rotate(5 98 138)"/>
+                <circle cx="145" cy="142" r="7"/>
+                <circle cx="52" cy="118" r="6"/>
+                <circle cx="86" cy="48" r="6"/>
+                <circle cx="122" cy="42" r="8"/>
+              </g>
+
+              <path id="moonShadow" fill="#060714" opacity="0.95" d="M 100 0 A 0 0 0 0 0 100 0 Z"/>
+              <circle cx="100" cy="100" r="97.5" fill="none" stroke="rgba(229, 192, 123, 0.3)" stroke-width="1.2"/>
+            </svg>
+
+            <div class="moon-phase-name" id="phaseTitle">☾ Full Moon</div>
+            <div class="moon-phase-sub" id="phaseDesc">100% Illumination · Cosmic Harmony</div>
+
+            <div class="moon-pills-shelf" role="group" aria-label="Moon phase selector">
+              <button class="phase-pill" data-p="0">New</button>
+              <button class="phase-pill" data-p="1">Crescent</button>
+              <button class="phase-pill active" data-p="2">Full</button>
+              <button class="phase-pill" data-p="3">Waning</button>
+            </div>
+          </div>
         </div>
-        <div class="orbit" aria-hidden="true">☾</div>
-        <div class="art-note" aria-hidden="true">A universe in every line</div>
-        <span class="hero-stamp" aria-hidden="true">Stories · dreams · other worlds</span>
+
       </div>
     </section>
 
-    <section class="intro-band" aria-label="About Luna">
-      <div class="intro-inner wrap">
-        <p class="intro-label">A note from Luna</p>
-        <h2>I am G Daffini Shiyalin, aka Luna: a cosmic poet and storyteller spinning thoughts into <em>twisted verse, moonlit prose,</em> and surreal worlds between dream and reality.</h2>
-      </div>
-    </section>
-
-    <section class="section wrap" id="poetry" aria-labelledby="poetry-title">
-      <div class="section-head">
+    <!-- ======================================================================
+         POETRY THEATRE SECTION (INTERACTIVE STAGE + 7-POEM SHELF)
+         ====================================================================== -->
+    <section class="section-wrap" id="poetry">
+      <div class="container">
+        
         <div>
-          <p class="eyebrow">Words for the in-between</p>
-          <h2 id="poetry-title">Poetry</h2>
+          <span class="section-eyebrow">✦ Interactive Poetry Theatre</span>
+          <h2 class="section-headline">Words for the <em>In-Between</em></h2>
+          <p class="section-sub">
+            Click any piece on the right shelf to immediately unfold its full, authentic verse on the stage.
+          </p>
         </div>
-        <p class="section-description">Little pieces of the heart, set loose beneath an open sky.</p>
+
+        <div class="poetry-theatre-layout">
+          
+          <!-- Left: Main Active Reading Stage -->
+          <div class="theatre-stage">
+            <div class="theatre-stage-top">
+              <span class="theatre-tag" id="stageEntry">Entry 01</span>
+              <span class="theatre-theme" id="stageTheme">Grief &amp; Catharsis</span>
+            </div>
+
+            <h3 class="theatre-title" id="stageTitle">Do You Hate The Rain, Too?</h3>
+
+            <div class="theatre-manuscript" id="stageManuscript">
+              <!-- Dynamically populated stanzas -->
+            </div>
+
+            <div class="theatre-bottom-bar">
+              <button class="copy-toast-btn" id="copyStanzaBtn">
+                <span>✦ Copy Stanza to Clipboard</span>
+              </button>
+              <a href="poem-01.html" class="btn btn-glass" id="stageStandaloneBtn" style="padding: 7px 16px; font-size: 0.8rem;">
+                Open Standalone Page ↗
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Shelf of all 7 Poems -->
+          <div class="theatre-shelf" id="poemShelf">
+            <!-- Dynamically populated or static cards -->
+          </div>
+
+        </div>
       </div>
-      <article class="poem-card" aria-labelledby="poem-rain-title">
-        <img class="poem-card-image" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A quiet forest in soft daylight" loading="lazy">
-        <div class="poem-card-copy">
-          <span class="poem-number">ENTRY 01 · FREE TO READ</span>
-          <h3 id="poem-rain-title">DO YOU HATE THE RAIN, TOO?</h3>
-          <p>An original poem by Luna.</p>
-          <a class="button" href="poem-01.html">Open poem <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
-      <article class="poem-card" aria-labelledby="poem-love-title" style="margin-top: 18px;">
-        <img class="poem-card-image" src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A field of distant stars in a deep night sky" loading="lazy">
-        <div class="poem-card-copy">
-          <span class="poem-number">ENTRY 02 · FREE TO READ</span>
-          <h3 id="poem-love-title">A Love That Was Never Heard</h3>
-          <p>An original poem by Luna.</p>
-          <a class="button" href="poem-02.html">Open poem <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
-      <article class="poem-card" aria-labelledby="poem-eighteen-title" style="margin-top: 18px;">
-        <img class="poem-card-image" src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A dark forest softened by light through the trees" loading="lazy">
-        <div class="poem-card-copy">
-          <span class="poem-number">ENTRY 03 · FREE TO READ</span>
-          <h3 id="poem-eighteen-title">EIGHTEEN</h3>
-          <p>An original poem by Luna.</p>
-          <a class="button" href="poem-03.html">Open poem <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
-      <article class="poem-card" aria-labelledby="poem-glow-title" style="margin-top: 18px;">
-        <img class="poem-card-image" src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A warm sunrise glowing over the horizon" loading="lazy">
-        <div class="poem-card-copy">
-          <span class="poem-number">ENTRY 04 · FREE TO READ</span>
-          <h3 id="poem-glow-title">Mellow Glow From Within</h3>
-          <p>An original poem by Luna.</p>
-          <a class="button" href="poem-04.html">Open poem <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
-      <article class="poem-card" aria-labelledby="poem-warmth-title" style="margin-top: 18px;">
-        <img class="poem-card-image" src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A candle flame glowing warmly in a dark room" loading="lazy">
-        <div class="poem-card-copy">
-          <span class="poem-number">ENTRY 05 · FREE TO READ</span>
-          <h3 id="poem-warmth-title">Warmth that burned</h3>
-          <p>An original poem by Luna.</p>
-          <a class="button" href="warmth-that-burned.html">Open poem <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
-      <article class="poem-card" aria-labelledby="poem-earth-title" style="margin-top: 18px;">
-        <img class="poem-card-image" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Sunlight among tall trees in a deep green forest" loading="lazy">
-        <div class="poem-card-copy">
-          <span class="poem-number">ENTRY 06 · FREE TO READ</span>
-          <h3 id="poem-earth-title">Whispers of Earth</h3>
-          <p>An original poem by Luna.</p>
-          <a class="button" href="whispers-of-earth.html">Open poem <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
-      <article class="poem-card" aria-labelledby="poem-scars-title" style="margin-top: 18px;">
-        <img class="poem-card-image" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A mountain beneath a star-filled night sky" loading="lazy">
-        <div class="poem-card-copy">
-          <span class="poem-number">ENTRY 07 · FREE TO READ</span>
-          <h3 id="poem-scars-title">SCARS THAT SHINE</h3>
-          <p>An original poem by Luna.</p>
-          <a class="button" href="poem-07.html">Open poem <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
     </section>
 
-    <section class="section works wrap" id="works" aria-labelledby="works-title">
-      <div class="section-head">
+    <!-- ======================================================================
+         WORKS SECTION (THE HIDDEN BLOODLINE & BRIBOOKS)
+         ====================================================================== -->
+    <section class="section-wrap" id="works">
+      <div class="container">
+        
         <div>
-          <p class="eyebrow">Stories with a pulse</p>
-          <h2 id="works-title">Works</h2>
+          <span class="section-eyebrow">✦ Sagas &amp; Printed Collections</span>
+          <h2 class="section-headline">Published <em>Works</em></h2>
+          <p class="section-sub">
+            Serialized dark fantasy epics and published poetic anthologies across Wattpad and BriBooks.
+          </p>
         </div>
-        <p class="section-description">Step into a story, and see where the pages take you.</p>
-      </div>
-      <article class="work-feature">
-        <div class="work-cover">
-          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="A mysterious, forested landscape at twilight" loading="lazy">
-          <div class="cover-title">The Hidden<br>Bloodline</div>
-        </div>
-        <div class="work-copy">
-          <span class="work-tag">A story by Luna · Read on Wattpad</span>
-          <h3>The Hidden Bloodline</h3>
-          <p>A hidden story is waiting to be discovered. Follow the link to read The Hidden Bloodline on Wattpad.</p>
-          <a class="button" href="https://www.wattpad.com/story/411413955-the-hidden-bloodline" target="_blank" rel="noopener noreferrer">Read the story <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
-      <div class="work-collection">
-        <div class="work-collection-head">
-          <p class="eyebrow">Published on BriBooks</p>
-          <h3>BriBooks Poetry</h3>
-        </div>
-        <div class="work-grid">
-          <article class="work-card">
-            <img class="work-card-image" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Sunlight among tall trees in a deep green forest" loading="lazy">
-            <div class="work-card-copy">
-              <span class="work-card-tag">Poetry · Nature</span>
-              <h4>Whispers of Earth</h4>
-              <div class="work-card-actions">
-                <a class="work-card-link" href="whispers-of-earth.html">Read excerpt <span aria-hidden="true">↗</span></a>
-                <a class="work-card-link" href="https://www.bribooks.com/bookstore/whispers-of-earth-by-luna/" target="_blank" rel="noopener noreferrer">Read on BriBooks <span aria-hidden="true">↗</span></a>
+
+        <div class="works-layout">
+          
+          <!-- Featured: The Hidden Bloodline -->
+          <article class="featured-work-card">
+            <div class="book-cover-showcase">
+              <div class="luxury-book-spine">
+                <span style="font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);">Wattpad Novel</span>
+                <div>
+                  <svg width="50" height="50" viewBox="0 0 100 100" fill="none" style="margin: 0 auto 10px; display: block;">
+                    <circle cx="50" cy="50" r="42" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4 2"/>
+                    <circle cx="50" cy="50" r="16" fill="var(--gold)" opacity="0.85"/>
+                    <path d="M42 35 C45 30, 55 30, 58 35 C62 42, 50 60, 50 68 C50 60, 38 42, 42 35 Z" fill="#881337"/>
+                  </svg>
+                  <h4 style="font-family: var(--font-display); font-size: 1.45rem; line-height: 1.15; color: var(--text-white);">
+                    The Hidden<br><span style="color: var(--gold);">Bloodline</span>
+                  </h4>
+                </div>
+                <span style="font-size: 0.68rem; color: var(--text-dim);">By Luna</span>
+              </div>
+            </div>
+
+            <div class="book-details-col">
+              <span class="book-badge">✦ Serialized Dark Fantasy Saga</span>
+              <h3 class="book-heading">The Hidden Bloodline</h3>
+              <p class="book-synopsis">
+                When ancient lineages awaken beneath ordinary breath, secrets buried in the marrow of time demand to be answered. Follow Luna's serialized dark fantasy saga of supernatural destiny, dark legacy, and ties of blood that cannot be severed.
+              </p>
+              <div class="book-tags-wrap">
+                <span class="tag-pill">Dark Fantasy</span>
+                <span class="tag-pill">Ancient Bloodlines</span>
+                <span class="tag-pill">Supernatural Mystery</span>
+                <span class="tag-pill">Wattpad Novel</span>
+              </div>
+              <div>
+                <a href="https://www.wattpad.com/story/411413955-the-hidden-bloodline" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+                  Read on Wattpad ↗
+                </a>
               </div>
             </div>
           </article>
-          <article class="work-card">
-            <img class="work-card-image" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A quiet mountain lake beneath soft evening light" loading="lazy">
-            <div class="work-card-copy">
-              <span class="work-card-tag">Poetry · Emotions</span>
-              <h4>She Became in Silence</h4>
-              <a class="work-card-link" href="https://www.bribooks.com/bookstore/she-became-in-silence-by-luna" target="_blank" rel="noopener noreferrer">Read on BriBooks <span aria-hidden="true">↗</span></a>
+
+          <!-- BriBooks Work 1 -->
+          <article class="bribooks-card">
+            <div class="bribooks-icon">🌿</div>
+            <span class="book-badge">BriBooks Publication</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.85rem; color: var(--text-white); margin-bottom: 12px;">Whispers of Earth</h3>
+            <p style="color: var(--text-muted); font-size: 0.98rem; line-height: 1.7; margin-bottom: 24px;">
+              An eco-mystical journey through deep forests, damp moss, and the silent communion between the human spirit and our living world.
+            </p>
+            <div style="display: flex; gap: 12px; margin-top: auto;">
+              <a href="whispers-of-earth.html" class="btn btn-glass" style="padding: 8px 16px; font-size: 0.82rem;">Read Excerpt</a>
+              <a href="https://www.bribooks.com/bookstore/whispers-of-earth-by-luna/" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="padding: 8px 16px; font-size: 0.82rem;">BriBooks Store ↗</a>
             </div>
           </article>
-          <article class="work-card">
-            <img class="work-card-image" src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A candle flame glowing warmly in a dark room" loading="lazy">
-            <div class="work-card-copy">
-              <span class="work-card-tag">Poetry · Fire & feeling</span>
-              <h4>Warmth that Burned</h4>
-              <div class="work-card-actions">
-                <a class="work-card-link" href="warmth-that-burned.html">Read poem <span aria-hidden="true">↗</span></a>
-                <a class="work-card-link" href="https://www.bribooks.com/bookstore/warmth-that-burned-by-luna/" target="_blank" rel="noopener noreferrer">Read on BriBooks <span aria-hidden="true">↗</span></a>
-              </div>
+
+          <!-- BriBooks Work 2 -->
+          <article class="bribooks-card">
+            <div class="bribooks-icon">☾</div>
+            <span class="book-badge">BriBooks Publication</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.85rem; color: var(--text-white); margin-bottom: 12px;">She Became in Silence</h3>
+            <p style="color: var(--text-muted); font-size: 0.98rem; line-height: 1.7; margin-bottom: 24px;">
+              A poignant tribute to the quiet battles fought without an audience — exploring transformation, emotional quietude, and feminine grace.
+            </p>
+            <div style="margin-top: auto;">
+              <a href="https://www.bribooks.com/bookstore/she-became-in-silence-by-luna" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="padding: 8px 16px; font-size: 0.82rem;">Read on BriBooks ↗</a>
             </div>
           </article>
+
         </div>
       </div>
     </section>
 
-    <section class="contact-section" id="contact" aria-labelledby="contact-title">
-      <div class="contact-grid wrap">
-        <div class="contact-copy">
-          <p class="eyebrow">A door is always open</p>
-          <h2 id="contact-title">Contact Me</h2>
-          <p>Reach out for collaborations, writing inquiries, or a moonlit hello.</p>
-          <h3 style="margin: 25px 0 3px; font: 500 22px var(--serif);">Get in Touch</h3>
-          <a class="email-line" href="mailto:daffini1908@gmail.com">daffini1908@gmail.com</a>
-          <a class="social-link" href="https://www.wattpad.com/user/author_luna1" target="_blank" rel="noopener noreferrer">Visit me on Wattpad <span aria-hidden="true">↗</span></a>
+    <!-- ======================================================================
+         ABOUT SECTION (MODERN BENTO GRID)
+         ====================================================================== -->
+    <section class="section-wrap" id="about">
+      <div class="container">
+        
+        <div>
+          <span class="section-eyebrow">✦ The Mind Behind the Myth</span>
+          <h2 class="section-headline">Weaving Starlight &amp; <em>Shadow</em></h2>
         </div>
-        <form class="contact-form" id="contact-form">
-          <div class="field">
-            <label for="email">Email address</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+
+        <div class="bento-grid">
+          
+          <!-- Left Bento: Story & Pillars -->
+          <div class="bento-item">
+            <h3 style="font-family: var(--font-display); font-size: 2rem; color: var(--text-white); margin-bottom: 16px;">G Daffini Shiyalin · Luna</h3>
+            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; margin-bottom: 24px;">
+              Known in the literary world as <strong>Luna</strong>, my craft lives in the quiet hours after midnight — unearthing raw emotions, existential yearnings, and enchanted sagas that give voice to the unspoken.
+            </p>
+
+            <div class="pillars-vertical-list">
+              <div class="pillar-row">
+                <span style="color: var(--gold); font-size: 1.2rem;">✦</span>
+                <div>
+                  <h4>Twisted Verse</h4>
+                  <p>Unflinching honesty exploring psychological weight, rainstorms, and silent grief.</p>
+                </div>
+              </div>
+              <div class="pillar-row">
+                <span style="color: var(--gold); font-size: 1.2rem;">☾</span>
+                <div>
+                  <h4>Cosmic Mythology</h4>
+                  <p>Ancient bloodlines, eclipses, and metaphysical journeys set in worlds beyond reality.</p>
+                </div>
+              </div>
+              <div class="pillar-row">
+                <span style="color: var(--gold); font-size: 1.2rem;">✨</span>
+                <div>
+                  <h4>Kintsugi of the Spirit</h4>
+                  <p>Believing every scar is not a flaw, but a golden seam that makes the vessel immortal.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Write your note to Luna..." required></textarea>
+
+          <!-- Right Bento: Quote Card -->
+          <div class="bento-item bento-quote-box">
+            <span class="quote-mark">“</span>
+            <p class="quote-text">
+              The moon does not apologize for its phases, nor does the poet conceal the wounds that birthed the verse.
+            </p>
+            <span class="quote-author">— Luna's World</span>
           </div>
-          <button class="button" type="submit">Send Message <span aria-hidden="true">↗</span></button>
-          <p class="form-note" id="form-note" aria-live="polite">Your email app will open with your message ready to send.</p>
-        </form>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CONTACT SECTION
+         ====================================================================== -->
+    <section class="section-wrap" id="contact">
+      <div class="container">
+        
+        <div>
+          <span class="section-eyebrow">✦ A Door into the Night</span>
+          <h2 class="section-headline">Send a Signal into the <em>Cosmos</em></h2>
+          <p class="section-sub">
+            Writing inquiries, book discussions, poetry collaborations, or simply a warm moonlit hello.
+          </p>
+        </div>
+
+        <div class="contact-card-wrap">
+          
+          <div>
+            <h3 style="font-family: var(--font-display); font-size: 2rem; color: var(--text-white); margin-bottom: 12px;">Let Us Speak Across the Sky</h3>
+            <p style="color: var(--text-muted); font-size: 0.98rem; line-height: 1.7; margin-bottom: 28px;">
+              Fill out this message capsule and your default email app will open prefilled, ready to send your words directly to Luna's inbox.
+            </p>
+
+            <div class="contact-direct-pill">
+              <div class="lbl">Direct Email</div>
+              <a href="mailto:daffini1908@gmail.com" class="val">daffini1908@gmail.com</a>
+            </div>
+
+            <div class="contact-direct-pill">
+              <div class="lbl">Wattpad Profile</div>
+              <a href="https://www.wattpad.com/user/author_luna1" target="_blank" rel="noopener noreferrer" class="val" style="font-size: 1.15rem;">
+                wattpad.com/user/author_luna1 ↗
+              </a>
+            </div>
+          </div>
+
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="userName">Your Name or Pen Name</label>
+              <input type="text" id="userName" class="form-input" placeholder="e.g. A Wanderer of the Night" required>
+            </div>
+
+            <div class="form-group">
+              <label for="userEmail">Your Email Address</label>
+              <input type="email" id="userEmail" class="form-input" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="userTopic">Topic of Inquiry</label>
+              <select id="userTopic" class="form-select">
+                <option value="A Note for Luna">Poetic reflection or reader note</option>
+                <option value="The Hidden Bloodline Discussion">The Hidden Bloodline discussion</option>
+                <option value="Literary Collaboration">Collaboration or publishing inquiry</option>
+                <option value="General Hello">A quiet moonlit greeting</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="userMsg">Message</label>
+              <textarea id="userMsg" class="form-textarea" placeholder="Speak freely of the stories, the verses, or what brought you to this shore..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-gold" style="width: 100%; padding-block: 14px;">
+              Send Message via Email Client ↗
+            </button>
+            <p id="formFeedback" style="font-size: 0.82rem; color: var(--gold); margin-top: 10px;"></p>
+          </form>
+
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="footer-inner wrap">
-      <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">☾</span> Luna's World</a>
-      <p>© 2026 Luna's World. A cosmic library for writers and dreamers. <span class="footer-star">✦</span></p>
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a href="#home" class="brand" style="font-size: 1.3rem;">
+          <span class="brand-crescent" style="width: 24px; height: 24px; font-size: 0.8rem;">☾</span>
+          <span>Luna's World</span>
+        </a>
+        <p class="footer-tagline">"Where twisted verse and moonlit prose become constellations."</p>
+        <p class="footer-copy">© 2026 G Daffini Shiyalin (Luna). All original poetry &amp; sagas reserved.</p>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <a href="#poetry" style="color: var(--text-muted); text-decoration: none; font-size: 0.84rem;">Verses</a>
+        <a href="#works" style="color: var(--text-muted); text-decoration: none; font-size: 0.84rem;">Works</a>
+        <a href="#about" style="color: var(--text-muted); text-decoration: none; font-size: 0.84rem;">About</a>
+        <a href="#contact" style="color: var(--text-muted); text-decoration: none; font-size: 0.84rem;">Contact</a>
+        <a href="#home" class="btn btn-glass" style="padding: 6px 14px; font-size: 0.78rem;">↑ Top</a>
+      </div>
     </div>
   </footer>
 
-  <button class="chat-launcher" id="chat-launcher" type="button" aria-expanded="false" aria-controls="chat-panel"><span aria-hidden="true">✦</span> Chat ASTRA</button>
-  <aside class="chat-panel" id="chat-panel" aria-label="Chat with Astra" aria-hidden="true">
-    <div class="chat-head">
-      <div><strong>ASTRA</strong><small>Luna's friendly writing assistant</small></div>
-      <button class="chat-close" id="chat-close" type="button" aria-label="Close chat">×</button>
+  <!-- ========================================================================
+       ASTRA CHAT ASSISTANT
+       ======================================================================== -->
+  <button class="chat-pill-btn" id="chatLauncher" aria-expanded="false" aria-controls="chatDrawer">
+    <span>✦</span>
+    <span>Chat Astra</span>
+  </button>
+
+  <aside class="chat-drawer" id="chatDrawer" role="dialog" aria-label="Astra Assistant" aria-hidden="true">
+    <div class="chat-drawer-head">
+      <div>
+        <div class="chat-drawer-title">ASTRA</div>
+        <div style="font-size: 0.72rem; color: var(--gold);">Luna's Cosmic Muse</div>
+      </div>
+      <button class="chat-close-btn" id="chatCloseBtn" aria-label="Close Assistant">×</button>
     </div>
-    <div class="chat-messages" id="chat-messages" aria-live="polite">
-      <div class="chat-message">Hello, I'm Astra, Luna's AI assistant. Welcome to Luna's World. How may I assist you today?</div>
+
+    <div class="chat-messages" id="chatMessages" aria-live="polite">
+      <div class="chat-msg astra">
+        Greetings, traveler of the night. I am <strong>Astra</strong>, Luna’s celestial muse. You can read any poem in our new <em>Poetry Theatre</em>, explore <em>The Hidden Bloodline</em>, or write to Luna!
+      </div>
     </div>
-    <form class="chat-form" id="chat-form">
-      <label class="sr-only" for="chat-input">Message Astra</label>
-      <input id="chat-input" type="text" placeholder="Ask Astra something..." autocomplete="off" required>
-      <button type="submit" aria-label="Send message">↑</button>
+
+    <div class="chat-chips-row">
+      <button class="chip" data-q="About Luna">About Luna</button>
+      <button class="chip" data-q="Recommend a poem">Recommend a poem</button>
+      <button class="chip" data-q="The Hidden Bloodline">The Hidden Bloodline</button>
+      <button class="chip" data-q="Contact Luna">Contact</button>
+    </div>
+
+    <form class="chat-input-bar" id="chatForm">
+      <input type="text" id="chatInput" class="chat-field" placeholder="Ask Astra something celestial..." autocomplete="off" required>
+      <button type="submit" class="chat-submit" aria-label="Send message">↑</button>
     </form>
   </aside>
 
+  <!-- ========================================================================
+       JAVASCRIPT: POETRY THEATRE, WEB AUDIO AMBIENCE, MOON PHASES, CHAT
+       ======================================================================== -->
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    menuToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('is-open');
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-    });
-    navLinks.addEventListener('click', (event) => {
-      if (event.target.closest('a')) {
-        navLinks.classList.remove('is-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-label', 'Open navigation');
+    (function() {
+      'use strict';
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ======================================================================
+         1. COMPLETE POETRY DATA ARCHIVE
+         ====================================================================== */
+      const POEMS = [
+        {
+          id: 0,
+          num: "Entry 01",
+          title: "DO YOU HATE THE RAIN, TOO?",
+          theme: "Grief & Catharsis",
+          readTime: "2 min read",
+          url: "poem-01.html",
+          snippet: "Bizarre days in the middle of the third week of July...",
+          stanzas: [
+            "Bizarre days in the middle of the third week of July.\nA new place. New humans. New souls.\nInitially, I was excited.\nThen came the real saga.",
+            "My heartbeat slowed.\nMy vision became blurry.\nHopeless nights.\nSuffocated, I called everyone. No one understood my language, for I spoke in blood and sweat that were barely visible.",
+            "I lost the whole point of living.\nJust pain. Not physical.\nPsychological, emotional and spiritual.\nNo one to listen to my drama.\nI had to get things off my chest, because my heart was a whale.",
+            "The earth moved a little too slowly every. single. day.\nMy limbs grew numb.\nJust me and my unspoken thoughts.\nUnheard prayers.",
+            "There was a time when I had shut the window to a particular view.\nA forest. Lush green. A calm, soothing scent. But treacherous.\nFor I knew that some windows are meant to remain shut, no matter how beautiful the view may be.",
+            "I had no other hopes.\nThe pain became unbearable, and I returned to open the very window I had once shut.\nMaybe it would heal me.\nI thought.",
+            "Suffocated, I tried calling everyone again. No one understood my language, for I spoke in blood and sweat that were barely visible.\nI stared at the view a little too long when the butterfly showed up.\nThe sole soul that inhabited that forest.\nWe spoke. Somehow, it healed me again.\nIt did.",
+            "The heart that had wished to disappear all along finally found happiness and meaning.\nIt was fickle.\nIt didn't last long.\nThe butterfly wasn't a butterfly. It was a leech.\nIt sucked the blood out of me.",
+            "I cried silently, knowing my screams would scare it away.\nThe butterfly found another human deep within the forest that looked so magical.\nLeft me and was gone — forever.",
+            "I kept looking for the butterfly.\nEverywhere. Just everywhere.\nIt left me forever, leaving me in the rain.\nIt went to seek shelter deep within the forest.",
+            "I never closed the window after that.\nWhenever I pass by it, I still see the butterfly, but with another human.\nWith other flowers.\nI still cry thinking about the butterfly.\nI loved the rain. Now I hate it.\nHey, butterfly, do you hate the rain, too?"
+          ]
+        },
+        {
+          id: 1,
+          num: "Entry 02",
+          title: "A Love That Was Never Heard",
+          theme: "Silent Longing",
+          readTime: "2 min read",
+          url: "poem-02.html",
+          snippet: "She kept looking at the silent space, hoping it would speak...",
+          stanzas: [
+            "She kept looking at the silent space,\nhoping it would speak her name.\nShe laughed with the world,\nbut when he appeared,\nher voice faded into quiet.\nAs if her existence softened in his presence.",
+            "She heard his heart belonged elsewhere.\nAnd something within her dimmed —\nlike a star losing its light.",
+            "She never understood why everything felt aligned when it was about him.\nWhy her world seemed to orbit around someone who never knew she was there.",
+            "She built galaxies in her mind,\nfilled with moments that only existed in her imagination.\nSomewhere, the one he loved would live those moments,\nwithout ever knowing they once belonged to her dreams.",
+            "He never knew there was a girl who quietly shaped herself around his existence,\nwilling to change even the smallest parts of her world just to feel closer to him.",
+            "Even the things she feared, even the things that unsettled her —\nshe embraced them softly, because they belonged to him.",
+            "She became his shadow without him ever noticing the darkness that held him gently.",
+            "And perhaps the quietest ache was knowing he would remember every story,\nexcept the one that carried his name in every unwritten line."
+          ]
+        },
+        {
+          id: 2,
+          num: "Entry 03",
+          title: "EIGHTEEN",
+          theme: "Youth & Thresholds",
+          readTime: "3 min read",
+          url: "poem-03.html",
+          snippet: "Called weird since childhood. ADHD? Maybe. OCD? Absolutely...",
+          stanzas: [
+            "Called weird since childhood.\nADHD? Maybe.\nOCD? Absolutely.\nLife has always been hard for all, and so is mine.",
+            "My silence. My presence. Neither mattered.\nI only wanted to hear, \"You're doing great.\"\nNothing more.",
+            "At one point, life became overwhelming.\nIt veiled my heart with cloth adorned with thorns,\nchoked my throat with claws,\ncrumpled my body with needles.\nAs I bled, I smiled.\nThey laughed.",
+            "My pillows drank my tears almost every day.\n\"A hypocrite.\" That's all they said.\nI forgot how to smile.\nI forgot what happiness felt like.",
+            "3 a.m. crash-outs became usual.\nPanic attacks became usual.\nNot a soul to comfort me as I drowned in my own salty ocean.",
+            "Maybe, just like in the movies, my eighteenth birthday would heal me.\nSo I thought.\nThe anticipated day came sooner than I expected.",
+            "Hopefully, I entered the forest at midnight,\nonly to find that the well was dry.\nNo water. Just dry.",
+            "Then I heard an echo:\n\"You've changed.\"\nI ran out of words.\nI tried refilling the well with my tears,\nbut it never filled.\nI tried, but I remained eighteen beneath a hollow sky."
+          ]
+        },
+        {
+          id: 3,
+          num: "Entry 04",
+          title: "Mellow Glow From Within",
+          theme: "Inner Resilience",
+          readTime: "2 min read",
+          url: "poem-04.html",
+          snippet: "The stars did not guide her. They watched as she glowed...",
+          stanzas: [
+            "The stars did not guide her.\nThey simply watched as she learned to glow on her own.",
+            "The stars within her guided her.\nThey did not speak, nor did they interfere.\nThey simply watched quietly as she learned to glow on her own.",
+            "Most stars do not carry their own light.\nThey reflect what is given to them, borrowing brilliance from something greater.",
+            "But when everything around her turned dark, she chose differently.\nShe did not search for light to reflect.\nShe did not wait for the sun.\nInstead, she created her own.",
+            "A glow that did not depend on anything, a light that did not fade with the absence of others.\nIt was softer at first, almost fragile but it grew, day by day, stronger than anything she had ever known.",
+            "Even the stars seemed to pause, watching her in quiet awe, wondering how she continued to shine without borrowing anyone's fire.",
+            "She became her own sun.\nHer own galaxy.\nAnd with that quiet, unwavering glow, she walked forward toward her destiny."
+          ]
+        },
+        {
+          id: 4,
+          num: "Entry 05",
+          title: "Warmth That Burned",
+          theme: "Flame & Healing",
+          readTime: "3 min read",
+          url: "warmth-that-burned.html",
+          snippet: "The light had finally found its way to that soul...",
+          stanzas: [
+            "The light had finally found its way to that soul.\nShe lived within a cage, unaware of the sword she was destined to wield. Her eyes still gleamed with innocence when the clock struck twelve.",
+            "And then, the rain clouds parted.\nA silver light revealed itself to the moon. It was beautiful, yet cold. The cold settled along her spine like winter's fingers.",
+            "Just as the tides answered the moon's call, she answered the call of a place she hoped would finally grant her solace.\nBut she was cursed.\nHer blood belonged to the stars, and her soul was made of glass and dust.",
+            "Her comfort had vanished.\nSo had her smile.\nFar in the distance, a small light flickered.\nA firefly, she thought.\nAnd for the first time in a long while, she allowed herself to believe in goodness.",
+            "Guided by moonlight, she followed it into the woods.\nThe deeper she wandered, the thicker the forest became.\nThen she saw it.\nNot a firefly.\nA wildfire.",
+            "The closer she stepped, the heavier the smoke became. It filled her lungs and stole her breath. Her face turned pale, her eyes burned with tears.",
+            "Yet hidden beside the raging flames stood a small bonfire.\nIts warmth was gentle.\nEnough to comfort her.\nNot enough to consume her.",
+            "Above, the moon shone brighter than ever, though smoke and clouds veiled its light, much like grief veils the heart.\nShe stood between two fires.\nOne that could warm her.\nOne that could destroy her.",
+            "She did not know which she truly needed.\nSomething to quench her thirst.\nOr something that would leave her completely dry.",
+            "Lost between her thoughts, she slowly lost herself.\nThat hollow feeling returned.\nIt weakened her heart until it became quiet.\nOne choice would decide her sky.",
+            "That terrible feeling, when the heart wants one thing,\nYet the soul knows it cannot survive it.\nHer heart was adorned with needles now.\nWrapped in thorns.\nThe air became harder to breathe.\nAnd there was no turning back."
+          ]
+        },
+        {
+          id: 5,
+          num: "Entry 06",
+          title: "Whispers of Earth",
+          theme: "Forest & Soil",
+          readTime: "3 min read",
+          url: "whispers-of-earth.html",
+          snippet: "The first time the wind whispered my name, I thought it was lying...",
+          stanzas: [
+            "The first time the wind whispered my name, I thought it was lying.\nNo one speaks to girls like me.\nNot anymore.\nNot in a world where rivers are bought and bottled, and the sky is just a faded ceiling no one looks at.",
+            "But the truth is: I was born remembering.\nThe trees still whispered to me. And they had not forgotten what the world chose to erase.",
+            "That morning on the fourth day of Ember Season I felt it.\nThe earth shivered under my bare feet.\nAnd I heard it again.\nLyra.\nThe voice came from the roots.",
+            "I live in a place they call the Hollow. It's the last patch of land they haven't burned or built over.\nThey left it alone because it scared them. Because here, the air still remembers.",
+            "They say the world died years ago. That climate change swallowed the oceans, cracked the soil, and ruined every chance we had.\nBut that's not true.\nThe world didn't die.\nIt simply stopped talking to us.\nUntil now.",
+            "I don't know why the Hollow chose me.\nMaybe because I listen.\nMaybe because when I close my eyes, I can feel the ghosts of extinct birds nesting in my ribcage.",
+            "My grandmother once told me, \"When the trees remember your name, child, it means you're part of their last story.\"\nSo I waited.\nAnd the Hollow showed me what they buried.",
+            "Beneath the moss, under the cracked bark of an ancient oak, I found it:\nA library made of soil.\nEach leaf held a memory.\nEach root, a name.\nThe oceans, once blue, cried through the stones.",
+            "I asked the wind why the world turned away from us.\nAnd it said:\n\"Because you traded your skies for smoke. Your rivers for noise. Your truth for progress.\"",
+            "And then it asked me something I didn't expect.\nIt asked me to give up my voice.\nTo offer the one thing I still had: belief.\nBelief that this Earth still wants us. Still aches for us. Still waits.\nI knelt down.\nI pressed my hand to the roots."
+          ]
+        },
+        {
+          id: 6,
+          num: "Entry 07",
+          title: "SCARS THAT SHINE",
+          theme: "Kintsugi Spirit",
+          readTime: "2 min read",
+          url: "poem-07.html",
+          snippet: "The moon hung low with quiet secrets that only she could hear...",
+          stanzas: [
+            "The moon hung low with quiet secrets\nthat only she could hear.\nThere is an ease in the sky — a scarred star that still shines.",
+            "The sun burns bright, but the moon hums with secrets, soft and unspoken, meant only for those who truly observe.\nIt is not loud.\nIt does not call for attention.",
+            "Only she could hear it — not with her ears, but with something deeper.\nThe moon appears when the world slows down, becoming a quiet companion to those who seek silence rather than sound.",
+            "It shines with the stars, reminding us that even something distant, something scarred, can still glow with grace.",
+            "She saw herself in the moon.\nSometimes clearly, sometimes not at all.\nBut she always found comfort in its scars.\nThe moon never spoke aloud, yet she heard it with her heart."
+          ]
+        }
+      ];
+
+      /* ======================================================================
+         2. POETRY THEATRE CONTROLLER
+         ====================================================================== */
+      const stageEntry = document.getElementById('stageEntry');
+      const stageTheme = document.getElementById('stageTheme');
+      const stageTitle = document.getElementById('stageTitle');
+      const stageManuscript = document.getElementById('stageManuscript');
+      const stageStandaloneBtn = document.getElementById('stageStandaloneBtn');
+      const poemShelf = document.getElementById('poemShelf');
+      const copyStanzaBtn = document.getElementById('copyStanzaBtn');
+
+      let currentPoemIndex = 0;
+
+      function renderTheatre(idx) {
+        currentPoemIndex = idx;
+        const poem = POEMS[idx];
+        if (!poem) return;
+
+        stageEntry.textContent = poem.num;
+        stageTheme.textContent = poem.theme;
+        stageTitle.textContent = poem.title;
+        stageStandaloneBtn.href = poem.url;
+
+        // Render stanzas
+        stageManuscript.innerHTML = '';
+        poem.stanzas.forEach(s => {
+          const p = document.createElement('p');
+          p.textContent = s;
+          stageManuscript.appendChild(p);
+        });
+
+        // Update active card on shelf
+        const shelfItems = document.querySelectorAll('.shelf-item');
+        shelfItems.forEach((item, i) => {
+          item.classList.toggle('active', i === idx);
+        });
+
+        stageManuscript.scrollTop = 0;
       }
-    });
 
-    const contactForm = document.querySelector('#contact-form');
-    contactForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const sender = document.querySelector('#email').value.trim();
-      const message = document.querySelector('#message').value.trim();
-      const subject = encodeURIComponent('A note for Luna');
-      const body = encodeURIComponent(`${message}\n\nFrom: ${sender}`);
-      document.querySelector('#form-note').textContent = 'Opening your email app...';
-      window.location.href = `mailto:daffini1908@gmail.com?subject=${subject}&body=${body}`;
-    });
+      // Build shelf cards
+      POEMS.forEach((poem, i) => {
+        const item = document.createElement('div');
+        item.className = `shelf-item ${i === 0 ? 'active' : ''}`;
+        item.innerHTML = `
+          <div class="shelf-item-top">
+            <span class="shelf-num">${poem.num}</span>
+            <span class="shelf-read">${poem.readTime}</span>
+          </div>
+          <div class="shelf-title">${poem.title}</div>
+          <div class="shelf-snippet">${poem.snippet}</div>
+        `;
+        item.addEventListener('click', () => {
+          renderTheatre(i);
+        });
+        poemShelf.appendChild(item);
+      });
 
-    const chatLauncher = document.querySelector('#chat-launcher');
-    const chatPanel = document.querySelector('#chat-panel');
-    const chatInput = document.querySelector('#chat-input');
-    function setChatOpen(isOpen) {
-      chatPanel.classList.toggle('is-open', isOpen);
-      chatPanel.setAttribute('aria-hidden', String(!isOpen));
-      chatLauncher.setAttribute('aria-expanded', String(isOpen));
-      if (isOpen) chatInput.focus();
-      else chatLauncher.focus();
-    }
-    chatLauncher.addEventListener('click', () => setChatOpen(!chatPanel.classList.contains('is-open')));
-    document.querySelector('#chat-close').addEventListener('click', () => setChatOpen(false));
+      renderTheatre(0);
 
-    const chatForm = document.querySelector('#chat-form');
-    const chatMessages = document.querySelector('#chat-messages');
-    chatForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const question = chatInput.value.trim();
-      if (!question) return;
-      const userMessage = document.createElement('div');
-      userMessage.className = 'chat-message user';
-      userMessage.textContent = question;
-      chatMessages.append(userMessage);
-      const reply = document.createElement('div');
-      reply.className = 'chat-message';
-      const normalized = question.toLowerCase();
-      if (normalized.includes('poem') || normalized.includes('poetry')) {
-        reply.textContent = 'Luna’s poetry shelf is getting ready for new work. Check back soon, or send Luna a note through the Contact section.';
-      } else if (normalized.includes('bloodline') || normalized.includes('story') || normalized.includes('work') || normalized.includes('wattpad')) {
-        reply.textContent = 'You can find The Hidden Bloodline in the Works section, with a link to read it on Wattpad.';
-      } else if (normalized.includes('contact') || normalized.includes('email') || normalized.includes('collaborat')) {
-        reply.textContent = 'Luna would love to hear from you. Visit Contact to write to daffini1908@gmail.com or find her on Wattpad.';
+      if (copyStanzaBtn) {
+        copyStanzaBtn.addEventListener('click', () => {
+          const poem = POEMS[currentPoemIndex];
+          if (!poem) return;
+          const text = `"${poem.title}" by Luna\n\n${poem.stanzas[0]}\n\n— Luna's World`;
+          navigator.clipboard.writeText(text).then(() => {
+            copyStanzaBtn.textContent = '✨ Stanza Copied!';
+            setTimeout(() => {
+              copyStanzaBtn.textContent = '✦ Copy Stanza to Clipboard';
+            }, 2000);
+          });
+        });
+      }
+
+      /* ======================================================================
+         3. OPTIONAL CELESTIAL SOUNDSCAPE (WEB AUDIO API)
+         ====================================================================== */
+      const soundToggleBtn = document.getElementById('soundToggleBtn');
+      const soundIcon = document.getElementById('soundIcon');
+      const soundLabel = document.getElementById('soundLabel');
+      let audioCtx = null;
+      let soundNode = null;
+      let isPlaying = false;
+
+      function toggleSound() {
+        if (!isPlaying) {
+          try {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const bufferSize = audioCtx.sampleRate * 2;
+            const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const output = noiseBuffer.getChannelData(0);
+
+            // Generate soft warm celestial brown noise
+            let lastOut = 0.0;
+            for (let i = 0; i < bufferSize; i++) {
+              const white = Math.random() * 2 - 1;
+              output[i] = (lastOut + (0.02 * white)) / 1.02;
+              lastOut = output[i];
+              output[i] *= 0.12; // gentle soft volume
+            }
+
+            const whiteNoise = audioCtx.createBufferSource();
+            whiteNoise.buffer = noiseBuffer;
+            whiteNoise.loop = true;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 350;
+
+            const gain = audioCtx.createGain();
+            gain.gain.value = 0.45;
+
+            whiteNoise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            whiteNoise.start(0);
+
+            soundNode = { source: whiteNoise, gain: gain };
+            isPlaying = true;
+            soundIcon.textContent = '🔊';
+            soundLabel.textContent = 'Ambience: On';
+            soundToggleBtn.style.borderColor = 'var(--gold)';
+          } catch(e) {
+            console.warn("Audio Context init error", e);
+          }
+        } else {
+          if (soundNode) {
+            soundNode.source.stop();
+            soundNode = null;
+          }
+          if (audioCtx) {
+            audioCtx.close();
+            audioCtx = null;
+          }
+          isPlaying = false;
+          soundIcon.textContent = '🔈';
+          soundLabel.textContent = 'Cosmic Ambience';
+          soundToggleBtn.style.borderColor = 'var(--border-subtle)';
+        }
+      }
+
+      if (soundToggleBtn) {
+        soundToggleBtn.addEventListener('click', toggleSound);
+      }
+
+      /* ======================================================================
+         4. CANVAS STARFIELD
+         ====================================================================== */
+      const canvas = document.getElementById('starfield');
+      const ctx = canvas.getContext('2d');
+      let width = 0, height = 0, dpr = window.devicePixelRatio || 1;
+      let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+      let smoothMouseX = mouseX, smoothMouseY = mouseY;
+      const stars = [];
+      const STAR_COUNT = Math.min(180, Math.floor((window.innerWidth * window.innerHeight) / 7000));
+      const starColors = ['#ffffff', '#fcfbf9', '#c4b5fd', '#e5c07b', '#ddd6fe'];
+
+      function resizeCanvas() {
+        dpr = window.devicePixelRatio || 1;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+
+        if (stars.length === 0) {
+          for (let i = 0; i < STAR_COUNT; i++) {
+            stars.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              radius: Math.random() * 1.3 + 0.3,
+              color: starColors[Math.floor(Math.random() * starColors.length)],
+              alpha: Math.random() * 0.6 + 0.25,
+              twinkleSpeed: Math.random() * 0.012 + 0.004,
+              twinklePhase: Math.random() * Math.PI * 2,
+              layer: Math.random() * 0.02 + 0.005
+            });
+          }
+        }
+      }
+
+      function drawStars() {
+        ctx.clearRect(0, 0, width, height);
+
+        smoothMouseX += (mouseX - smoothMouseX) * 0.03;
+        smoothMouseY += (mouseY - smoothMouseY) * 0.03;
+
+        const offX = smoothMouseX - width / 2;
+        const offY = smoothMouseY - height / 2;
+
+        for (let i = 0; i < stars.length; i++) {
+          const s = stars[i];
+          s.twinklePhase += s.twinkleSpeed;
+          const a = Math.max(0.12, s.alpha + Math.sin(s.twinklePhase) * 0.2);
+
+          const px = (s.x + offX * s.layer + width) % width;
+          const py = (s.y + offY * s.layer + height) % height;
+
+          ctx.fillStyle = s.color;
+          ctx.globalAlpha = a;
+          ctx.beginPath();
+          ctx.arc(px, py, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.globalAlpha = 1;
+        if (!prefersReducedMotion) {
+          requestAnimationFrame(drawStars);
+        }
+      }
+
+      /* Cursor Ambient Glow */
+      const cursorGlow = document.getElementById('cursorGlow');
+      let glowX = window.innerWidth / 2, glowY = window.innerHeight / 2;
+
+      function updateGlow() {
+        if (prefersReducedMotion || !cursorGlow) return;
+        glowX += (mouseX - glowX) * 0.08;
+        glowY += (mouseY - glowY) * 0.08;
+        cursorGlow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0)`;
+        requestAnimationFrame(updateGlow);
+      }
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      }, { passive: true });
+
+      /* ======================================================================
+         5. MOON PHASES
+         ====================================================================== */
+      const moonOrb = document.getElementById('moonOrb');
+      const moonShadow = document.getElementById('moonShadow');
+      const phaseTitle = document.getElementById('phaseTitle');
+      const phaseDesc = document.getElementById('phaseDesc');
+      const phaseButtons = document.querySelectorAll('.phase-pill');
+
+      const phases = [
+        { name: "New Moon", desc: "0% Illumination · The Quiet Mystery", path: "M 100 0 A 100 100 0 1 1 99.9 0 Z" },
+        { name: "Waxing Crescent", desc: "25% Illumination · Seeds of Starlight", path: "M 100 0 A 100 100 0 0 1 100 200 A 55 100 0 0 1 100 0 Z" },
+        { name: "Full Moon", desc: "100% Illumination · Cosmic Harmony", path: "M 100 0 A 0 0 0 0 0 100 0 Z" },
+        { name: "Waning Crescent", desc: "25% Illumination · Whispering Goodbye", path: "M 100 0 A 100 100 0 0 0 100 200 A 55 100 0 0 0 100 0 Z" }
+      ];
+      let currentPhase = 2; // Full Moon
+
+      function setMoonPhase(idx) {
+        currentPhase = (idx + phases.length) % phases.length;
+        const p = phases[currentPhase];
+        if (moonShadow) moonShadow.setAttribute('d', p.path);
+        if (phaseTitle) phaseTitle.innerHTML = `☾ ${p.name}`;
+        if (phaseDesc) phaseDesc.textContent = p.desc;
+
+        phaseButtons.forEach((btn, i) => {
+          btn.classList.toggle('active', i === currentPhase);
+        });
+      }
+
+      if (moonOrb) {
+        moonOrb.addEventListener('click', () => setMoonPhase(currentPhase + 1));
+        moonOrb.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setMoonPhase(currentPhase + 1);
+          }
+        });
+      }
+
+      phaseButtons.forEach((btn, i) => {
+        btn.addEventListener('click', () => setMoonPhase(i));
+      });
+
+      /* ======================================================================
+         6. CONTACT FORM
+         ====================================================================== */
+      const contactForm = document.getElementById('contactForm');
+      const formFeedback = document.getElementById('formFeedback');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('userName').value.trim();
+          const email = document.getElementById('userEmail').value.trim();
+          const topic = document.getElementById('userTopic').value;
+          const msg = document.getElementById('userMsg').value.trim();
+
+          const subject = encodeURIComponent(`[Luna's World] ${topic} - from ${name}`);
+          const body = encodeURIComponent(
+            `Name: ${name}\n` +
+            `Email: ${email}\n` +
+            `Topic: ${topic}\n\n` +
+            `Message:\n${msg}\n\n` +
+            `-- Sent via Luna's World (https://daffini-2008.github.io/luna-website/)`
+          );
+
+          if (formFeedback) {
+            formFeedback.textContent = '✨ Opening your default email client...';
+          }
+
+          window.location.href = `mailto:daffini1908@gmail.com?subject=${subject}&body=${body}`;
+        });
+      }
+
+      /* ======================================================================
+         7. ASTRA CHAT ASSISTANT
+         ====================================================================== */
+      const chatLauncher = document.getElementById('chatLauncher');
+      const heroChatBtn = document.getElementById('heroChatBtn');
+      const chatDrawer = document.getElementById('chatDrawer');
+      const chatCloseBtn = document.getElementById('chatCloseBtn');
+      const chatForm = document.getElementById('chatForm');
+      const chatInput = document.getElementById('chatInput');
+      const chatMessages = document.getElementById('chatMessages');
+      const chips = document.querySelectorAll('.chip');
+
+      function toggleAssistant(open) {
+        const isOpen = open !== undefined ? open : !chatDrawer.classList.contains('open');
+        chatDrawer.classList.toggle('open', isOpen);
+        chatDrawer.setAttribute('aria-hidden', String(!isOpen));
+        chatLauncher.setAttribute('aria-expanded', String(isOpen));
+        if (isOpen) {
+          setTimeout(() => chatInput.focus(), 200);
+        }
+      }
+
+      if (chatLauncher) chatLauncher.addEventListener('click', () => toggleAssistant());
+      if (heroChatBtn) heroChatBtn.addEventListener('click', () => toggleAssistant(true));
+      if (chatCloseBtn) chatCloseBtn.addEventListener('click', () => toggleAssistant(false));
+
+      function getReply(q) {
+        const text = q.toLowerCase();
+        if (text.includes('poem') || text.includes('poetry') || text.includes('rain') || text.includes('read')) {
+          return "You can read all seven poems directly inside the Poetry Theatre on this page! Click on any card in the shelf to switch verses instantly.";
+        }
+        if (text.includes('bloodline') || text.includes('wattpad') || text.includes('story') || text.includes('novel')) {
+          return "'The Hidden Bloodline' is Luna's serialized dark fantasy novel on Wattpad. You can follow the direct link in the Works section to read it!";
+        }
+        if (text.includes('bribooks') || text.includes('book') || text.includes('published')) {
+          return "Luna has three published titles on BriBooks: 'Whispers of Earth', 'She Became in Silence', and 'Warmth That Burned'. Check the Works section for direct store links.";
+        }
+        if (text.includes('luna') || text.includes('about') || text.includes('who') || text.includes('daffini')) {
+          return "Luna (G Daffini Shiyalin) is a cosmic poet, storyteller, and myth-maker spinning thoughts into twisted verse, moonlit prose, and surreal worlds.";
+        }
+        if (text.includes('contact') || text.includes('email') || text.includes('hello')) {
+          return "You can write directly to daffini1908@gmail.com through the Contact form below or visit Luna on Wattpad at @author_luna1.";
+        }
+        return "I can guide you through Luna's seven poems in the Theatre, 'The Hidden Bloodline' on Wattpad, or help you send her a note. What would you like to explore?";
+      }
+
+      function sendChat(msg) {
+        if (!msg) return;
+        const uBubble = document.createElement('div');
+        uBubble.className = 'chat-msg user';
+        uBubble.textContent = msg;
+        chatMessages.appendChild(uBubble);
+
+        setTimeout(() => {
+          const aBubble = document.createElement('div');
+          aBubble.className = 'chat-msg astra';
+          aBubble.textContent = getReply(msg);
+          chatMessages.appendChild(aBubble);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 300);
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      if (chatForm) {
+        chatForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const query = chatInput.value.trim();
+          if (query) {
+            sendChat(query);
+            chatInput.value = '';
+          }
+        });
+      }
+
+      chips.forEach(c => {
+        c.addEventListener('click', () => {
+          sendChat(c.dataset.q);
+        });
+      });
+
+      /* Initialization */
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+      resizeCanvas();
+      setMoonPhase(2);
+
+      if (!prefersReducedMotion) {
+        requestAnimationFrame(drawStars);
+        requestAnimationFrame(updateGlow);
       } else {
-        reply.textContent = 'I can point you to Luna’s poetry, The Hidden Bloodline, or her contact details. What would you like to find?';
+        ctx.clearRect(0, 0, width, height);
+        for (const s of stars) {
+          ctx.fillStyle = s.color;
+          ctx.globalAlpha = s.alpha;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
-      chatMessages.append(reply);
-      chatInput.value = '';
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    });
+    })();
   </script>
 </body>
 </html>
