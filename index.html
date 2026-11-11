@@ -1726,26 +1726,26 @@
     }
 
     /* ==========================================================================
-       CELESTIAL REALISTIC ANGEL WITH FEATHERED WINGS & MAGICAL WAND (SCROLL FLIGHT)
+       IRIDESCENT BLUE MORPHO BUTTERFLY (BIDIRECTIONAL SCROLL FLIGHT & DUAL PATHS)
        ========================================================================== */
     .celestial-butterfly-wrap {
       position: fixed;
       top: 12vh;
-      left: 76vw;
-      width: 152px;
-      height: 152px;
+      left: 78vw;
+      width: 116px;
+      height: 100px;
       z-index: 920;
       pointer-events: auto;
       cursor: pointer;
       user-select: none;
       -webkit-user-select: none;
-      filter: drop-shadow(0 10px 18px rgba(72, 48, 32, 0.24));
-      perspective: 900px;
+      filter: drop-shadow(0 8px 16px rgba(18, 28, 45, 0.28));
+      perspective: 800px;
       transition: filter 0.3s ease;
       will-change: transform, left, top;
     }
     html[data-theme="dark"] .celestial-butterfly-wrap {
-      filter: drop-shadow(0 8px 24px rgba(240, 200, 145, 0.48));
+      filter: drop-shadow(0 8px 24px rgba(56, 178, 255, 0.52));
     }
 
     .butterfly-rotator {
@@ -1753,7 +1753,7 @@
       height: 100%;
       transform-origin: 50% 50%;
       transform-style: preserve-3d;
-      transition: transform 0.14s linear;
+      transition: transform 0.12s linear;
     }
 
     .butterfly-svg {
@@ -1763,91 +1763,53 @@
       transform-style: preserve-3d;
     }
 
-    /* Realistic 3D Wing Beats of Feathered Angel Wings */
+    /* 3D Flapping of Blue Morpho Wings around Central Thorax Spine */
     .butterfly-left-wings {
       transform-box: view-box;
-      transform-origin: 118px 86px;
-      animation: butterfly-flap-left 0.56s ease-in-out infinite alternate;
+      transform-origin: 110px 85px;
+      animation: butterfly-flap-left 0.25s ease-in-out infinite alternate;
       transform-style: preserve-3d;
     }
     .butterfly-right-wings {
       transform-box: view-box;
-      transform-origin: 118px 86px;
-      animation: butterfly-flap-right 0.56s ease-in-out infinite alternate;
+      transform-origin: 110px 85px;
+      animation: butterfly-flap-right 0.25s ease-in-out infinite alternate;
       transform-style: preserve-3d;
     }
 
-    /* Serene Resting / Hovering Wing Swell when paused */
+    /* Resting / Basking Iridescent Flutter when scroll pauses */
     .celestial-butterfly-wrap.is-hovering .butterfly-left-wings {
-      animation: butterfly-flap-left-slow 1.5s ease-in-out infinite alternate;
+      animation: butterfly-flap-left-slow 1.1s ease-in-out infinite alternate;
     }
     .celestial-butterfly-wrap.is-hovering .butterfly-right-wings {
-      animation: butterfly-flap-right-slow 1.5s ease-in-out infinite alternate;
+      animation: butterfly-flap-right-slow 1.1s ease-in-out infinite alternate;
     }
 
     @keyframes butterfly-flap-left {
-      0% { transform: rotateY(4deg) rotateZ(-3deg) translateZ(0); }
-      100% { transform: rotateY(44deg) rotateZ(6deg) translateZ(6px); }
+      0% { transform: rotateY(4deg) translateZ(0); }
+      100% { transform: rotateY(64deg) translateZ(6px); }
     }
     @keyframes butterfly-flap-right {
-      0% { transform: rotateY(-4deg) rotateZ(3deg) translateZ(0); }
-      100% { transform: rotateY(-44deg) rotateZ(-6deg) translateZ(6px); }
+      0% { transform: rotateY(-4deg) translateZ(0); }
+      100% { transform: rotateY(-64deg) translateZ(6px); }
     }
 
     @keyframes butterfly-flap-left-slow {
-      0% { transform: rotateY(4deg) rotateZ(-1deg); }
-      50% { transform: rotateY(22deg) rotateZ(3deg); }
-      100% { transform: rotateY(7deg) rotateZ(0deg); }
+      0% { transform: rotateY(4deg); }
+      55% { transform: rotateY(28deg); }
+      100% { transform: rotateY(8deg); }
     }
     @keyframes butterfly-flap-right-slow {
-      0% { transform: rotateY(-4deg) rotateZ(1deg); }
-      50% { transform: rotateY(-22deg) rotateZ(-3deg); }
-      100% { transform: rotateY(-7deg) rotateZ(0deg); }
+      0% { transform: rotateY(-4deg); }
+      55% { transform: rotateY(-28deg); }
+      100% { transform: rotateY(-8deg); }
     }
 
-    /* Celestial Angel Halo & Wand Animations */
-    .angel-halo-group {
-      transform-box: view-box;
-      transform-origin: 122px 31px;
-      animation: angel-halo-drift 2.8s ease-in-out infinite alternate;
-    }
-    @keyframes angel-halo-drift {
-      0% { transform: translateY(0) scale(0.98); opacity: 0.88; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.45)); }
-      100% { transform: translateY(-2.5px) scale(1.03); opacity: 1; filter: drop-shadow(0 0 9px rgba(255, 232, 130, 0.88)); }
-    }
-
-    .wand-star-pulse {
-      transform-box: view-box;
-      transform-origin: 208px 26px;
-      animation: wand-star-glow 1.5s ease-in-out infinite alternate;
-    }
-    @keyframes wand-star-glow {
-      0% { transform: scale(0.86); opacity: 0.72; }
-      100% { transform: scale(1.26); opacity: 1; }
-    }
-
-    .wand-sparkles .wand-sparkle {
-      animation: wand-sparkle-twinkle 1.8s ease-in-out infinite alternate;
-    }
-    .wand-sparkles .wand-sparkle:nth-child(2) {
-      animation-delay: 0.45s;
-    }
-    .wand-sparkles .wand-sparkle:nth-child(3) {
-      animation-delay: 0.9s;
-    }
-    .wand-sparkles .wand-sparkle:nth-child(4) {
-      animation-delay: 1.35s;
-    }
-    @keyframes wand-sparkle-twinkle {
-      0% { opacity: 0.28; transform: scale(0.65); }
-      100% { opacity: 1; transform: scale(1.22); }
-    }
-
-    /* Speech bubble for the angel companion */
+    /* Speech bubble for the Blue Morpho butterfly */
     .butterfly-bubble {
       position: absolute;
-      right: 156px;
-      top: 46%;
+      right: 122px;
+      top: 50%;
       transform: translateY(-50%) scale(0.9);
       background: var(--card-bg);
       border: 1px solid var(--accent-warm);
@@ -1881,8 +1843,8 @@
 
     @media (max-width: 768px) {
       .celestial-butterfly-wrap {
-        width: 108px;
-        height: 108px;
+        width: 84px;
+        height: 72px;
       }
       .butterfly-bubble {
         display: none;
@@ -2754,324 +2716,262 @@
   </footer>
 
   <!-- ========================================================================
-       CELESTIAL REALISTIC ANGEL WITH FEATHERED WINGS & MAGICAL WAND (SCROLL FLIGHT)
+       IRIDESCENT BLUE MORPHO BUTTERFLY (BIDIRECTIONAL SCROLL FLIGHT & DUAL PATHS)
        ======================================================================== -->
-  <div class="celestial-butterfly-wrap" id="celestial-butterfly" role="img" aria-label="Luna's Celestial Angel with feathered wings holding a magical wand" title="Click to soar with Luna's celestial angel!">
+  <div class="celestial-butterfly-wrap" id="celestial-butterfly" role="img" aria-label="Luna's iridescent Blue Morpho butterfly fluttering as you scroll" title="Click to flutter with the Blue Morpho butterfly!">
     <div class="butterfly-bubble" id="butterfly-bubble">
-      Guiding your path with angel starlight! ✦
+      Drifting smoothly through Luna’s sky! ✦
     </div>
     <div class="butterfly-rotator" id="butterfly-rotator">
-      <svg class="butterfly-svg" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg class="butterfly-svg" viewBox="0 0 220 190" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
-          <!-- Realistic Skin Subsurface Shading (Lit from Starlight Wand at Top-Right) -->
-          <radialGradient id="angelSkinGrad" cx="62%" cy="32%" r="68%">
-            <stop offset="0%" stop-color="#fff0e4"/>
-            <stop offset="48%" stop-color="#f5cbb0"/>
-            <stop offset="82%" stop-color="#dca07f"/>
-            <stop offset="100%" stop-color="#b8785b"/>
+          <!-- Iridescent Blue Morpho Forewing Gradients (Cobalt Root -> Luminous Ice Cyan -> Deep Sapphire Rim) -->
+          <linearGradient id="morphoForeBlueL" x1="108" y1="86" x2="18" y2="56" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0b2f66"/>
+            <stop offset="18%" stop-color="#176bc4"/>
+            <stop offset="46%" stop-color="#48b8f5"/>
+            <stop offset="68%" stop-color="#a2ebff"/>
+            <stop offset="86%" stop-color="#2c92df"/>
+            <stop offset="100%" stop-color="#0d3d85"/>
+          </linearGradient>
+          <linearGradient id="morphoForeBlueR" x1="112" y1="86" x2="202" y2="56" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0b2f66"/>
+            <stop offset="18%" stop-color="#1872cc"/>
+            <stop offset="48%" stop-color="#56c5fa"/>
+            <stop offset="70%" stop-color="#bbf2ff"/>
+            <stop offset="87%" stop-color="#2f96e4"/>
+            <stop offset="100%" stop-color="#0d3d85"/>
+          </linearGradient>
+
+          <!-- Iridescent Blue Morpho Hindwing Gradients -->
+          <linearGradient id="morphoHindBlueL" x1="106" y1="84" x2="46" y2="148" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0b3169"/>
+            <stop offset="25%" stop-color="#1b74cb"/>
+            <stop offset="56%" stop-color="#6ed4fc"/>
+            <stop offset="82%" stop-color="#3399e6"/>
+            <stop offset="100%" stop-color="#0f3e84"/>
+          </linearGradient>
+          <linearGradient id="morphoHindBlueR" x1="114" y1="84" x2="174" y2="148" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0b3169"/>
+            <stop offset="25%" stop-color="#1f7dd4"/>
+            <stop offset="58%" stop-color="#86e0ff"/>
+            <stop offset="84%" stop-color="#3ca2eb"/>
+            <stop offset="100%" stop-color="#0f3e84"/>
+          </linearGradient>
+
+          <!-- Specular Pearl-Cyan Metallic Scale Sheen -->
+          <radialGradient id="morphoCyanSheenL" cx="56" cy="74" r="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.62"/>
+            <stop offset="45%" stop-color="#b8f3ff" stop-opacity="0.34"/>
+            <stop offset="100%" stop-color="#35a6ed" stop-opacity="0"/>
           </radialGradient>
-          <linearGradient id="angelSkinShadow" x1="160" y1="75" x2="88" y2="145" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#efc3a5"/>
-            <stop offset="55%" stop-color="#cd8e6e"/>
-            <stop offset="100%" stop-color="#a5674c"/>
-          </linearGradient>
-
-          <!-- Rich Chestnut-Espresso Hair & Sunlit Highlights -->
-          <linearGradient id="angelHairBase" x1="138" y1="38" x2="78" y2="132" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#8b5531"/>
-            <stop offset="45%" stop-color="#4e2b18"/>
-            <stop offset="100%" stop-color="#26130b"/>
-          </linearGradient>
-          <linearGradient id="angelHairHighlight" x1="136" y1="40" x2="80" y2="128" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#f6d29d"/>
-            <stop offset="50%" stop-color="#c28349"/>
-            <stop offset="100%" stop-color="#693b20"/>
-          </linearGradient>
-
-          <!-- Chiaroscuro Pearl-Silk Drapery & Chiffon Veils -->
-          <linearGradient id="angelGownInner" x1="145" y1="84" x2="84" y2="216" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="28%" stop-color="#fbf3e6"/>
-            <stop offset="62%" stop-color="#e7d6c0"/>
-            <stop offset="90%" stop-color="#c9b29a"/>
-            <stop offset="100%" stop-color="#ae9379"/>
-          </linearGradient>
-          <linearGradient id="angelGownFoldShadow" x1="135" y1="110" x2="90" y2="215" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="rgba(164, 136, 114, 0.15)"/>
-            <stop offset="50%" stop-color="rgba(138, 112, 92, 0.42)"/>
-            <stop offset="100%" stop-color="rgba(110, 88, 72, 0.62)"/>
-          </linearGradient>
-          <linearGradient id="angelGownSheer" x1="128" y1="108" x2="148" y2="196" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="rgba(255, 253, 248, 0.85)"/>
-            <stop offset="55%" stop-color="rgba(246, 232, 210, 0.46)"/>
-            <stop offset="100%" stop-color="rgba(210, 186, 162, 0.08)"/>
-          </linearGradient>
-
-          <!-- Realistic Multi-Tonal Feathered Wing Plumage -->
-          <linearGradient id="angelWingFeatherGrad" x1="125" y1="40" x2="25" y2="165" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="40%" stop-color="#f7efe5"/>
-            <stop offset="78%" stop-color="#d8cac2"/>
-            <stop offset="100%" stop-color="#b29f9a"/>
-          </linearGradient>
-          <linearGradient id="angelWingFeatherGradR" x1="125" y1="40" x2="225" y2="165" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#fffdf8"/>
-            <stop offset="42%" stop-color="#f2e7da"/>
-            <stop offset="80%" stop-color="#cebfb8"/>
-            <stop offset="100%" stop-color="#a5928e"/>
-          </linearGradient>
-          <linearGradient id="angelWingShadowGrad" x1="118" y1="40" x2="40" y2="165" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#ebe1d7"/>
-            <stop offset="55%" stop-color="#bfaead"/>
-            <stop offset="100%" stop-color="#8b797c"/>
-          </linearGradient>
-          <linearGradient id="angelWingCovertGrad" x1="118" y1="50" x2="72" y2="128" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#fffaf0"/>
-            <stop offset="55%" stop-color="#f2ddc0"/>
-            <stop offset="100%" stop-color="#cbb094"/>
-          </linearGradient>
-
-          <!-- Antique Burnished Gold & Filigree Wand -->
-          <linearGradient id="angelGoldGrad" x1="156" y1="104" x2="212" y2="40" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#8b5a19"/>
-            <stop offset="32%" stop-color="#d4983a"/>
-            <stop offset="68%" stop-color="#f5cf6e"/>
-            <stop offset="100%" stop-color="#fff8cc"/>
-          </linearGradient>
-          <linearGradient id="angelSashGold" x1="126" y1="112" x2="72" y2="180" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#f8d878"/>
-            <stop offset="45%" stop-color="#cf9438"/>
-            <stop offset="100%" stop-color="#8b5a1b"/>
-          </linearGradient>
-          <linearGradient id="angelHaloRingGrad" x1="100" y1="25" x2="144" y2="37" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#ffd766"/>
-            <stop offset="38%" stop-color="#fffce0"/>
-            <stop offset="72%" stop-color="#e4a63a"/>
-            <stop offset="100%" stop-color="#fff5ba"/>
-          </linearGradient>
-          <radialGradient id="angelHaloMist" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="rgba(255, 240, 175, 0.56)"/>
-            <stop offset="52%" stop-color="rgba(242, 195, 105, 0.2)"/>
-            <stop offset="100%" stop-color="rgba(242, 195, 105, 0)"/>
-          </radialGradient>
-          <radialGradient id="wandStarCoreGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
-            <stop offset="28%" stop-color="#fff2ad" stop-opacity="0.88"/>
-            <stop offset="62%" stop-color="#ffc84a" stop-opacity="0.42"/>
-            <stop offset="100%" stop-color="#ff9922" stop-opacity="0"/>
+          <radialGradient id="morphoCyanSheenR" cx="164" cy="72" r="38" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.68"/>
+            <stop offset="48%" stop-color="#c4f6ff" stop-opacity="0.38"/>
+            <stop offset="100%" stop-color="#35a6ed" stop-opacity="0"/>
           </radialGradient>
 
-          <filter id="angelSoftGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.4" result="blur"/>
-            <feMerge>
-              <feMergeNode in="blur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
+          <!-- Velvety Basal Wing Root Shading & Body -->
+          <radialGradient id="morphoRootShadow" cx="110" cy="78" r="24" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#080b12" stop-opacity="0.72"/>
+            <stop offset="55%" stop-color="#091d42" stop-opacity="0.34"/>
+            <stop offset="100%" stop-color="#091d42" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="morphoBodyGrad" x1="110" y1="52" x2="110" y2="122" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#2c2628"/>
+            <stop offset="45%" stop-color="#171314"/>
+            <stop offset="100%" stop-color="#0c090a"/>
+          </linearGradient>
         </defs>
 
-        <!-- RIGHT FEATHERED ANGEL WING (Farther Wing sweeping upward behind right shoulder) -->
-        <g class="butterfly-right-wings">
-          <!-- Back Under-Plumage Layer -->
-          <path d="M 122,86 C 142,64 176,42 220,42 C 232,54 230,82 218,108 C 204,136 184,158 158,172 C 144,154 132,124 122,86 Z" fill="url(#angelWingShadowGrad)"/>
-          <!-- 8 Sculpted Primary Flight Feathers (Right) -->
-          <g stroke="rgba(105, 80, 66, 0.42)" stroke-width="0.6">
-            <path d="M 164,62 C 186,49 208,41 226,41 C 229,47 222,54 210,59 C 192,65 175,68 162,69 Z" fill="url(#angelWingFeatherGradR)"/>
-            <path d="M 162,68 C 187,58 214,54 232,59 C 233,66 224,72 208,75 C 189,78 171,77 160,75 Z" fill="url(#angelWingFeatherGradR)"/>
-            <path d="M 158,74 C 185,68 212,68 230,77 C 229,84 218,88 202,89 C 183,89 167,86 156,81 Z" fill="url(#angelWingFeatherGradR)"/>
-            <path d="M 154,79 C 180,77 206,82 224,95 C 221,102 210,104 194,102 C 176,100 162,94 152,86 Z" fill="url(#angelWingFeatherGradR)"/>
-            <path d="M 149,84 C 172,87 196,97 212,114 C 208,120 196,120 182,115 C 166,109 154,100 146,91 Z" fill="url(#angelWingFeatherGradR)"/>
-            <path d="M 144,90 C 163,98 183,113 196,133 C 191,138 180,136 168,129 C 154,119 145,108 140,97 Z" fill="url(#angelWingFeatherGradR)"/>
-            <path d="M 139,97 C 154,109 168,128 178,150 C 172,154 162,150 153,139 C 143,128 136,114 134,103 Z" fill="url(#angelWingFeatherGradR)"/>
-            <path d="M 134,103 C 143,118 152,140 157,164 C 150,167 142,162 136,149 C 130,136 128,120 128,107 Z" fill="url(#angelWingFeatherGradR)"/>
-          </g>
-          <!-- Feather Quills (Rachises) -->
-          <g stroke="rgba(255, 250, 236, 0.85)" stroke-width="0.65" stroke-linecap="round" fill="none">
-            <path d="M 164,65 Q 194,52 223,44"/>
-            <path d="M 161,71 Q 196,62 228,60"/>
-            <path d="M 158,77 Q 192,73 226,77"/>
-            <path d="M 154,82 Q 188,84 220,95"/>
-            <path d="M 149,88 Q 178,97 208,114"/>
-            <path d="M 144,94 Q 169,110 192,132"/>
-            <path d="M 139,101 Q 157,123 174,149"/>
-          </g>
-          <!-- Secondary Covert Plumage Row -->
-          <g fill="url(#angelWingCovertGrad)" stroke="rgba(122, 92, 72, 0.35)" stroke-width="0.5">
-            <path d="M 124,84 C 146,70 172,62 195,64 C 193,71 181,76 166,79 C 148,81 134,84 124,86 Z"/>
-            <path d="M 124,86 C 146,77 170,74 190,79 C 186,86 174,89 158,89 C 142,89 130,88 124,88 Z"/>
-            <path d="M 124,88 C 143,85 164,87 180,96 C 174,102 162,102 148,99 C 136,95 128,91 124,89 Z"/>
-            <path d="M 124,90 C 139,93 155,101 166,114 C 159,118 148,116 138,108 C 130,102 126,95 124,91 Z"/>
-            <path d="M 124,92 C 134,102 144,114 150,130 C 143,133 135,127 129,117 C 125,108 124,99 124,92 Z"/>
-          </g>
-          <!-- Upper Wing Arch Rim Highlight -->
-          <path d="M 123,84 C 140,68 172,49 210,45 C 188,52 161,64 128,85 Z" fill="#fffdf6" opacity="0.88"/>
-        </g>
-
-        <!-- LEFT FEATHERED ANGEL WING (Closer Wing sweeping cleanly upward & fanning broad) -->
+        <!-- LEFT WINGS (FOREWING & HINDWING) -->
         <g class="butterfly-left-wings">
-          <!-- Back Under-Plumage Layer -->
-          <path d="M 116,88 C 96,58 64,32 20,30 C 11,48 15,76 28,104 C 44,134 68,160 96,174 C 107,156 115,124 116,88 Z" fill="url(#angelWingShadowGrad)"/>
-          <!-- 8 Sculpted Primary Flight Feathers (Left) -->
-          <g stroke="rgba(105, 80, 66, 0.44)" stroke-width="0.6">
-            <path d="M 76,54 C 54,39 29,28 13,28 C 10,34 16,42 28,48 C 46,56 64,61 78,62 Z" fill="url(#angelWingFeatherGrad)"/>
-            <path d="M 78,60 C 52,48 27,43 10,48 C 9,55 18,62 33,66 C 53,70 69,70 80,68 Z" fill="url(#angelWingFeatherGrad)"/>
-            <path d="M 82,67 C 55,60 30,60 12,70 C 13,77 23,82 39,83 C 58,84 72,81 84,75 Z" fill="url(#angelWingFeatherGrad)"/>
-            <path d="M 86,74 C 60,72 36,78 19,92 C 21,99 32,101 47,99 C 65,97 78,91 88,83 Z" fill="url(#angelWingFeatherGrad)"/>
-            <path d="M 91,82 C 68,85 45,95 31,113 C 34,119 46,119 60,114 C 76,108 87,99 94,90 Z" fill="url(#angelWingFeatherGrad)"/>
-            <path d="M 96,89 C 77,97 58,113 46,134 C 50,139 62,137 74,129 C 87,119 95,108 100,97 Z" fill="url(#angelWingFeatherGrad)"/>
-            <path d="M 101,96 C 86,109 73,128 65,151 C 70,156 81,152 90,141 C 100,129 105,115 107,102 Z" fill="url(#angelWingFeatherGrad)"/>
-            <path d="M 106,103 C 97,119 88,141 84,166 C 90,169 99,163 105,150 C 111,137 113,120 113,107 Z" fill="url(#angelWingFeatherGrad)"/>
+          <!-- Left Hindwing: Jet-Black Scalloped Outer Frame -->
+          <path d="M 108,82 C 92,84 65,91 46,98 C 37,104 35,112 38,118 C 36,123 39,130 45,134 C 46,140 52,146 59,149 C 62,155 69,159 76,159 C 81,163 89,162 94,158 C 99,156 102,148 103,140 C 104,124 106,104 108,82 Z" fill="#110d0f"/>
+          <!-- Left Hindwing: Iridescent Blue Inner Field with Feathered Scallop Tips -->
+          <path d="M 107,84 C 92,88 66,95 51,103 C 46,108 46,113 49,117 C 46,121 49,127 54,130 C 55,135 60,140 65,142 C 68,146 74,149 80,148 C 84,150 90,149 94,144 C 98,136 101,116 107,84 Z" fill="url(#morphoHindBlueL)"/>
+          <path d="M 104,88 C 92,94 74,104 59,114 C 57,124 64,136 78,142 C 88,140 96,122 104,88 Z" fill="url(#morphoCyanSheenL)" opacity="0.65"/>
+          <!-- Hindwing Optical Scale Streaks -->
+          <g stroke="rgba(220, 249, 255, 0.28)" stroke-width="0.65" stroke-linecap="round" fill="none">
+            <path d="M 94,94 Q 72,103 54,114"/>
+            <path d="M 92,102 Q 74,115 61,128"/>
+            <path d="M 94,110 Q 82,126 73,142"/>
+            <path d="M 98,116 Q 92,130 87,144"/>
           </g>
-          <!-- Feather Quills (Rachises) -->
-          <g stroke="rgba(255, 250, 236, 0.88)" stroke-width="0.68" stroke-linecap="round" fill="none">
-            <path d="M 76,58 Q 44,42 15,31"/>
-            <path d="M 79,64 Q 44,53 13,50"/>
-            <path d="M 82,71 Q 47,66 15,71"/>
-            <path d="M 86,78 Q 52,81 22,92"/>
-            <path d="M 91,86 Q 62,96 34,113"/>
-            <path d="M 96,93 Q 71,110 49,133"/>
-            <path d="M 101,100 Q 83,124 68,150"/>
+          <!-- Hindwing Dark Venation + Vein Border Wedges -->
+          <g stroke="#121622" stroke-linecap="round" fill="none">
+            <path d="M 106,86 Q 89,93 84,104 Q 90,113 102,106" stroke-width="0.95" opacity="0.88"/>
+            <path d="M 90,94 Q 68,100 47,108" stroke-width="0.8" opacity="0.86"/>
+            <path d="M 85,102 Q 66,111 49,123" stroke-width="0.8" opacity="0.86"/>
+            <path d="M 87,108 Q 70,122 57,136" stroke-width="0.78" opacity="0.85"/>
+            <path d="M 92,111 Q 79,130 70,146" stroke-width="0.75" opacity="0.85"/>
+            <path d="M 98,110 Q 90,130 85,147" stroke-width="0.72" opacity="0.82"/>
           </g>
-          <!-- Secondary Covert Plumage Row -->
-          <g fill="url(#angelWingCovertGrad)" stroke="rgba(122, 92, 72, 0.36)" stroke-width="0.52">
-            <path d="M 114,84 C 92,66 66,54 41,56 C 43,64 56,70 72,74 C 90,78 104,82 114,86 Z"/>
-            <path d="M 114,86 C 92,74 68,70 47,75 C 51,83 64,87 80,87 C 96,87 108,87 114,88 Z"/>
-            <path d="M 114,88 C 95,84 74,85 57,96 C 63,102 76,102 90,98 C 102,94 110,91 114,89 Z"/>
-            <path d="M 114,90 C 99,94 83,101 72,115 C 79,119 90,117 100,109 C 108,103 112,95 114,91 Z"/>
-            <path d="M 114,92 C 104,103 94,116 88,132 C 95,134 103,128 109,118 C 113,109 114,99 114,92 Z"/>
+          <!-- Tiny White Crescent Notches along Hindwing Black Scallops -->
+          <g fill="#f0f8ff" opacity="0.82">
+            <circle cx="38.5" cy="113" r="0.95"/>
+            <circle cx="42" cy="127" r="1.0"/>
+            <circle cx="51" cy="141" r="1.05"/>
+            <circle cx="66" cy="153" r="1.05"/>
+            <circle cx="84" cy="158" r="1.0"/>
           </g>
-          <!-- Upper Wing Shoulder Crest & Scapulars -->
-          <path d="M 115,84 C 98,62 66,37 26,33 C 52,42 78,56 110,85 Z" fill="#fffdf7" opacity="0.92"/>
-          <path d="M 115,85 C 102,75 88,71 76,74 C 82,81 95,85 114,87 Z" fill="#fae8cb" stroke="rgba(135, 102, 78, 0.3)" stroke-width="0.45"/>
+
+          <!-- Forewing-over-Hindwing Natural Cast Shadow -->
+          <path d="M 52,101 C 72,96 90,90 107,84 C 107,90 92,98 56,108 Z" fill="rgba(6, 12, 26, 0.42)"/>
+
+          <!-- Left Forewing: Broad Sweeping Black Scalloped Frame -->
+          <path d="M 108,66 C 90,46 58,39 24,47 C 13,50 9,59 11,68 C 11,74 14,80 18,84 C 18,90 22,96 28,99 C 29,105 34,110 41,112 C 44,116 52,118 59,116 C 78,113 94,104 108,88 Z" fill="#110d0f"/>
+          <!-- Left Forewing: Iridescent Blue Field -->
+          <path d="M 106,68 C 88,52 60,47 32,54 C 24,57 22,63 25,68 C 23,73 26,78 31,81 C 30,86 34,92 40,94 C 41,99 46,104 52,104 C 66,105 88,97 106,86 Z" fill="url(#morphoForeBlueL)"/>
+          <!-- Luminous Ice-Cyan Medial Reflection Sheen -->
+          <path d="M 96,70 C 78,56 56,54 38,59 C 31,64 31,77 41,87 C 55,95 78,91 96,78 Z" fill="url(#morphoCyanSheenL)"/>
+          <!-- Optical Cyan Scale Radiations Between Veins -->
+          <g stroke="rgba(225, 251, 255, 0.3)" stroke-width="0.7" stroke-linecap="round" fill="none">
+            <path d="M 75,62 Q 52,58 32,63"/>
+            <path d="M 72,68 Q 52,68 31,75"/>
+            <path d="M 73,74 Q 54,80 38,89"/>
+            <path d="M 79,79 Q 62,90 48,99"/>
+          </g>
+          <!-- Characteristic Dark Costal Bar & Subcostal Markings (Matched to Photo) -->
+          <path d="M 76,60 C 73,63 70,68 68,74" stroke="#11131a" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.88"/>
+          <path d="M 76,55 Q 68,54 61,57" stroke="#121520" stroke-width="1.9" stroke-linecap="round" fill="none" opacity="0.65"/>
+          <!-- Dark Forewing Venation Network -->
+          <g stroke="#111520" stroke-linecap="round" fill="none">
+            <!-- Closed Discal Cell -->
+            <path d="M 106,70 Q 86,58 74,61 L 68,74 Q 84,78 106,80" stroke-width="1.05" opacity="0.9"/>
+            <!-- Radiating Forewing Veins into Black Margin -->
+            <path d="M 77,60 Q 52,51 28,56" stroke-width="0.85" opacity="0.88"/>
+            <path d="M 74,63 Q 50,59 24,66" stroke-width="0.85" opacity="0.88"/>
+            <path d="M 71,67 Q 48,69 27,77" stroke-width="0.82" opacity="0.88"/>
+            <path d="M 69,73 Q 50,79 34,90" stroke-width="0.82" opacity="0.88"/>
+            <path d="M 74,76 Q 58,89 45,101" stroke-width="0.8" opacity="0.86"/>
+            <path d="M 88,78 Q 74,94 61,105" stroke-width="0.75" opacity="0.84"/>
+          </g>
+          <!-- Velvety Basal Wing Root Shading -->
+          <path d="M 108,66 C 95,67 88,73 88,80 C 89,86 97,91 107,88 Z" fill="url(#morphoRootShadow)"/>
+          <!-- Iconic Morpho Crisp White Costal, Submarginal & Marginal Spots -->
+          <g fill="#f5fbff" opacity="0.94">
+            <!-- 2 Costal Upper Edge Spots -->
+            <ellipse cx="52" cy="46.5" rx="2.4" ry="0.95" transform="rotate(-10 52 46.5)"/>
+            <ellipse cx="33" cy="49.5" rx="2.2" ry="0.9" transform="rotate(-14 33 49.5)"/>
+            <!-- Curved Row of White Apex / Submarginal Dots -->
+            <circle cx="17" cy="59" r="1.45"/>
+            <circle cx="16.5" cy="67.5" r="1.4"/>
+            <circle cx="19" cy="76.5" r="1.3"/>
+            <circle cx="23.5" cy="86" r="1.25"/>
+            <circle cx="29.5" cy="96" r="1.15"/>
+            <!-- Tiny Crisp Marginal Scallop Dots -->
+            <circle cx="12.5" cy="73" r="0.85" opacity="0.85"/>
+            <circle cx="16" cy="83" r="0.85" opacity="0.85"/>
+            <circle cx="22.5" cy="94" r="0.85" opacity="0.85"/>
+            <circle cx="32" cy="105" r="0.85" opacity="0.85"/>
+          </g>
         </g>
 
-        <!-- SERAPHIC ANGEL FIGURE (REALISTIC ANATOMY, SILK GOWN & ORNATE WAND) -->
-        <g class="angel-figure">
-          <!-- Atmospheric Radiance Behind Head & Perspective Halo -->
-          <g class="angel-halo-group">
-            <circle cx="122" cy="48" r="34" fill="url(#angelHaloMist)"/>
-            <g transform="rotate(-10 122 31)">
-              <ellipse cx="122" cy="31" rx="22" ry="5.8" stroke="rgba(255, 224, 128, 0.45)" stroke-width="5.2" fill="none"/>
-              <ellipse cx="122" cy="31" rx="22" ry="5.8" stroke="url(#angelHaloRingGrad)" stroke-width="2.2" fill="none"/>
-              <ellipse cx="122" cy="31" rx="21.4" ry="5.2" stroke="rgba(255, 255, 255, 0.88)" stroke-width="0.65" fill="none"/>
-            </g>
+        <!-- RIGHT WINGS (FOREWING & HINDWING) -->
+        <g class="butterfly-right-wings">
+          <!-- Right Hindwing: Jet-Black Scalloped Outer Frame -->
+          <path d="M 112,82 C 128,84 155,91 174,98 C 183,104 185,112 182,118 C 184,123 181,130 175,134 C 174,140 168,146 161,149 C 158,155 151,159 144,159 C 139,163 131,162 126,158 C 121,156 118,148 117,140 C 116,124 114,104 112,82 Z" fill="#110d0f"/>
+          <!-- Right Hindwing: Iridescent Blue Inner Field -->
+          <path d="M 113,84 C 128,88 154,95 169,103 C 174,108 174,113 171,117 C 174,121 171,127 166,130 C 165,135 160,140 155,142 C 152,146 146,149 140,148 C 136,150 130,149 126,144 C 122,136 119,116 113,84 Z" fill="url(#morphoHindBlueR)"/>
+          <path d="M 116,88 C 128,94 146,104 161,114 C 163,124 156,136 142,142 C 132,140 124,122 116,88 Z" fill="url(#morphoCyanSheenR)" opacity="0.65"/>
+          <!-- Hindwing Optical Scale Streaks -->
+          <g stroke="rgba(220, 249, 255, 0.28)" stroke-width="0.65" stroke-linecap="round" fill="none">
+            <path d="M 126,94 Q 148,103 166,114"/>
+            <path d="M 128,102 Q 146,115 159,128"/>
+            <path d="M 126,110 Q 138,126 147,142"/>
+            <path d="M 122,116 Q 128,130 133,144"/>
+          </g>
+          <!-- Hindwing Dark Venation -->
+          <g stroke="#121622" stroke-linecap="round" fill="none">
+            <path d="M 114,86 Q 131,93 136,104 Q 130,113 118,106" stroke-width="0.95" opacity="0.88"/>
+            <path d="M 130,94 Q 152,100 173,108" stroke-width="0.8" opacity="0.86"/>
+            <path d="M 135,102 Q 154,111 171,123" stroke-width="0.8" opacity="0.86"/>
+            <path d="M 133,108 Q 150,122 163,136" stroke-width="0.78" opacity="0.85"/>
+            <path d="M 128,111 Q 141,130 150,146" stroke-width="0.75" opacity="0.85"/>
+            <path d="M 122,110 Q 130,130 135,147" stroke-width="0.72" opacity="0.82"/>
+          </g>
+          <!-- Tiny White Crescent Notches along Hindwing Black Scallops -->
+          <g fill="#f0f8ff" opacity="0.82">
+            <circle cx="181.5" cy="113" r="0.95"/>
+            <circle cx="178" cy="127" r="1.0"/>
+            <circle cx="169" cy="141" r="1.05"/>
+            <circle cx="154" cy="153" r="1.05"/>
+            <circle cx="136" cy="158" r="1.0"/>
           </g>
 
-          <!-- Flowing Back Hair Tresses Sweeping in Wind -->
-          <path d="M 116,44 C 102,48 91,66 87,89 C 84,105 78,117 72,126 C 81,122 90,113 95,99 C 101,83 107,69 114,63 Z" fill="url(#angelHairBase)"/>
-          <path d="M 112,56 C 98,69 95,87 89,105 C 86,115 80,127 76,135 C 86,129 96,116 101,99 C 106,83 111,70 116,66 Z" fill="#3a2013"/>
-          <!-- Back Hair Golden Specular Strands -->
-          <path d="M 113,50 Q 97,66 89,94 T 76,127" stroke="url(#angelHairHighlight)" stroke-width="1.25" stroke-linecap="round" fill="none" opacity="0.78"/>
-          <path d="M 110,60 Q 99,81 93,107" stroke="url(#angelHairHighlight)" stroke-width="0.95" stroke-linecap="round" fill="none" opacity="0.68"/>
+          <!-- Forewing-over-Hindwing Natural Cast Shadow -->
+          <path d="M 168,101 C 148,96 130,90 113,84 C 113,90 128,98 164,108 Z" fill="rgba(6, 12, 26, 0.42)"/>
 
-          <!-- Left Arm & Graceful Open Balance Hand -->
-          <path d="M 106,86 C 101,94 97,104 94,111 C 91,118 88,125 87,130 C 85,134 83,139 84,142 C 85,142 87,138 88,136 C 89,138 88,142 89,143 C 90,143 91,138 92,135 C 93,137 93,140 94,141 C 95,140 95,135 94,132 C 95,127 98,120 101,113 C 105,105 110,97 112,88 Z" fill="url(#angelSkinShadow)" stroke="rgba(135, 86, 62, 0.4)" stroke-width="0.45"/>
-
-          <!-- Delicate Bare Ankles & Arched Feet beneath Hem -->
-          <path d="M 108,207 C 106,216 102,223 100,227 C 101,229 104,228 106,225 C 109,221 112,214 114,207 Z" fill="url(#angelSkinShadow)" stroke="rgba(135, 86, 62, 0.35)" stroke-width="0.4"/>
-          <path d="M 121,206 C 122,213 121,220 119,223 C 121,224 123,222 125,217 C 126,212 126,207 125,205 Z" fill="url(#angelSkinGrad)" stroke="rgba(135, 86, 62, 0.35)" stroke-width="0.4"/>
-
-          <!-- Neck & Upper Shoulders / Collarbone -->
-          <path d="M 117,61 L 128,63 C 128,72 130,78 136,83 C 138,85 138,90 133,94 L 106,94 C 103,89 104,84 109,81 C 115,77 117,71 117,61 Z" fill="url(#angelSkinGrad)"/>
-          <!-- Neck Chin Shadow -->
-          <path d="M 118,63 C 121,67 125,68 128,66 C 127,72 124,74 119,73 Z" fill="rgba(165, 102, 78, 0.45)"/>
-          <!-- Collarbone Delicacy -->
-          <path d="M 118,83 Q 112,84.5 107,83 M 124,83 Q 130,84.5 134,82" stroke="rgba(176, 114, 88, 0.48)" stroke-width="0.7" stroke-linecap="round" fill="none"/>
-
-          <!-- Sculpted Silk Satin & Chiffon Gown -->
-          <!-- Draped Grecian Bodice & Long Flowing Skirt -->
-          <path d="M 109,83 C 112,88 117,91 122,91 C 126,91 131,87 134,83 C 133,93 130,104 127,113 C 132,126 140,152 146,184 C 148,194 148,202 145,208 C 139,214 134,210 128,213 C 121,216 114,209 107,213 C 99,217 91,209 84,212 C 79,214 76,207 79,198 C 87,168 99,138 110,113 C 108,104 107,93 109,83 Z" fill="url(#angelGownInner)" stroke="rgba(128, 104, 84, 0.46)" stroke-width="0.65"/>
-
-          <!-- Painterly Chiaroscuro Cloth Fold Shadows -->
-          <path d="M 113,115 C 106,138 96,174 88,209 C 93,210 99,205 103,182 C 107,160 112,134 117,116 Z" fill="url(#angelGownFoldShadow)"/>
-          <path d="M 122,115 C 123,142 123,178 122,211 C 127,210 131,196 130,174 C 129,150 127,130 124,115 Z" fill="url(#angelGownFoldShadow)"/>
-          <path d="M 127,118 C 133,144 138,176 141,206 C 144,203 145,192 141,170 C 137,148 132,129 127,118 Z" fill="url(#angelGownFoldShadow)" opacity="0.72"/>
-
-          <!-- Sunlit Silk Fold Highlight Ridges -->
-          <path d="M 116,92 Q 114,102 117,112 M 126,90 Q 124,102 123,112" stroke="rgba(150, 124, 102, 0.45)" stroke-width="0.75" stroke-linecap="round" fill="none"/>
-          <path d="M 119,116 C 115,145 109,178 103,210 M 126,116 C 131,146 136,178 138,208 M 111,116 C 101,144 89,176 82,204" stroke="rgba(255, 255, 255, 0.88)" stroke-width="0.95" stroke-linecap="round" fill="none"/>
-
-          <!-- Left Draped Sheer Sleeve Edge -->
-          <path d="M 109,83 C 102,88 99,98 101,106 C 106,102 109,94 111,88 Z" fill="#f7eee2" stroke="rgba(130, 106, 86, 0.35)" stroke-width="0.45"/>
-
-          <!-- Translucent Billowing Outer Chiffon Veil -->
-          <path d="M 127,113 C 139,134 148,162 152,190 C 142,188 132,174 123,148 C 118,134 116,122 127,113 Z" fill="url(#angelGownSheer)" stroke="rgba(255, 255, 255, 0.55)" stroke-width="0.5"/>
-
-          <!-- Ornate Antique Gold Waist Belt & Floating Satin Sash Ribbons -->
-          <path d="M 116,114 C 102,131 87,155 71,180 C 79,175 96,151 119,116 Z" fill="url(#angelSashGold)" stroke="rgba(110, 70, 20, 0.45)" stroke-width="0.45"/>
-          <path d="M 122,115 C 127,138 132,162 135,184 C 130,174 124,148 119,116 Z" fill="url(#angelSashGold)" opacity="0.88"/>
-          <path d="M 109,111 Q 118,116.5 128,111 L 127.5,114.5 Q 118,120 109.5,114.5 Z" fill="url(#angelGoldGrad)" stroke="rgba(120, 76, 22, 0.55)" stroke-width="0.45"/>
-          <circle cx="119" cy="115" r="2.2" fill="#fff7d6" stroke="#b57a22" stroke-width="0.6"/>
-
-          <!-- Sculpted 3/4 Profile Face (Gazing Serene-Warmly Toward the Wand) -->
-          <path d="M 116,47 C 118,40 128,39 134,44 C 136,47 137,51 136.5,53.5 L 138.8,57.8 C 139,58.6 138,59.4 136.8,59.6 L 136.5,61.2 L 137.2,62.3 L 136,63.6 C 135.8,65.2 135.2,66.8 133,67.8 C 128,69.5 122,68 118,63 C 115.5,59.5 115,53 116,47 Z" fill="url(#angelSkinGrad)" stroke="rgba(145, 92, 66, 0.42)" stroke-width="0.45"/>
-          <!-- Cheekbone Warm Blush & Eye Socket Contour -->
-          <ellipse cx="129.5" cy="59.5" rx="3.4" ry="2.1" fill="rgba(224, 126, 110, 0.26)"/>
-          <path d="M 131,51.5 Q 134,51 136,52.5 Q 133,54 130.5,53 Z" fill="rgba(166, 102, 80, 0.28)"/>
-          <!-- Natural Arched Brow & Expressive Realistic Eye -->
-          <path d="M 130,50.5 Q 133.5,49.4 136.2,51" stroke="#57321d" stroke-width="0.82" stroke-linecap="round" fill="none"/>
-          <path d="M 131,52.8 Q 133.5,51.5 135.6,52.8 Q 133.5,53.8 131,52.8 Z" fill="#fffaf5"/>
-          <circle cx="133.8" cy="52.7" r="1.15" fill="#5e3a22"/>
-          <circle cx="134.2" cy="52.3" r="0.4" fill="#ffffff"/>
-          <path d="M 130.6,52.7 Q 133.5,51.2 136,52.7" stroke="#2a160c" stroke-width="0.88" stroke-linecap="round" fill="none"/>
-          <!-- Sculpted Rose Lips & Gentle Smile -->
-          <path d="M 134.5,61.6 Q 136,61.2 136.8,62 Q 135.6,62.3 134.5,61.6 Z" fill="#c7786a"/>
-          <path d="M 134.3,62.2 Q 135.8,62.5 136.6,62.3" stroke="#944a40" stroke-width="0.52" fill="none"/>
-          <path d="M 134.5,63.3 Q 135.6,63.6 136.3,63.2" stroke="rgba(170, 108, 88, 0.45)" stroke-width="0.55" fill="none"/>
-          <!-- Delicate Ear Hint -->
-          <ellipse cx="118.2" cy="56.5" rx="1.5" ry="2.7" fill="#eec2a4"/>
-
-          <!-- Crown & Temple Silk Hair Waves Framing Face -->
-          <path d="M 134,44 C 130,38 119,38 114,45 C 110,51 111,60 116,65 C 118,62 117,56 118,52 C 122,49 127,46 134,44 Z" fill="url(#angelHairBase)"/>
-          <path d="M 127,43 C 122,48 121,55 119,63 C 117,67 113,74 111,80 C 115,75 119,68 121,62 C 123,55 124,48 127,43 Z" fill="#59331d"/>
-          <path d="M 129,42 Q 120,42 114,50 M 126,44 Q 120,51 117,60" stroke="url(#angelHairHighlight)" stroke-width="1.05" stroke-linecap="round" fill="none"/>
-
-          <!-- Sculpted Right Arm Extending Toward Wand Grip -->
-          <path d="M 129,84 C 137,88 144,94 149,95 C 155,92 162,86 169,81 C 172,79 175,80 176,82 C 175,85 172,88 168,90 C 161,95 154,102 148,103 C 142,102 134,96 127,91 Z" fill="url(#angelSkinGrad)" stroke="rgba(145, 92, 68, 0.42)" stroke-width="0.48"/>
-          <path d="M 146,96 Q 149,98 152,96" stroke="rgba(160, 100, 76, 0.45)" stroke-width="0.68" stroke-linecap="round" fill="none"/>
-
-          <!-- THE ORNATE MAGICAL STICK (CELESTIAL SCEPTER / WAND) -->
-          <g class="angel-wand-group">
-            <!-- Base Teardrop Pommel Finial -->
-            <ellipse cx="156.5" cy="102.5" rx="2.2" ry="2.9" transform="rotate(36 156.5 102.5)" fill="url(#angelGoldGrad)" stroke="rgba(120, 76, 20, 0.65)" stroke-width="0.5"/>
-            <circle cx="158" cy="101" r="1.8" fill="#fff3c4" stroke="#b37820" stroke-width="0.5"/>
-            <!-- Tapered Golden Wand Shaft passing cleanly through her hand -->
-            <line x1="158" y1="101" x2="203" y2="33" stroke="url(#angelGoldGrad)" stroke-width="3.2" stroke-linecap="round"/>
-            <line x1="159" y1="99.6" x2="202" y2="32.6" stroke="#fffbe8" stroke-width="0.85" stroke-linecap="round" opacity="0.92"/>
-            <!-- Spiral Carved Filigree Ribbon along Shaft -->
-            <path d="M 161,97 Q 166,94 167,90 Q 171,86 175,81 Q 178,75 182,70 Q 186,64 189,58 Q 194,51 197,45 Q 200,39 203,34" stroke="#fff9dc" stroke-width="0.7" fill="none" opacity="0.88"/>
-            <!-- Ornate Filigree Calyx Prongs Cradling the Star Crystal -->
-            <path d="M 201,35 C 198,29 200,23 205,21 C 203,25 203,30 205,32 Z" fill="url(#angelGoldGrad)" stroke="rgba(125, 82, 24, 0.58)" stroke-width="0.45"/>
-            <path d="M 204,36 C 209,38 214,35 216,30 C 212,32 208,33 206,31 Z" fill="url(#angelGoldGrad)" stroke="rgba(125, 82, 24, 0.58)" stroke-width="0.45"/>
-            <circle cx="203" cy="33.5" r="2.1" fill="#ffd966" stroke="#a86d19" stroke-width="0.55"/>
+          <!-- Right Forewing: Broad Sweeping Black Scalloped Frame -->
+          <path d="M 112,66 C 130,46 162,39 196,47 C 207,50 211,59 209,68 C 209,74 206,80 202,84 C 202,90 198,96 192,99 C 191,105 186,110 179,112 C 176,116 168,118 161,116 C 142,113 126,104 112,88 Z" fill="#110d0f"/>
+          <!-- Right Forewing: Iridescent Blue Field -->
+          <path d="M 114,68 C 132,52 160,47 188,54 C 196,57 198,63 195,68 C 197,73 194,78 189,81 C 190,86 186,92 180,94 C 179,99 174,104 168,104 C 154,105 132,97 114,86 Z" fill="url(#morphoForeBlueR)"/>
+          <!-- Luminous Ice-Cyan Medial Reflection Sheen -->
+          <path d="M 124,70 C 142,56 164,54 182,59 C 189,64 189,77 179,87 C 165,95 142,91 124,78 Z" fill="url(#morphoCyanSheenR)"/>
+          <!-- Optical Cyan Scale Radiations Between Veins -->
+          <g stroke="rgba(225, 251, 255, 0.3)" stroke-width="0.7" stroke-linecap="round" fill="none">
+            <path d="M 145,62 Q 168,58 188,63"/>
+            <path d="M 148,68 Q 168,68 189,75"/>
+            <path d="M 147,74 Q 166,80 182,89"/>
+            <path d="M 141,79 Q 158,90 172,99"/>
           </g>
-
-          <!-- Foreground Fingers & Thumb Wrapped Naturally OVER the Wand Shaft -->
-          <g fill="url(#angelSkinGrad)" stroke="rgba(135, 82, 60, 0.48)" stroke-width="0.4">
-            <path d="M 171,81 C 173,78 176,78 177,80 C 176,82 174,83 172,83 Z"/>
-            <path d="M 172,83 C 175,80 178,80 178,82.5 C 177,84.5 174,85 172,85 Z"/>
-            <path d="M 173,85 C 175,83 177.5,83.5 177.5,85.5 C 176,87 173.5,87 172,86.5 Z"/>
-            <path d="M 169,82 C 170,79 173,77 175,77.5 C 175,79.5 173,81.5 170.5,83 Z"/>
+          <!-- Characteristic Dark Costal Bar & Subcostal Markings -->
+          <path d="M 144,60 C 147,63 150,68 152,74" stroke="#11131a" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.88"/>
+          <path d="M 144,55 Q 152,54 159,57" stroke="#121520" stroke-width="1.9" stroke-linecap="round" fill="none" opacity="0.65"/>
+          <!-- Dark Forewing Venation Network -->
+          <g stroke="#111520" stroke-linecap="round" fill="none">
+            <path d="M 114,70 Q 134,58 146,61 L 152,74 Q 136,78 114,80" stroke-width="1.05" opacity="0.9"/>
+            <path d="M 143,60 Q 168,51 192,56" stroke-width="0.85" opacity="0.88"/>
+            <path d="M 146,63 Q 170,59 196,66" stroke-width="0.85" opacity="0.88"/>
+            <path d="M 149,67 Q 172,69 193,77" stroke-width="0.82" opacity="0.88"/>
+            <path d="M 151,73 Q 170,79 186,90" stroke-width="0.82" opacity="0.88"/>
+            <path d="M 146,76 Q 162,89 175,101" stroke-width="0.8" opacity="0.86"/>
+            <path d="M 132,78 Q 146,94 159,105" stroke-width="0.75" opacity="0.84"/>
           </g>
-
-          <!-- Radiant Cut Star Crystal & Volumetric Starlight at Wand Tip -->
-          <g filter="url(#angelSoftGlow)">
-            <circle class="wand-star-pulse" cx="208" cy="26" r="21" fill="url(#wandStarCoreGrad)"/>
-            <!-- Delicate Optical Light Diffraction Spikes -->
-            <path class="wand-star-pulse" d="M 208,4 L 209.1,24.4 L 230,26 L 209.1,27.6 L 208,48 L 206.9,27.6 L 186,26 L 206.9,24.4 Z" fill="#fffdf0" opacity="0.94"/>
-            <path d="M 198,16 L 208,24.8 L 218,16 L 209.2,26 L 218,36 L 208,27.2 L 198,36 L 206.8,26 Z" fill="#ffd966" opacity="0.82"/>
-            <!-- Faceted Star Jewel Core (rich golden edge contrast for cream light mode + bright glow) -->
-            <polygon points="208,14 210.8,23.2 220,26 210.8,28.8 208,38 205.2,28.8 196,26 205.2,23.2" fill="#ffe888" stroke="#b37412" stroke-width="0.65"/>
-            <polygon points="208,18 209.8,24.2 216,26 209.8,27.8 208,34 206.2,27.8 200,26 206.2,24.2" fill="#ffffff"/>
-            <circle cx="208" cy="26" r="2.2" fill="#ffffff"/>
+          <!-- Velvety Basal Wing Root Shading -->
+          <path d="M 112,66 C 125,67 132,73 132,80 C 131,86 123,91 113,88 Z" fill="url(#morphoRootShadow)"/>
+          <!-- Iconic Morpho Crisp White Costal, Submarginal & Marginal Spots -->
+          <g fill="#f5fbff" opacity="0.94">
+            <ellipse cx="168" cy="46.5" rx="2.4" ry="0.95" transform="rotate(10 168 46.5)"/>
+            <ellipse cx="187" cy="49.5" rx="2.2" ry="0.9" transform="rotate(14 187 49.5)"/>
+            <circle cx="203" cy="59" r="1.45"/>
+            <circle cx="203.5" cy="67.5" r="1.4"/>
+            <circle cx="201" cy="76.5" r="1.3"/>
+            <circle cx="196.5" cy="86" r="1.25"/>
+            <circle cx="190.5" cy="96" r="1.15"/>
+            <circle cx="207.5" cy="73" r="0.85" opacity="0.85"/>
+            <circle cx="204" cy="83" r="0.85" opacity="0.85"/>
+            <circle cx="197.5" cy="94" r="0.85" opacity="0.85"/>
+            <circle cx="188" cy="105" r="0.85" opacity="0.85"/>
           </g>
+        </g>
 
-          <!-- Ambient Wand Tip Stardust Motes -->
-          <g class="wand-sparkles">
-            <circle class="wand-sparkle" cx="222" cy="11" r="1.4" fill="#ffc94d"/>
-            <circle class="wand-sparkle" cx="192" cy="11" r="1.2" fill="#fff8d6"/>
-            <circle class="wand-sparkle" cx="225" cy="39" r="1.2" fill="#ffc94d"/>
-            <circle class="wand-sparkle" cx="191" cy="39" r="1.0" fill="#ffffff"/>
+        <!-- CENTRAL VELVETY BODY, THORAX, SEGMENTED ABDOMEN & SLENDER ANTENNAE -->
+        <g class="morpho-body-group">
+          <!-- Graceful Outward-Swept Slender Antennae -->
+          <path d="M 108.5,52 Q 97,32 80,14" stroke="#181312" stroke-width="1.15" stroke-linecap="round" fill="none"/>
+          <path d="M 80,14 L 77,11" stroke="#181312" stroke-width="1.65" stroke-linecap="round"/>
+          <path d="M 111.5,52 Q 123,32 140,14" stroke="#181312" stroke-width="1.15" stroke-linecap="round" fill="none"/>
+          <path d="M 140,14 L 143,11" stroke="#181312" stroke-width="1.65" stroke-linecap="round"/>
+
+          <!-- Head & Dark Compound Eyes -->
+          <ellipse cx="110" cy="54" rx="3.4" ry="3.2" fill="#171415"/>
+          <circle cx="107.6" cy="53.6" r="1.35" fill="#252022"/>
+          <circle cx="112.4" cy="53.6" r="1.35" fill="#252022"/>
+
+          <!-- Velvety Thorax -->
+          <ellipse cx="110" cy="70" rx="4.5" ry="12" fill="url(#morphoBodyGrad)"/>
+          <ellipse cx="110" cy="68" rx="2.2" ry="7" fill="rgba(105, 95, 90, 0.35)"/>
+
+          <!-- Tapered Segmented Abdomen -->
+          <path d="M 106.5,80 C 106.1,92 106.8,108 108.5,119 C 109.2,122 110.8,122 111.5,119 C 113.2,108 113.9,92 113.5,80 Z" fill="url(#morphoBodyGrad)"/>
+          <g stroke="rgba(255, 255, 255, 0.14)" stroke-width="0.6" stroke-linecap="round">
+            <line x1="107" y1="88" x2="113" y2="88"/>
+            <line x1="107" y1="95" x2="113" y2="95"/>
+            <line x1="107.4" y1="102" x2="112.6" y2="102"/>
+            <line x1="108" y1="109" x2="112" y2="109"/>
+            <line x1="108.6" y1="115" x2="111.4" y2="115"/>
           </g>
         </g>
       </svg>
@@ -3108,7 +3008,7 @@
       <button class="chat-pill-btn" type="button" data-prompt="Tell me about Luna">About Luna</button>
       <button class="chat-pill-btn" type="button" data-prompt="What poems can I read?">Poetry shelf</button>
       <button class="chat-pill-btn" type="button" data-prompt="Where can I read The Hidden Bloodline?">The Hidden Bloodline</button>
-      <button class="chat-pill-btn" type="button" data-prompt="Tell me about the Celestial Angel">Celestial Angel ✨</button>
+      <button class="chat-pill-btn" type="button" data-prompt="Tell me about the Butterfly">Blue Morpho 🦋</button>
     </div>
 
     <form class="chat-input-row" id="chat-form">
@@ -3897,8 +3797,8 @@
         reply = 'That’s Luna’s Nocturnal Watcher! Perched quietly on the oak branch at the down side of the page, he keeps guard over the night library. Tap him down there to hear him hoot!';
       } else if (q.includes('firefl') || q.includes('wisp')) {
         reply = 'Those are Luna’s enchanted golden fireflies! They drift peacefully around the poetry cards and scatter away when your cursor gets close!';
-      } else if (q.includes('angel') || q.includes('wand') || q.includes('stick') || q.includes('butterfly') || q.includes('wings') || q.includes('spirit')) {
-        reply = 'That’s Luna’s Celestial Angel! Floating gracefully on luminous feathered wings and holding an ornate golden wand tipped with a radiant starlight crystal, she soars through the sky as you scroll. Click on her to watch her twirl and scatter starlight!';
+      } else if (q.includes('butterfly') || q.includes('morpho') || q.includes('blue') || q.includes('wings')) {
+        reply = 'That’s Luna’s iridescent Blue Morpho butterfly! With electric azure wings fringed in black and pearls, she flutters gracefully across the screen along different flight paths when you scroll up or down. Click her to watch an aerial spin!';
       } else if (q.includes('moon') || q.includes('lunar')) {
         reply = 'The glowing moon shines directly behind Luna’s portrait in the hero section, surrounded by luminous craters, starlight halos, and orbital rings. Click on it to see it shimmer and rotate!';
       } else if (q.includes('who') || q.includes('about') || q.includes('author') || q.includes('luna') || q.includes('daffini')) {
@@ -3912,7 +3812,7 @@
       } else if (q.includes('contact') || q.includes('email') || q.includes('message') || q.includes('reach')) {
         reply = 'You can email Luna at daffini1908@gmail.com, use the contact form at the bottom of the page, or connect on Wattpad @author_luna1.';
       } else {
-        reply = 'I’m happy to guide you! Ask me about Luna’s poems, her novel The Hidden Bloodline, the glowing Moon rising behind her photo, or the Celestial Angel with her magical wand!';
+        reply = 'I’m happy to guide you! Ask me about Luna’s poems, her novel The Hidden Bloodline, the glowing Moon rising behind her photo, or the Blue Morpho butterfly!';
       }
 
       setTimeout(() => appendMessage(reply, false), 350);
@@ -3954,7 +3854,7 @@
     }
 
     /* ==========================================================================
-       7. CELESTIAL REALISTIC ANGEL (BIDIRECTIONAL SCROLL FLIGHT & WAND SPARKLES)
+       7. IRIDESCENT BLUE MORPHO BUTTERFLY (BIDIRECTIONAL SCROLL & DUAL PATHS)
        ========================================================================== */
     (() => {
       const butterflyWrap = document.getElementById('celestial-butterfly');
@@ -3968,56 +3868,42 @@
       let isLooping = false;
 
       // Positions in viewport percentages (vw, vh)
-      let currentX = 76;
+      let currentX = 78;
       let currentY = 12;
-      let targetX = 76;
+      let targetX = 78;
       let targetY = 12;
-      let currentAngle = 0;
-      let targetAngle = 0;
+      let currentAngle = -20;
+      let targetAngle = -20;
 
-      // Start with serene hovering wing cadence
+      // Start with serene basking wing flutter
       butterflyWrap.classList.add('is-hovering');
 
       const butterflySayings = [
-        '“Guiding your path with angel starlight! ✦”',
-        '“Waving my magical wand to illuminate hidden dreams... ✨”',
-        '“Soaring between cosmic poetry and whispered stars. ☾”',
-        '“Cast a wish upon the night sky as you wander! ✦”',
-        '“Wings of light and celestial stardust guiding your way! ✨”'
+        '“Hey, butterfly, do you hate the rain, too? ✦”',
+        '“Azure wings catching starlight over Luna’s verses... ✨”',
+        '“Gliding quietly between ink, petals, and dreamscapes. ☾”',
+        '“Shimmering in cobalt blue along every scroll path! ✦”',
+        '“Drifting lightly over poetry and ancient paper... ✨”'
       ];
       let sayingIdx = 0;
 
-      function getWandTipCoords() {
-        const rect = butterflyWrap.getBoundingClientRect();
-        const cx = rect.left + rect.width * 0.5;
-        const cy = rect.top + rect.height * 0.5;
-        // Crystal star sits at (208, 26) within 260x260 viewBox
-        const relX = rect.width * (208 / 260 - 0.5);
-        const relY = rect.height * (26 / 260 - 0.5);
-        const rad = (currentAngle * Math.PI) / 180;
-        return {
-          x: cx + relX * Math.cos(rad) - relY * Math.sin(rad),
-          y: cy + relX * Math.sin(rad) + relY * Math.cos(rad)
-        };
-      }
-
       // PATH A: Downward Flight Path (Sweeps from Top-Right down through center-left, loops toward right bottom)
       function getDownwardPath(p) {
-        const x = 48 + 26 * Math.cos(2.2 * Math.PI * p + 0.4) - 16 * Math.sin(3.6 * Math.PI * p);
-        const y = 8 + p * 74; // 8vh to 82vh
+        const x = 50 + 28 * Math.cos(2.2 * Math.PI * p + 0.4) - 18 * Math.sin(3.6 * Math.PI * p);
+        const y = 8 + p * 76; // 8vh to 84vh
         return {
-          x: Math.max(8, Math.min(82, x)),
-          y: Math.max(6, Math.min(82, y))
+          x: Math.max(8, Math.min(84, x)),
+          y: Math.max(6, Math.min(84, y))
         };
       }
 
       // PATH B: Upward Flight Path (Ascends along a completely different arc: far left, cuts wide right, rises center-top)
       function getUpwardPath(p) {
-        const x = 46 - 30 * Math.sin(1.8 * Math.PI * p + 0.6) + 15 * Math.cos(4.4 * Math.PI * p);
-        const y = 8 + p * 74; // 8vh to 82vh
+        const x = 48 - 32 * Math.sin(1.8 * Math.PI * p + 0.6) + 16 * Math.cos(4.4 * Math.PI * p);
+        const y = 8 + p * 76; // 8vh to 84vh
         return {
-          x: Math.max(8, Math.min(82, x)),
-          y: Math.max(6, Math.min(82, y))
+          x: Math.max(8, Math.min(84, x)),
+          y: Math.max(6, Math.min(84, y))
         };
       }
 
@@ -4043,39 +3929,39 @@
           butterflyWrap.classList.remove('is-hovering');
 
           if (delta > 0) {
-            // SCROLLING DOWNWARDS: glide along Downward Path
+            // SCROLLING DOWNWARDS: fly along Downward Path
             const pt = getDownwardPath(progress);
             targetX = pt.x;
             targetY = pt.y;
 
             if (bubble && !butterflyWrap.classList.contains('is-speaking')) {
-              bubble.textContent = 'Soaring down into Luna’s tales! ✦';
+              bubble.textContent = 'Fluttering down into Luna’s tales! ✦';
             }
 
             if (window.addMagicalSparkle && Math.random() > 0.45) {
-              const tip = getWandTipCoords();
-              window.addMagicalSparkle(tip.x, tip.y, 1, 1.2, 'star');
+              const rect = butterflyWrap.getBoundingClientRect();
+              window.addMagicalSparkle(rect.left + rect.width * 0.5, rect.top + rect.height * 0.5, 1, 1.2, 'star');
             }
           } else {
-            // SCROLLING UPWARDS: ascend along Upward Path
+            // SCROLLING UPWARDS: fly along Upward Path
             const pt = getUpwardPath(progress);
             targetX = pt.x;
             targetY = pt.y;
 
             if (bubble && !butterflyWrap.classList.contains('is-speaking')) {
-              bubble.textContent = 'Ascending towards the celestial stars! ✦';
+              bubble.textContent = 'Ascending on azure wings! ✦';
             }
 
             if (window.addMagicalSparkle && Math.random() > 0.45) {
-              const tip = getWandTipCoords();
-              window.addMagicalSparkle(tip.x, tip.y, 1, 1.2, 'star');
+              const rect = butterflyWrap.getBoundingClientRect();
+              window.addMagicalSparkle(rect.left + rect.width * 0.5, rect.top + rect.height * 0.5, 1, 1.2, 'star');
             }
           }
         }
 
         lastScrollY = scrollY;
 
-        // When scroll stops, calm into gentle hovering wing swell
+        // When scroll stops, settle into calm basking flutter
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
           isIdle = true;
@@ -4097,27 +3983,30 @@
 
           let renderX = currentX;
           let renderY = currentY;
-          const time = performance.now() * 0.0018;
+          const time = performance.now() * 0.002;
           if (isIdle) {
-            renderX += Math.sin(time) * 0.65;
-            renderY += Math.cos(time * 0.85) * 0.6;
+            renderX += Math.sin(time) * 0.7;
+            renderY += Math.cos(time * 0.8) * 0.5;
           }
 
-          // Graceful upright aerodynamic banking (stays upright, never turns upside down)
+          // Align head & antennae smoothly into direction of flight (+90 because SVG head points -Y)
           const dx = currentX - prevX;
           const dy = currentY - prevY;
-          if (isIdle) {
-            targetAngle = Math.sin(time * 0.9) * 3.5;
-          } else if (Math.hypot(dx, dy) > 0.025) {
-            targetAngle = Math.max(-20, Math.min(20, dx * 22 + dy * 3));
+          if (!isIdle && Math.hypot(dx, dy) > 0.035) {
+            const rawAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+            let angleDiff = rawAngle - targetAngle;
+            while (angleDiff > 180) angleDiff -= 360;
+            while (angleDiff < -180) angleDiff += 360;
+            targetAngle += angleDiff;
           }
 
-          currentAngle += (targetAngle - currentAngle) * 0.09;
+          currentAngle += (targetAngle - currentAngle) * 0.12;
+          const renderAngle = isIdle ? currentAngle + Math.sin(time * 0.9) * 4 : currentAngle;
 
           butterflyWrap.style.left = `${renderX}vw`;
           butterflyWrap.style.top = `${renderY}vh`;
           if (!isLooping) {
-            butterflyRotator.style.transform = `rotate(${currentAngle}deg)`;
+            butterflyRotator.style.transform = `rotate(${renderAngle}deg)`;
           }
         }
 
@@ -4125,7 +4014,7 @@
       }
       requestAnimationFrame(animateButterfly);
 
-      // Interactive Click: Playful 360-degree Aerial Loop & Wand Crystal Burst
+      // Interactive Click: Playful 360-degree Aerial Loop & Sparkle Shower
       butterflyWrap.addEventListener('click', (e) => {
         e.stopPropagation();
         if (isLooping) return;
@@ -4135,22 +4024,25 @@
         sayingIdx = (sayingIdx + 1) % butterflySayings.length;
         if (bubble) bubble.textContent = butterflySayings[sayingIdx];
 
-        butterflyRotator.style.transition = 'transform 0.78s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        butterflyRotator.style.transform = `rotate(${currentAngle + 360}deg) scale(1.18)`;
+        butterflyRotator.style.transition = 'transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        butterflyRotator.style.transform = `rotate(${currentAngle + 360}deg) scale(1.22)`;
 
         if (window.addMagicalSparkle) {
-          const tip = getWandTipCoords();
-          window.addMagicalSparkle(tip.x, tip.y, 28, 2.5, 'star');
+          const rect = butterflyWrap.getBoundingClientRect();
+          window.addMagicalSparkle(rect.left + rect.width * 0.5, rect.top + rect.height * 0.5, 24, 2.5, 'star');
         }
 
         setTimeout(() => {
           butterflyRotator.style.transition = '';
+          currentAngle = ((currentAngle % 360) + 360) % 360;
+          if (currentAngle > 180) currentAngle -= 360;
+          targetAngle = currentAngle;
           butterflyRotator.style.transform = `rotate(${currentAngle}deg)`;
           setTimeout(() => {
             butterflyWrap.classList.remove('is-speaking');
             isLooping = false;
           }, 1600);
-        }, 780);
+        }, 750);
       });
     })();
 
