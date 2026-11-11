@@ -1446,8 +1446,8 @@
     }
 
     .owl-svg {
-      width: 230px;
-      height: 205px;
+      width: 245px;
+      height: 222px;
       overflow: visible;
       filter: drop-shadow(0 14px 28px rgba(48, 38, 33, 0.16));
     }
@@ -1455,9 +1455,10 @@
       filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.65));
     }
 
-    /* Branch physics: anchored on the left, flexes and springs back when owl touches down */
+    /* Branch physics: anchored on bottom-left root, flexes and springs back when wizard owl touches down */
     .branch-group {
-      transform-origin: 12px 162px;
+      transform-box: view-box;
+      transform-origin: -20px 194px;
       transition: transform 0.1s ease-out;
     }
     .branch-group.is-rebounding {
@@ -1472,6 +1473,7 @@
     }
 
     .branch-leaf {
+      transform-box: fill-box;
       transform-origin: center;
       animation: leaf-rustle 4s ease-in-out infinite alternate;
     }
@@ -1482,11 +1484,12 @@
 
     /* Owl Flyer Group */
     .owl-flyer {
-      transform-origin: 85px 156px;
+      transform-box: view-box;
+      transform-origin: 80px 162px;
       will-change: transform;
     }
 
-    /* Initial state before landing: owl is poised up in the moonlit sky */
+    /* Initial state before landing: wizard owl is poised up in the moonlit sky */
     .owl-downside-wrap:not(.has-landed):not(.is-flying) .owl-flyer {
       opacity: 0;
       transform: translate3d(240px, -340px, 0) scale(0.35) rotate(-22deg);
@@ -1568,11 +1571,13 @@
       opacity: 1;
     }
     .owl-downside-wrap.is-flying .owl-spread-wing-left {
-      transform-origin: 58px 92px;
+      transform-box: view-box;
+      transform-origin: 60px 92px;
       animation: owl-wing-flap-left 0.22s ease-in-out infinite alternate;
     }
     .owl-downside-wrap.is-flying .owl-spread-wing-right {
-      transform-origin: 112px 92px;
+      transform-box: view-box;
+      transform-origin: 108px 92px;
       animation: owl-wing-flap-right 0.22s ease-in-out infinite alternate;
     }
     @keyframes owl-wing-flap-left {
@@ -1587,7 +1592,9 @@
     /* Folded wings at rest when perched */
     .owl-folded-wings {
       opacity: 1;
-      transition: opacity 0.25s ease;
+      transform-box: view-box;
+      transform-origin: 92px 90px;
+      transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .owl-downside-wrap.is-flying .owl-folded-wings {
       opacity: 0;
@@ -1595,8 +1602,9 @@
 
     /* Perched breathing & head tilt */
     .owl-body-group {
+      transform-box: view-box;
       animation: owl-breathe 3.6s ease-in-out infinite alternate;
-      transform-origin: center 135px;
+      transform-origin: 82px 135px;
     }
     @keyframes owl-breathe {
       0% { transform: translateY(0) scaleY(1); }
@@ -1604,20 +1612,22 @@
     }
 
     .owl-head-group {
+      transform-box: view-box;
       animation: owl-head-tilt 6.5s ease-in-out infinite;
-      transform-origin: 85px 75px;
+      transform-origin: 80px 76px;
     }
     @keyframes owl-head-tilt {
       0%, 100% { transform: rotate(0deg); }
-      20% { transform: rotate(-5deg); }
+      20% { transform: rotate(-4deg); }
       45% { transform: rotate(0deg); }
-      70% { transform: rotate(6deg); }
+      70% { transform: rotate(5deg); }
       85% { transform: rotate(0deg); }
     }
 
     /* Natural blinking */
     .owl-eyelid {
-      transform-origin: 85px 62px;
+      transform-box: view-box;
+      transform-origin: 78px 62px;
       animation: owl-blink 4.2s infinite;
     }
     @keyframes owl-blink {
@@ -1626,15 +1636,8 @@
     }
 
     /* Interactive wing flutter when clicked */
-    .owl-wing-left, .owl-wing-right {
-      transform-origin: top center;
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .owl-interactive-wrap.is-hooting .owl-wing-left {
-      transform: rotate(-25deg);
-    }
-    .owl-interactive-wrap.is-hooting .owl-wing-right {
-      transform: rotate(25deg);
+    .owl-interactive-wrap.is-hooting .owl-folded-wings {
+      transform: rotate(10deg) translateX(4px);
     }
 
     /* Floating music / hoot indicator */
@@ -2616,137 +2619,246 @@
     </section>
 
     <!-- ======================================================================
-         PAGE DOWN SIDE — LUNA'S NOCTURNAL WATCHER (PERCHED ABOVE FOOTER)
+         PAGE DOWN SIDE — LUNA'S WIZARD OWL WATCHER (PERCHED ABOVE FOOTER)
          ====================================================================== -->
-    <div class="owl-downside-wrap wrap reveal-on-scroll" id="owl-downside" aria-label="Luna's Nocturnal Watcher at down side">
+    <div class="owl-downside-wrap wrap reveal-on-scroll" id="owl-downside" aria-label="Luna's Wizard Owl Watcher at down side">
       <div class="owl-moonlight-beam" aria-hidden="true"></div>
 
       <!-- Speech Bubble (Reveals after landing) -->
-      <div class="owl-speech-bubble" id="owl-bubble" title="Click the owl to watch him take flight!">
-        “Hoo... You've journeyed all the way down to Luna's night library. Tap me to watch me take flight! ✦”
+      <div class="owl-speech-bubble" id="owl-bubble" title="Click the wizard owl to watch him take flight!">
+        “Hoo... You've journeyed down to Luna's enchanted night library. Tap me to watch me take flight! ✦”
       </div>
 
-      <!-- Interactive Animated Owl on Branch -->
-      <div class="owl-interactive-wrap" id="owl-interactive" title="Click me to fly and hoot!" aria-label="Interactive nocturnal owl perched on an oak branch">
+      <!-- Interactive Animated Wizard Owl on Slanted Woodland Branch -->
+      <div class="owl-interactive-wrap" id="owl-interactive" title="Click me to fly and hoot!" aria-label="Interactive nocturnal wizard owl wearing a pointed witch hat perched on a slanted oak branch">
         <span class="owl-hoot-float" id="owl-hoot-note">♫ Hoo! Hoo! ✨</span>
 
-        <svg class="owl-svg" id="owl-svg-elem" viewBox="-50 -10 270 210" aria-hidden="true">
-          <!-- Ambient Moonlight Halo -->
-          <circle cx="85" cy="85" r="68" fill="rgba(228, 189, 145, 0.14)" />
+        <svg class="owl-svg" id="owl-svg-elem" viewBox="-45 -25 270 245" aria-hidden="true">
+          <defs>
+            <!-- Ambient Woodland Sunlit Halo -->
+            <radialGradient id="wizForestGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(225, 228, 162, 0.24)" />
+              <stop offset="65%" stop-color="rgba(228, 189, 145, 0.1)" />
+              <stop offset="100%" stop-color="rgba(228, 189, 145, 0)" />
+            </radialGradient>
+            <!-- Wizard Hat Gradients (Twilight Indigo-Charcoal with Rim Light) -->
+            <linearGradient id="wizHatGrad" x1="36" y1="36" x2="140" y2="-8" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#4e496b" />
+              <stop offset="35%" stop-color="#35314a" />
+              <stop offset="80%" stop-color="#221e31" />
+              <stop offset="100%" stop-color="#171422" />
+            </linearGradient>
+            <linearGradient id="wizHatBrimGrad" x1="10" y1="50" x2="152" y2="54" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#454060" />
+              <stop offset="48%" stop-color="#262236" />
+              <stop offset="100%" stop-color="#171422" />
+            </linearGradient>
+            <linearGradient id="wizHatStrapGrad" x1="46" y1="38" x2="120" y2="41" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#b57a45" />
+              <stop offset="55%" stop-color="#875429" />
+              <stop offset="100%" stop-color="#5e3618" />
+            </linearGradient>
+            <!-- Owl Caramel-Tawny Sunlit Plumage & Head -->
+            <linearGradient id="wizOwlBreastGrad" x1="46" y1="105" x2="114" y2="128" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#f7cf92" />
+              <stop offset="28%" stop-color="#cc925c" />
+              <stop offset="72%" stop-color="#a87043" />
+              <stop offset="100%" stop-color="#7c4e2c" />
+            </linearGradient>
+            <linearGradient id="wizOwlFaceGrad" x1="48" y1="54" x2="108" y2="78" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#f5ca8a" />
+              <stop offset="35%" stop-color="#bf8754" />
+              <stop offset="85%" stop-color="#8f5c35" />
+              <stop offset="100%" stop-color="#6b4225" />
+            </linearGradient>
+            <linearGradient id="wizOwlWingUpperGrad" x1="80" y1="86" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#8f6446" />
+              <stop offset="55%" stop-color="#6e4b34" />
+              <stop offset="100%" stop-color="#4d3222" />
+            </linearGradient>
+            <linearGradient id="wizOwlWingPrimaryGrad" x1="88" y1="112" x2="136" y2="174" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#6b4833" />
+              <stop offset="55%" stop-color="#4b3021" />
+              <stop offset="100%" stop-color="#311f15" />
+            </linearGradient>
+            <!-- Golden-Honey Anime Eye Iris -->
+            <radialGradient id="wizEyeGoldGrad" cx="50%" cy="62%" r="55%">
+              <stop offset="0%" stop-color="#ffe587" />
+              <stop offset="52%" stop-color="#de9628" />
+              <stop offset="100%" stop-color="#633a09" />
+            </radialGradient>
+            <!-- Slanted Gnarled Tree Branch -->
+            <linearGradient id="wizBranchWoodGrad" x1="45" y1="138" x2="64" y2="188" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#d4ae79" />
+              <stop offset="22%" stop-color="#5d4640" />
+              <stop offset="72%" stop-color="#423231" />
+              <stop offset="100%" stop-color="#271d1f" />
+            </linearGradient>
+          </defs>
 
-          <!-- Mossy Oak Branch (Rooted on the left, flexes & springs when owl touches down) -->
+          <!-- Soft Enchanted Forest Glow -->
+          <circle cx="84" cy="96" r="76" fill="url(#wizForestGlow)" />
+
+          <!-- Slanted Gnarled Tree Branch + Forest Foliage (Bends & springs on touchdown) -->
           <g class="branch-group" id="owl-branch">
-            <path d="M 8,162 C 48,153 112,168 162,154 C 166,153 168,157 163,160 C 120,174 58,160 8,170 Z" fill="#42342b" stroke="#251b14" stroke-width="1.5" />
-            <path d="M 28,164 C 44,158 80,163 118,160" stroke="rgba(228, 189, 145, 0.25)" stroke-width="1.5" fill="none" />
-            <!-- Branch Leaves -->
-            <path class="branch-leaf" d="M 28,158 C 18,146 14,138 22,134 C 30,130 36,142 28,158 Z" fill="#686b3a" />
-            <path class="branch-leaf" d="M 146,154 C 156,144 162,143 158,136 C 154,129 146,139 146,154 Z" fill="#a6a870" />
-            <circle cx="34" cy="144" r="2.5" fill="#e4bd91" opacity="0.8" />
-            <circle cx="152" cy="140" r="2" fill="#e4bd91" opacity="0.7" />
+            <!-- Branch Twigs & Forest Leaves (Left & Right) -->
+            <g class="branch-leaf">
+              <path d="M -8,188 C -16,174 -26,170 -28,176 C -26,184 -16,190 -8,188 Z" fill="#4f7c46" stroke="#162118" stroke-width="1.2" />
+              <path d="M 10,190 C 6,204 12,213 20,210 C 26,205 22,193 10,190 Z" fill="#3a6136" stroke="#162118" stroke-width="1.2" />
+              <path d="M 164,132 C 174,116 186,112 190,119 C 190,127 176,134 164,132 Z" fill="#5e8d4e" stroke="#162118" stroke-width="1.2" />
+              <path d="M 176,122 C 190,112 204,114 202,122 C 198,130 184,129 176,122 Z" fill="#46703d" stroke="#162118" stroke-width="1.2" />
+            </g>
+            <!-- Main Slanted Tree Branch Ascending Bottom-Left to Upper-Right -->
+            <path d="M -28,192 C 18,176 58,162 94,148 C 128,135 168,120 206,105 L 209,116 C 172,134 134,151 98,165 C 58,180 18,195 -25,208 Z" fill="url(#wizBranchWoodGrad)" stroke="#171113" stroke-width="1.8" />
+            <!-- Warm Sunlit Top Wood Highlight -->
+            <path d="M -22,191 C 22,175 62,161 98,147 C 132,134 170,120 202,107" stroke="#f0cd96" stroke-width="2" stroke-linecap="round" opacity="0.88" fill="none" />
+            <!-- Rugged Anime Bark Texture & Grooves -->
+            <g stroke="#1b1416" stroke-width="1.25" stroke-linecap="round" fill="none" opacity="0.82">
+              <path d="M -6,195 Q 16,186 36,181" />
+              <path d="M 28,179 Q 48,171 62,169" />
+              <path d="M 106,154 Q 126,144 148,136" />
+              <path d="M 142,132 Q 166,123 188,116" />
+              <ellipse cx="136" cy="144" rx="5" ry="2.2" transform="rotate(-21 136 144)" />
+            </g>
+            <!-- Fireflies / Forest Motes around Branch -->
+            <circle cx="-16" cy="166" r="2.1" fill="#fff3c4" opacity="0.85" />
+            <circle cx="174" cy="100" r="1.8" fill="#e4f2b8" opacity="0.8" />
           </g>
 
-          <!-- Owl Flyer Group: swoops in from the moonlit sky, flaps spread wings, and perches onto branch -->
+          <!-- Owl Flyer Group: swoops down wearing his wizard hat and lands on branch -->
           <g class="owl-flyer" id="owl-flyer">
-            <!-- Spread Wings (Active during flight with flapping animation) -->
+            <!-- Spread Wings (Visible during flight swoop) -->
             <g class="owl-spread-wings" id="owl-spread-wings" aria-hidden="true">
-              <!-- Left Spread Flight Wing -->
               <g class="owl-spread-wing owl-spread-wing-left">
-                <!-- Primary flight feathers silhouette -->
-                <path d="M 58,92 C 38,62 -8,46 -40,54 C -43,66 -35,80 -22,96 C -12,108 8,122 34,118 C 48,114 56,104 58,92 Z" fill="#362922" stroke="#201712" stroke-width="1.4" />
-                <!-- Secondary feather row -->
-                <path d="M 54,94 C 36,72 -2,60 -24,68 C -26,80 -18,94 -6,104 C 14,114 36,112 50,102 Z" fill="#4d3c32" />
-                <!-- Coverts & warm golden feather fringes -->
-                <path d="M 48,96 C 35,82 8,74 -6,82 C -4,92 6,102 18,106 C 30,110 42,106 48,96 Z" fill="#c88a58" opacity="0.45" />
-                <!-- Starlight Feather Quills -->
-                <path d="M 54,94 Q 10,72 -34,58" stroke="rgba(245, 194, 107, 0.7)" stroke-width="1.6" fill="none" stroke-linecap="round" />
-                <path d="M 46,98 Q 12,82 -16,74" stroke="rgba(245, 194, 107, 0.5)" stroke-width="1.3" fill="none" stroke-linecap="round" />
-                <!-- Shimmer dots on feather tips -->
-                <circle cx="-38" cy="56" r="2" fill="#fff5dd" />
-                <circle cx="-20" cy="74" r="1.6" fill="#fff5dd" />
-                <circle cx="-4" cy="98" r="1.4" fill="#f5c26b" />
+                <path d="M 60,92 C 38,60 -8,44 -42,54 C -44,68 -36,84 -22,100 C -10,112 10,124 36,118 C 50,114 58,104 60,92 Z" fill="#5e402f" stroke="#181214" stroke-width="1.6" />
+                <path d="M 55,95 C 36,72 -2,60 -24,69 C -26,81 -17,95 -5,105 C 15,115 36,112 51,102 Z" fill="#855a3f" />
+                <path d="M 54,94 Q 10,72 -36,59 M 46,99 Q 12,83 -18,75" stroke="#f2ca8c" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.72" />
               </g>
-
-              <!-- Right Spread Flight Wing -->
               <g class="owl-spread-wing owl-spread-wing-right">
-                <!-- Primary flight feathers silhouette -->
-                <path d="M 112,92 C 132,62 178,46 210,54 C 213,66 205,80 192,96 C 182,108 162,122 136,118 C 122,114 114,104 112,92 Z" fill="#362922" stroke="#201712" stroke-width="1.4" />
-                <!-- Secondary feather row -->
-                <path d="M 116,94 C 134,72 172,60 194,68 C 196,80 188,94 176,104 C 156,114 134,112 120,102 Z" fill="#4d3c32" />
-                <!-- Coverts & warm golden feather fringes -->
-                <path d="M 122,96 C 135,82 162,74 176,82 C 174,92 164,102 152,106 C 140,110 128,106 122,96 Z" fill="#c88a58" opacity="0.45" />
-                <!-- Starlight Feather Quills -->
-                <path d="M 116,94 Q 160,72 204,58" stroke="rgba(245, 194, 107, 0.7)" stroke-width="1.6" fill="none" stroke-linecap="round" />
-                <path d="M 124,98 Q 158,82 186,74" stroke="rgba(245, 194, 107, 0.5)" stroke-width="1.3" fill="none" stroke-linecap="round" />
-                <!-- Shimmer dots on feather tips -->
-                <circle cx="208" cy="56" r="2" fill="#fff5dd" />
-                <circle cx="190" cy="74" r="1.6" fill="#fff5dd" />
-                <circle cx="174" cy="98" r="1.4" fill="#f5c26b" />
+                <path d="M 106,92 C 128,60 174,44 208,54 C 210,68 202,84 188,100 C 176,112 156,124 130,118 C 116,114 108,104 106,92 Z" fill="#4e3325" stroke="#181214" stroke-width="1.6" />
+                <path d="M 111,95 C 130,72 168,60 190,69 C 192,81 183,95 171,105 C 151,115 130,112 115,102 Z" fill="#6e4b36" />
+                <path d="M 112,94 Q 156,72 202,59 M 120,99 Q 154,83 184,75" stroke="#dfb376" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.65" />
               </g>
             </g>
 
-            <!-- Golden Talons (Grasp branch upon landing) -->
-            <g class="owl-talons" id="owl-talons">
-              <path d="M 68,152 L 68,160 M 74,152 L 74,161 M 80,152 L 80,160" stroke="#e4bd91" stroke-width="3" stroke-linecap="round" />
-              <path d="M 90,152 L 90,160 M 96,152 L 96,161 M 102,152 L 102,160" stroke="#e4bd91" stroke-width="3" stroke-linecap="round" />
+            <!-- Rounded Tail Feathers Peeking Below the Slanted Branch -->
+            <g class="owl-tail-feathers">
+              <path d="M 96,158 C 96,174 99,186 105,188 C 110,188 112,175 112,158 Z" fill="#634029" stroke="#181214" stroke-width="1.5" />
+              <path d="M 107,156 C 107,172 110,185 116,187 C 121,187 123,174 122,155 Z" fill="#523421" stroke="#181214" stroke-width="1.5" />
+              <path d="M 117,154 C 118,168 121,179 126,181 C 130,180 131,168 128,151 Z" fill="#442a1b" stroke="#181214" stroke-width="1.4" />
             </g>
 
-            <!-- Owl Body with Breathing Motion -->
+            <!-- Owl Body & Textured Plumage with Gentle Breathing -->
             <g class="owl-body-group">
-              <!-- Main Body Egg Shape -->
-              <ellipse cx="85" cy="116" rx="38" ry="42" fill="#302621" stroke="#221a16" stroke-width="1.8" />
+              <!-- Main Plump Tawny-Caramel Body (3/4 Left-Facing Silhouette) -->
+              <path d="M 55,76 C 45,98 46,134 62,157 C 74,166 94,165 110,156 C 122,138 124,104 114,78 Z" fill="url(#wizOwlBreastGrad)" stroke="#181214" stroke-width="1.8" />
+              <!-- Golden Sunlit Rim Glow along Left Chest Contour -->
+              <path d="M 56,82 C 48,104 50,132 63,152" stroke="#ffe5ad" stroke-width="2.1" stroke-linecap="round" opacity="0.88" fill="none" />
 
-              <!-- Cream Feathered Breast -->
-              <ellipse cx="85" cy="120" rx="24" ry="28" fill="#e8c69f" />
-              
-              <!-- Delicate Chevron Feather Motifs -->
-              <path d="M 78,106 L 85,112 L 92,106" stroke="#8a6c56" stroke-width="1.8" fill="none" stroke-linecap="round" />
-              <path d="M 74,118 L 85,126 L 96,118" stroke="#8a6c56" stroke-width="1.8" fill="none" stroke-linecap="round" />
-              <path d="M 78,130 L 85,137 L 92,130" stroke="#8a6c56" stroke-width="1.8" fill="none" stroke-linecap="round" />
-              <path d="M 81,142 L 85,146 L 89,142" stroke="#8a6c56" stroke-width="1.5" fill="none" stroke-linecap="round" />
+              <!-- Delicate Anime Ink Feather Fleck Marks on Chest -->
+              <g stroke="#2a1a13" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.78">
+                <path d="M 62,96 Q 64,102 62,107" />
+                <path d="M 73,92 Q 74,97 72,101" />
+                <path d="M 67,112 Q 70,117 69,122" />
+                <path d="M 79,106 Q 80,113 78,118" />
+                <path d="M 63,128 Q 66,134 65,138" />
+                <path d="M 75,126 Q 77,133 76,138" />
+                <path d="M 86,118 Q 88,125 86,130" />
+                <path d="M 70,143 Q 73,148 72,152" />
+                <path d="M 83,140 Q 84,146 82,150" />
+              </g>
 
-              <!-- Folded Resting Wings (Visible when perched on branch) -->
+              <!-- Detailed Layered Folded Wing (Mounted on Right Side matching artwork) -->
               <g class="owl-folded-wings" id="owl-folded-wings">
-                <path class="owl-wing-left" d="M 50,88 C 40,105 40,135 60,148 C 53,136 50,110 58,92 Z" fill="#453830" stroke="#241a14" stroke-width="1.5" />
-                <path class="owl-wing-right" d="M 120,88 C 130,105 130,135 110,148 C 117,136 120,110 112,92 Z" fill="#453830" stroke="#241a14" stroke-width="1.5" />
+                <!-- Primary Tapering Dark Umber Wing Feathers -->
+                <path d="M 96,120 C 102,140 107,156 114,165 C 120,165 123,152 119,124 Z" fill="url(#wizOwlWingPrimaryGrad)" stroke="#171113" stroke-width="1.5" />
+                <path d="M 105,116 C 112,138 117,156 123,164 C 128,162 130,147 125,118 Z" fill="url(#wizOwlWingPrimaryGrad)" stroke="#171113" stroke-width="1.5" />
+                <path d="M 114,110 C 122,132 127,150 132,157 C 136,154 136,138 130,110 Z" fill="#3b2519" stroke="#171113" stroke-width="1.45" />
+                <!-- Secondary Scalloped Covert Feather Row -->
+                <path d="M 86,108 C 90,124 96,136 104,137 C 110,136 111,122 106,108 Z" fill="#634230" stroke="#171113" stroke-width="1.45" />
+                <path d="M 99,106 C 104,123 111,135 118,136 C 123,134 123,120 118,105 Z" fill="#593a29" stroke="#171113" stroke-width="1.45" />
+                <path d="M 110,104 C 116,120 123,131 128,131 C 132,128 131,115 125,101 Z" fill="#4f3324" stroke="#171113" stroke-width="1.45" />
+                <!-- Upper Shoulder Mantle Feather Cap -->
+                <path d="M 82,88 C 77,104 83,120 96,122 C 112,123 125,112 122,94 C 118,84 96,81 82,88 Z" fill="url(#wizOwlWingUpperGrad)" stroke="#171113" stroke-width="1.6" />
+                <!-- Subtle Shoulder Covert Ink Scales -->
+                <path d="M 90,98 Q 95,103 101,99 M 104,104 Q 109,108 114,104" stroke="#231610" stroke-width="1.15" stroke-linecap="round" fill="none" />
               </g>
             </g>
 
-            <!-- Owl Head with Natural Blinking & Tilting -->
+            <!-- Golden-Amber Talons with Sharp Black Claws Gripping the Slanted Branch -->
+            <g class="owl-talons" id="owl-talons">
+              <!-- Left Foot Clamping Lower Ridge -->
+              <g>
+                <path d="M 60,160 C 57,164 56,169 59,172 C 62,172 64,167 65,161 Z" fill="#d9a852" stroke="#171112" stroke-width="1.35" />
+                <path d="M 66,161 C 63,166 63,172 66,174 C 69,174 71,168 71,161 Z" fill="#e6b762" stroke="#171112" stroke-width="1.35" />
+                <path d="M 72,160 C 71,165 71,170 74,172 C 76,171 77,165 76,159 Z" fill="#c99642" stroke="#171112" stroke-width="1.35" />
+                <!-- Curved Black Claws -->
+                <path d="M 59,171 C 57,174 57,178 59,180 C 61,178 61,174 61,171 Z" fill="#171112" />
+                <path d="M 66,173 C 65,177 65,180 67,182 C 69,180 69,176 68,173 Z" fill="#171112" />
+                <path d="M 74,171 C 73,174 74,177 75,179 C 77,177 77,174 76,171 Z" fill="#171112" />
+              </g>
+              <!-- Right Foot Clamping Higher Along Ascending Bark -->
+              <g>
+                <path d="M 83,152 C 80,156 80,161 83,164 C 86,164 87,159 88,153 Z" fill="#d9a852" stroke="#171112" stroke-width="1.35" />
+                <path d="M 89,151 C 87,156 87,162 90,164 C 93,164 94,158 94,151 Z" fill="#e6b762" stroke="#171112" stroke-width="1.35" />
+                <path d="M 95,150 C 94,155 95,160 98,162 C 100,161 100,155 99,149 Z" fill="#c99642" stroke="#171112" stroke-width="1.35" />
+                <!-- Curved Black Claws -->
+                <path d="M 83,163 C 81,166 81,170 83,172 C 85,170 85,166 85,163 Z" fill="#171112" />
+                <path d="M 90,163 C 89,167 89,171 91,173 C 93,170 93,167 92,163 Z" fill="#171112" />
+                <path d="M 98,161 C 97,164 98,167 99,169 C 101,167 101,164 100,161 Z" fill="#171112" />
+              </g>
+            </g>
+
+            <!-- Owl Head, Golden Expressive Eyes & Pointed Wizard Hat (Tilts Together!) -->
             <g class="owl-head-group">
-              <!-- Pointed Ear Tufts -->
-              <polygon points="54,42 66,16 76,38" fill="#302621" stroke="#221a16" stroke-width="1.5" />
-              <polygon points="116,42 104,16 94,38" fill="#302621" stroke="#221a16" stroke-width="1.5" />
-              <path d="M 64,24 L 70,36 M 106,24 L 100,36" stroke="#e4bd91" stroke-width="1.2" opacity="0.6" />
+              <!-- Caramel-Tawny Head Under Hat -->
+              <ellipse cx="81" cy="64" rx="28" ry="23" fill="url(#wizOwlFaceGrad)" stroke="#181214" stroke-width="1.8" />
+              <!-- Sunlit Backlit Temple Rim -->
+              <path d="M 55,58 C 53,66 54,74 60,80" stroke="#ffe4ac" stroke-width="1.8" stroke-linecap="round" fill="none" />
+              <!-- Facial Whisker / Brow Ink Details -->
+              <path d="M 65,52 Q 73,57 76,63 M 91,53 Q 82,57 78,63" stroke="#241610" stroke-width="1.5" stroke-linecap="round" fill="none" />
+              <path d="M 97,68 L 100,70 M 94,72 L 98,74 M 60,72 L 57,74" stroke="#2b1b14" stroke-width="1.1" stroke-linecap="round" />
 
-              <!-- Main Head Circle -->
-              <circle cx="85" cy="62" r="32" fill="#302621" stroke="#221a16" stroke-width="1.8" />
+              <!-- Left Eye (3/4 Perspective Foreshortened) -->
+              <ellipse cx="64" cy="62" rx="6.4" ry="7.8" fill="#181214" />
+              <ellipse cx="64.5" cy="62" rx="5.3" ry="6.7" fill="url(#wizEyeGoldGrad)" />
+              <circle class="owl-pupil" id="owl-pupil-left" cx="64" cy="62" r="3.6" fill="#120d0e" />
+              <circle cx="62.2" cy="59.4" r="1.5" fill="#ffffff" />
 
-              <!-- Light Cream Facial Discs -->
-              <circle cx="73" cy="62" r="16" fill="#f8eedf" />
-              <circle cx="97" cy="62" r="16" fill="#f8eedf" />
+              <!-- Right Eye (Closer Prominent Golden Eye) -->
+              <ellipse cx="90" cy="63" rx="9.2" ry="9.5" fill="#181214" />
+              <ellipse cx="89.8" cy="63.3" rx="8.0" ry="8.3" fill="url(#wizEyeGoldGrad)" />
+              <circle class="owl-pupil" id="owl-pupil-right" cx="90" cy="63" r="5.0" fill="#120d0e" />
+              <circle cx="87.2" cy="59.6" r="2.2" fill="#ffffff" />
+              <circle cx="92.5" cy="66.2" r="1.0" fill="#ffffff" opacity="0.82" />
 
-              <!-- Big Glowing Golden Irises -->
-              <circle cx="73" cy="62" r="9.5" fill="#f5c26b" stroke="#c88a58" stroke-width="1" />
-              <circle cx="97" cy="62" r="9.5" fill="#f5c26b" stroke="#c88a58" stroke-width="1" />
-
-              <!-- Deep Nocturnal Pupils -->
-              <circle class="owl-pupil" id="owl-pupil-left" cx="73" cy="62" r="5.5" fill="#201814" />
-              <circle class="owl-pupil" id="owl-pupil-right" cx="97" cy="62" r="5.5" fill="#201814" />
-
-              <!-- Reflective Starlight Glints -->
-              <circle cx="71" cy="59.5" r="2.2" fill="#ffffff" />
-              <circle cx="95" cy="59.5" r="2.2" fill="#ffffff" />
-              <circle cx="75" cy="64.5" r="1" fill="#ffffff" opacity="0.7" />
-              <circle cx="99" cy="64.5" r="1" fill="#ffffff" opacity="0.7" />
-
-              <!-- Eyelids for Natural Blinking Animation -->
+              <!-- Natural Blinking Eyelids Over 3/4 Eyes -->
               <g class="owl-eyelids">
-                <path class="owl-eyelid" d="M 57,62 Q 73,79 89,62 Z" fill="#302621" />
-                <path class="owl-eyelid" d="M 81,62 Q 97,79 113,62 Z" fill="#302621" />
+                <path class="owl-eyelid" d="M 57,62 Q 64,71 71,62 Z" fill="#9c6b3f" stroke="#181214" stroke-width="1.1" />
+                <path class="owl-eyelid" d="M 80,63 Q 90,74 100,63 Z" fill="#9c6b3f" stroke="#181214" stroke-width="1.1" />
               </g>
 
-              <!-- Amber Bronze Beak -->
-              <polygon points="81,68 89,68 85,78" fill="#c88a58" stroke="#8a4f20" stroke-width="0.8" />
+              <!-- Curved Hooked Dark Anime Beak -->
+              <path d="M 70,61 C 74,60 79,62 78,67 C 77,72 72,76 69,77 C 68,72 68,66 70,61 Z" fill="#1e1718" stroke="#110c0d" stroke-width="1.2" />
+              <path d="M 73,63 Q 71,69 70,74" stroke="#6d6466" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.7" />
+
+              <!-- ICONIC POINTED WIZARD / WITCH HAT WITH BUCKLED LEATHER STRAP -->
+              <g class="wizard-hat-group">
+                <!-- Wide Brim Underside Shadow -->
+                <path d="M 10,50 C 44,41 114,42 152,55 C 122,57 46,56 10,50 Z" fill="#181422" stroke="#100d17" stroke-width="1.5" />
+                <!-- Broad Sweeping Upper Brim -->
+                <path d="M 8,50 C 28,36 108,33 154,55 C 122,50 48,47 8,50 Z" fill="url(#wizHatBrimGrad)" stroke="#100d17" stroke-width="1.7" />
+                <!-- Tall Crooked Pointed Crown -->
+                <path d="M 45,42 C 56,22 72,4 89,-12 C 102,-14 114,-8 136,-9 C 120,-2 114,4 116,14 C 118,24 120,34 121,42 C 96,38 68,38 45,42 Z" fill="url(#wizHatGrad)" stroke="#100d17" stroke-width="1.7" />
+                <!-- Crown Cloth Crease & Fold Lines -->
+                <path d="M 88,2 Q 95,14 91,25 M 102,4 Q 108,16 103,28" stroke="#1a1626" stroke-width="1.5" stroke-linecap="round" fill="none" />
+                <!-- Sunlit Left Brim & Hat Crown Catchlight -->
+                <path d="M 11,48 C 34,39 62,38 82,39 M 47,40 C 60,21 75,3 90,-10" stroke="#9b92bd" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.75" />
+                <!-- Warm Brown Hatband Leather Strap & Bronze Buckle -->
+                <path d="M 45,40 Q 83,32 121,41 L 120,45 Q 83,37 45,44 Z" fill="url(#wizHatStrapGrad)" stroke="#181214" stroke-width="1.35" />
+                <rect x="94" y="34.5" width="9" height="8.5" rx="1.5" transform="rotate(6 94 34.5)" fill="#8e582c" stroke="#181214" stroke-width="1.3" />
+                <rect x="96.3" y="36.6" width="4.4" height="4.4" rx="0.6" transform="rotate(6 94 34.5)" fill="#3b261c" />
+              </g>
             </g>
           </g>
         </svg>
@@ -2754,13 +2866,13 @@
 
       <!-- Interactive flight trigger button -->
       <div class="owl-actions">
-        <button type="button" class="owl-fly-btn" id="owl-fly-trigger" aria-label="Watch Luna's owl fly and land on the branch">
-          ✦ Watch Owl Fly &amp; Perch 🦉
+        <button type="button" class="owl-fly-btn" id="owl-fly-trigger" aria-label="Watch Luna's wizard owl fly and land on the branch">
+          ✦ Watch Wizard Owl Fly &amp; Perch 🦉
         </button>
       </div>
 
-      <p class="owl-caption">✦ Luna's Nocturnal Watcher · Perched Under the Stars ✦</p>
-      <p class="owl-subcaption">Keeping quiet guard over stories, verses, and wanderers of the night.</p>
+      <p class="owl-caption">✦ Luna's Enchanted Wizard Owl · Perched Above the Night ✦</p>
+      <p class="owl-subcaption">Keeping quiet magical guard over stories, verses, and wanderers of the night.</p>
     </div>
   </main>
 
@@ -3888,13 +4000,13 @@
         const deltaX = (e.clientX - centerX) / window.innerWidth;
         const deltaY = (e.clientY - centerY) / window.innerHeight;
 
-        const offsetX = Math.max(-2.5, Math.min(2.5, deltaX * 6));
-        const offsetY = Math.max(-2.5, Math.min(2.5, deltaY * 6));
+        const offsetX = Math.max(-1.8, Math.min(1.8, deltaX * 5.2));
+        const offsetY = Math.max(-2.0, Math.min(2.0, deltaY * 5.2));
 
-        leftPupil.setAttribute('cx', String(73 + offsetX));
+        leftPupil.setAttribute('cx', String(64 + offsetX * 0.85));
         leftPupil.setAttribute('cy', String(62 + offsetY));
-        rightPupil.setAttribute('cx', String(97 + offsetX));
-        rightPupil.setAttribute('cy', String(62 + offsetY));
+        rightPupil.setAttribute('cx', String(90 + offsetX));
+        rightPupil.setAttribute('cy', String(63 + offsetY));
       });
     })();
 
@@ -3988,8 +4100,8 @@
       const q = question.toLowerCase();
       let reply = '';
 
-      if (q.includes('owl') || q.includes('watcher') || q.includes('bird')) {
-        reply = 'That’s Luna’s Nocturnal Watcher! Perched quietly on the oak branch at the down side of the page, he keeps guard over the night library. Tap him down there to hear him hoot!';
+      if (q.includes('owl') || q.includes('wizard') || q.includes('hat') || q.includes('watcher') || q.includes('bird')) {
+        reply = 'That’s Luna’s Enchanted Wizard Owl! Wearing his pointed dark-indigo wizard hat with a buckled leather strap, he perches on the slanted oak branch at the bottom of the page. Tap him to hear him hoot and swoop through the night sky!';
       } else if (q.includes('firefl') || q.includes('wisp')) {
         reply = 'Those are Luna’s enchanted golden fireflies! They drift peacefully around the poetry cards and scatter away when your cursor gets close!';
       } else if (q.includes('butterfly') || q.includes('morpho') || q.includes('blue') || q.includes('wings')) {
