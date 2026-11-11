@@ -3,6 +3,28 @@
    Ensures seamless light & dark themes across all poem & story subpages
    ========================================================================== */
 
+/* Light Mode Creamy Background & Variables */
+:root {
+  --bg: #f7f2e7;
+  --paper: #f7f2e7;
+  --card-bg: #fffcf5;
+  --card-alt: #f1ebd9;
+  --cream: #eee7d7;
+  --charcoal: #231d19;
+  --ink: #231d19;
+  --ink-soft: #5c5045;
+  --ink-muted: #8c7e70;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--charcoal);
+}
+
+.topbar {
+  background: rgba(247, 242, 231, 0.94);
+}
+
 /* Dark Mode Variables & Resets */
 html[data-theme="dark"] {
   color-scheme: dark;
