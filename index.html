@@ -1350,10 +1350,10 @@
     }
 
     /* ==========================================================================
-       OWL ON PAGE DOWN — NOCTURNAL GUARDIAN SECTION
+       NOCTURNAL OWL AT DOWN SIDE (LUNA'S NIGHT WATCHER)
        ========================================================================== */
-    .owl-sanctuary {
-      padding-block: 40px 60px;
+    .owl-downside-wrap {
+      padding-block: 48px 36px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1365,12 +1365,12 @@
 
     .owl-moonlight-beam {
       position: absolute;
-      top: -120px;
+      top: -90px;
       left: 50%;
       transform: translateX(-50%);
-      width: min(720px, 92vw);
-      height: 320px;
-      background: radial-gradient(ellipse at 50% 10%, rgba(228, 189, 145, 0.18) 0%, rgba(200, 138, 88, 0.05) 50%, transparent 80%);
+      width: min(640px, 92vw);
+      height: 280px;
+      background: radial-gradient(ellipse at 50% 10%, rgba(228, 189, 145, 0.16) 0%, rgba(200, 138, 88, 0.04) 50%, transparent 80%);
       pointer-events: none;
       z-index: -1;
     }
@@ -1380,14 +1380,14 @@
       background: var(--card-bg);
       border: 1px solid var(--accent-warm);
       border-radius: var(--radius-md);
-      padding: 14px 24px;
-      margin-bottom: 24px;
+      padding: 12px 22px;
+      margin-bottom: 20px;
       font-family: var(--serif);
       font-style: italic;
-      font-size: 15.5px;
+      font-size: 14.5px;
       color: var(--ink-primary);
-      box-shadow: 0 10px 30px rgba(48, 38, 33, 0.1);
-      max-width: 440px;
+      box-shadow: 0 10px 28px rgba(48, 38, 33, 0.1);
+      max-width: 420px;
       animation: float-gentle 3.6s ease-in-out infinite alternate;
       cursor: pointer;
       transition: var(--transition-base);
@@ -1417,7 +1417,7 @@
       width: 0;
     }
     .owl-speech-bubble:hover {
-      transform: scale(1.04) translateY(-3px);
+      transform: scale(1.03) translateY(-3px);
       box-shadow: 0 14px 35px rgba(200, 138, 88, 0.25);
     }
 
@@ -1432,18 +1432,18 @@
       user-select: none;
       -webkit-user-select: none;
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      padding: 10px;
+      padding: 8px;
     }
     .owl-interactive-wrap:hover {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
     .owl-interactive-wrap:active {
       transform: scale(0.97);
     }
 
     .owl-svg {
-      width: 180px;
-      height: 200px;
+      width: 170px;
+      height: 190px;
       overflow: visible;
       filter: drop-shadow(0 12px 25px rgba(48, 38, 33, 0.15));
     }
@@ -1521,7 +1521,7 @@
     }
 
     .owl-caption {
-      margin-top: 16px;
+      margin-top: 14px;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -2028,7 +2028,6 @@
         <li><a class="nav-link" href="#works" data-nav="works">Works</a></li>
         <li><a class="nav-link" href="#about" data-nav="about">About</a></li>
         <li><a class="nav-link" href="#contact" data-nav="contact">Contact</a></li>
-        <li><a class="nav-link" href="#owl-perch" data-nav="owl-perch">Owl 🦉</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -2368,9 +2367,9 @@
     </section>
 
     <!-- ======================================================================
-         PAGE DOWN — THE OWL SANCTUARY (LUNA'S NOCTURNAL WATCHER)
+         PAGE DOWN SIDE — LUNA'S NOCTURNAL WATCHER (PERCHED ABOVE FOOTER)
          ====================================================================== -->
-    <section class="owl-sanctuary wrap reveal-on-scroll" id="owl-perch" aria-label="Luna's Nocturnal Watcher">
+    <div class="owl-downside-wrap wrap reveal-on-scroll" id="owl-downside" aria-label="Luna's Nocturnal Watcher at down side">
       <div class="owl-moonlight-beam" aria-hidden="true"></div>
 
       <!-- Speech Bubble -->
@@ -2463,7 +2462,7 @@
 
       <p class="owl-caption">✦ Luna's Nocturnal Watcher · Perched Under the Stars ✦</p>
       <p class="owl-subcaption">Keeping quiet guard over stories, verses, and wanderers of the night.</p>
-    </section>
+    </div>
   </main>
 
   <!-- ========================================================================
@@ -2633,7 +2632,6 @@
       <button class="chat-pill-btn" type="button" data-prompt="Tell me about Luna">About Luna</button>
       <button class="chat-pill-btn" type="button" data-prompt="What poems can I read?">Poetry shelf</button>
       <button class="chat-pill-btn" type="button" data-prompt="Where can I read The Hidden Bloodline?">The Hidden Bloodline</button>
-      <button class="chat-pill-btn" type="button" data-prompt="Tell me about the Owl down below">The Owl 🦉</button>
       <button class="chat-pill-btn" type="button" data-prompt="Tell me about the Butterfly">The Butterfly 🦋</button>
     </div>
 
@@ -2645,7 +2643,7 @@
   </aside>
 
   <!-- ========================================================================
-       SCRIPTS: SCROLL MOTION, STARFIELD, MOON TRACKER, OWL INTERACTION
+       SCRIPTS: SCROLL MOTION, STARFIELD, MOON TRACKER, BUTTERFLY
        ======================================================================== -->
   <script>
     /* ==========================================================================
@@ -2704,7 +2702,7 @@
         }
 
         // 4. Scroll-Spy: Highlight active section in nav
-        const sections = ['home', 'poetry', 'works', 'about', 'contact', 'owl-perch'];
+        const sections = ['home', 'poetry', 'works', 'about', 'contact'];
         let activeSection = 'home';
         for (let i = 0; i < sections.length; i++) {
           const sec = document.getElementById(sections[i]);
@@ -2830,7 +2828,7 @@
         }
       }
 
-      // Expose globally so external interactions (Moon, Owl, etc.) can emit sparkles
+      // Expose globally so external interactions (Moon, Butterfly, etc.) can emit sparkles
       window.addMagicalSparkle = addSparkle;
 
       // 1. Magical Sparkles while moving cursor / mouse
@@ -2863,19 +2861,12 @@
         addSparkle(e.clientX, e.clientY, 15, 2.4);
       });
 
-      // 4. Extra Sparkle Bursts on Moon & Owl hover
+      // 4. Extra Sparkle Bursts on Moon hover
       const heroMoonEl = document.getElementById('hero-moon');
       if (heroMoonEl) {
         heroMoonEl.addEventListener('mouseenter', () => {
           const rect = heroMoonEl.getBoundingClientRect();
           addSparkle(rect.left + rect.width / 2, rect.top + rect.height / 2, 12, 1.8, 'star');
-        });
-      }
-      const owlEl = document.getElementById('owl-interactive');
-      if (owlEl) {
-        owlEl.addEventListener('click', () => {
-          const rect = owlEl.getBoundingClientRect();
-          addSparkle(rect.left + rect.width / 2, rect.top + 60, 16, 2.2, 'star');
         });
       }
 
@@ -3087,20 +3078,34 @@
       window.addEventListener('scroll', updateMoonScroll, { passive: true });
       updateMoonScroll();
 
-      // Clicking tracker scrolls smoothly to the bottom Owl or Top
+      // Clicking tracker scrolls smoothly to the Contact section or Top
       tracker.addEventListener('click', () => {
         const isAtBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100;
         if (isAtBottom) {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-          const owlPerch = document.getElementById('owl-perch');
-          if (owlPerch) owlPerch.scrollIntoView({ behavior: 'smooth' });
+          const contactSec = document.getElementById('contact');
+          if (contactSec) contactSec.scrollIntoView({ behavior: 'smooth' });
         }
       });
     })();
 
     /* ==========================================================================
-       4. INTERACTIVE OWL ON PAGE DOWN
+       4. HERO GLOWING MOON INTERACTION
+       ========================================================================== */
+    (() => {
+      const heroMoon = document.getElementById('hero-moon');
+      if (!heroMoon) return;
+      heroMoon.addEventListener('click', () => {
+        heroMoon.style.transform = 'scale(1.22) rotate(20deg)';
+        setTimeout(() => {
+          heroMoon.style.transform = '';
+        }, 600);
+      });
+    })();
+
+    /* ==========================================================================
+       5. NOCTURNAL OWL AT DOWN SIDE (LUNA'S NIGHT WATCHER)
        ========================================================================== */
     (() => {
       const owl = document.getElementById('owl-interactive');
@@ -3123,6 +3128,11 @@
         owl.classList.add('is-hooting');
         sayingIndex = (sayingIndex + 1) % sayings.length;
         bubble.textContent = sayings[sayingIndex];
+
+        if (window.addMagicalSparkle) {
+          const rect = owl.getBoundingClientRect();
+          window.addMagicalSparkle(rect.left + rect.width / 2, rect.top + 60, 16, 2.2, 'star');
+        }
 
         setTimeout(() => {
           owl.classList.remove('is-hooting');
@@ -3153,20 +3163,6 @@
         leftPupil.setAttribute('cy', String(62 + offsetY));
         rightPupil.setAttribute('cx', String(97 + offsetX));
         rightPupil.setAttribute('cy', String(62 + offsetY));
-      });
-    })();
-
-    /* ==========================================================================
-       5. HERO GLOWING MOON INTERACTION
-       ========================================================================== */
-    (() => {
-      const heroMoon = document.getElementById('hero-moon');
-      if (!heroMoon) return;
-      heroMoon.addEventListener('click', () => {
-        heroMoon.style.transform = 'scale(1.22) rotate(20deg)';
-        setTimeout(() => {
-          heroMoon.style.transform = '';
-        }, 600);
       });
     })();
 
@@ -3261,7 +3257,7 @@
       let reply = '';
 
       if (q.includes('owl') || q.includes('watcher') || q.includes('bird')) {
-        reply = 'That’s Luna’s Nocturnal Watcher! Perched on the oak branch at the bottom of the page, he guards the night library. Click on him to hear him hoot!';
+        reply = 'That’s Luna’s Nocturnal Watcher! Perched quietly on the oak branch at the down side of the page, he keeps guard over the night library. Tap him down there to hear him hoot!';
       } else if (q.includes('butterfly') || q.includes('wings') || q.includes('insect') || q.includes('moth')) {
         reply = 'That’s Luna’s Celestial Four-Winged Butterfly! As you scroll up and down the page, she flutters gracefully across the screen, taking different celestial flight paths each way. Click on her to watch her do a stardust loop!';
       } else if (q.includes('moon') || q.includes('phase')) {
@@ -3277,7 +3273,7 @@
       } else if (q.includes('contact') || q.includes('email') || q.includes('message') || q.includes('reach')) {
         reply = 'You can email Luna at daffini1908@gmail.com, use the contact form at the bottom of the page, or connect on Wattpad @author_luna1.';
       } else {
-        reply = 'I’m happy to guide you! Ask me about Luna’s poems, her novel The Hidden Bloodline, the glowing Moon rising behind her photo, the Owl at the bottom, or the Celestial Butterfly!';
+        reply = 'I’m happy to guide you! Ask me about Luna’s poems, her novel The Hidden Bloodline, the glowing Moon rising behind her photo, or the Celestial Butterfly!';
       }
 
       setTimeout(() => appendMessage(reply, false), 350);
