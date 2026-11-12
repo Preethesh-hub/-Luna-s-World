@@ -1374,6 +1374,7 @@
 
     .owl-speech-bubble {
       position: relative;
+      z-index: 2;
       background: var(--card-bg);
       border: 1px solid var(--accent-warm);
       border-radius: var(--radius-md);
@@ -1389,7 +1390,7 @@
       opacity: 0;
       transform: translateY(14px) scale(0.92);
       pointer-events: none;
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
     }
     .owl-downside-wrap.has-landed .owl-speech-bubble {
       opacity: 1;
@@ -1421,8 +1422,7 @@
       display: block;
       width: 0;
     }
-    .owl-speech-bubble:hover {
-      transform: scale(1.03) translateY(-3px);
+    .owl-downside-wrap.has-landed .owl-speech-bubble:hover {
       box-shadow: 0 14px 35px rgba(200, 138, 88, 0.25);
     }
 
@@ -1433,6 +1433,7 @@
 
     .owl-interactive-wrap {
       position: relative;
+      z-index: 8;
       cursor: pointer;
       user-select: none;
       -webkit-user-select: none;
@@ -1519,9 +1520,10 @@
     .wizard-owl-tail-img {
       z-index: 1;
       opacity: 0;
-      transition: opacity 0.12s ease;
+      transition: opacity 0.14s ease;
     }
-    .owl-downside-wrap.has-landed:not(.is-flying) .wizard-owl-tail-img {
+    .owl-downside-wrap.has-landed:not(.is-flying) .wizard-owl-tail-img,
+    .owl-downside-wrap.is-tail-perched .wizard-owl-tail-img {
       opacity: 1;
     }
     .wizard-owl-tail-fly-img {
@@ -1549,16 +1551,16 @@
       25% { opacity: 1; transform: rotate(5deg); }
       50% { opacity: 1; transform: rotate(-5deg); }
       75% { opacity: 1; transform: rotate(4deg); }
-      92% { opacity: 1; transform: rotate(0deg); }
-      100% { opacity: 0; transform: rotate(0deg); }
+      89% { opacity: 1; transform: rotate(0deg); }
+      97%, 100% { opacity: 0; transform: rotate(0deg); }
     }
     @keyframes owl-flight-tail-loop {
       0% { opacity: 1; transform: rotate(0deg); }
       20% { opacity: 1; transform: rotate(-6deg); }
       45% { opacity: 1; transform: rotate(5deg); }
       70% { opacity: 1; transform: rotate(-5deg); }
-      92% { opacity: 1; transform: rotate(1deg); }
-      100% { opacity: 0; transform: rotate(0deg); }
+      89% { opacity: 1; transform: rotate(1deg); }
+      97%, 100% { opacity: 0; transform: rotate(0deg); }
     }
     .wizard-owl-branch-img {
       z-index: 2;
@@ -1757,6 +1759,35 @@
       }
     }
 
+    @media (max-width: 600px) {
+      .owl-downside-wrap:not(.has-landed):not(.is-flying) .owl-flyer {
+        transform: translate3d(130px, -250px, 0) scale(0.42) rotate(-18deg);
+      }
+      .owl-downside-wrap.is-landing .owl-flyer {
+        animation-name: owl-swoop-in-perch-mobile;
+      }
+      .owl-downside-wrap.is-re-flying .owl-flyer {
+        animation-name: owl-flight-loop-perch-mobile;
+      }
+      @keyframes owl-swoop-in-perch-mobile {
+        0% { opacity: 0; transform: translate3d(130px, -250px, 0) scale(0.42) rotate(-18deg); }
+        16% { opacity: 1; transform: translate3d(85px, -195px, 0) scale(0.6) rotate(-12deg); }
+        42% { opacity: 1; transform: translate3d(-75px, -135px, 0) scale(0.8) rotate(14deg); }
+        68% { opacity: 1; transform: translate3d(-95px, -55px, 0) scale(0.94) rotate(8deg); }
+        88% { opacity: 1; transform: translate3d(4px, -10px, 0) scale(1.04) rotate(-2deg); }
+        100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+      }
+      @keyframes owl-flight-loop-perch-mobile {
+        0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+        14% { transform: translate3d(-20px, -45px, 0) scale(1.03) rotate(-8deg); }
+        30% { transform: translate3d(-115px, -145px, 0) scale(0.76) rotate(-14deg); }
+        50% { transform: translate3d(0, -230px, 0) scale(0.58) rotate(4deg); }
+        72% { transform: translate3d(115px, -135px, 0) scale(0.8) rotate(16deg); }
+        89% { transform: translate3d(10px, -18px, 0) scale(1.04) rotate(-4deg); }
+        100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+      }
+    }
+
     /* Gentle perched chest breathing (pivots at talons so belly & feet stay pinned to branch) */
     .wizard-owl-breathe {
       position: relative;
@@ -1849,18 +1880,6 @@
       30% { opacity: 0.8; transform: translate(6px, -6px) scale(1); }
       75% { opacity: 0.65; transform: translate(12px, -20px) scale(1.08); }
       100% { opacity: 0; transform: translate(16px, -30px) scale(1.12); }
-    }
-
-    /* Daytime resting drowsy blink vs nighttime awake alert blink */
-    html:not([data-theme="dark"]) .owl-downside-wrap.has-landed:not(.is-flying) .owl-interactive-wrap:not(:hover) .wizard-owl-blink-img {
-      animation: owl-blink-drowsy 4.2s ease-in-out infinite;
-    }
-    @keyframes owl-blink-drowsy {
-      0%, 68%, 100% { opacity: 0; clip-path: inset(29% 0 71% 0); }
-      72% { opacity: 1; clip-path: inset(29% 0 71% 0); }
-      78%, 90% { opacity: 1; clip-path: inset(29% 0 60% 0); }
-      95% { opacity: 1; clip-path: inset(29% 0 71% 0); }
-      97% { opacity: 0; clip-path: inset(29% 0 71% 0); }
     }
 
     /* Nocturnal Amber Eye Gleam (Active in dark mode at z-index 3, softly covered during blinks) */
@@ -4204,6 +4223,7 @@
 
       function handleTouchdownRebound(delayMs, sparkleCount, speedMul) {
         setTimeout(() => {
+          downsideWrap.classList.add('is-tail-perched');
           if (branch) {
             branch.classList.add('is-rebounding');
             setTimeout(() => branch.classList.remove('is-rebounding'), 850);
@@ -4222,7 +4242,7 @@
         isFlying = true;
         if (flyer) flyer.style.transform = '';
 
-        downsideWrap.classList.remove('has-landed', 'is-perched', 'is-re-flying');
+        downsideWrap.classList.remove('has-landed', 'is-perched', 'is-re-flying', 'is-tail-perched');
         downsideWrap.classList.add('is-landing', 'is-flying');
 
         castHatSpell(false);
@@ -4231,7 +4251,7 @@
 
         // Completion timing: 2600ms (matches 2.6s owl-swoop-in-perch)
         setTimeout(() => {
-          downsideWrap.classList.remove('is-landing', 'is-flying');
+          downsideWrap.classList.remove('is-landing', 'is-flying', 'is-tail-perched');
           downsideWrap.classList.add('has-landed', 'is-perched');
           isFlying = false;
         }, 2600);
@@ -4257,7 +4277,7 @@
           owlInteractive.classList.remove('is-hooting');
         }, 1200);
 
-        downsideWrap.classList.remove('has-landed', 'is-perched', 'is-landing');
+        downsideWrap.classList.remove('has-landed', 'is-perched', 'is-landing', 'is-tail-perched');
         void downsideWrap.offsetWidth; // force reflow for re-animation
         downsideWrap.classList.add('is-re-flying', 'is-flying');
 
@@ -4266,7 +4286,7 @@
 
         // Completion timing: 3200ms (matches 3.2s owl-flight-loop-perch)
         setTimeout(() => {
-          downsideWrap.classList.remove('is-re-flying', 'is-flying');
+          downsideWrap.classList.remove('is-re-flying', 'is-flying', 'is-tail-perched');
           downsideWrap.classList.add('has-landed', 'is-perched');
           isFlying = false;
         }, 3200);
@@ -4404,6 +4424,10 @@
           lastHatCastAt = Date.now();
           castHatSpell(false);
         }
+      });
+
+      document.addEventListener('mouseleave', () => {
+        if (flyer && !isFlying) flyer.style.transform = '';
       });
     })();
 
