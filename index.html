@@ -1242,7 +1242,9 @@
        CONTACT SECTION
        ========================================================================== */
     .contact-section {
-      padding-block: 104px 60px;
+      position: relative;
+      z-index: 2;
+      padding-block: 104px 72px;
       background: var(--bg);
     }
     .contact-grid {
@@ -1363,7 +1365,7 @@
        NOCTURNAL OWL AT DOWN SIDE (LUNA'S NIGHT WATCHER - FLIGHT & PERCH)
        ========================================================================== */
     .owl-downside-wrap {
-      padding-block: 54px 40px;
+      padding-block: 64px 48px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1376,12 +1378,12 @@
 
     .owl-moonlight-beam {
       position: absolute;
-      top: -100px;
+      top: 24px;
       left: 50%;
       transform: translateX(-50%);
-      width: min(680px, 94vw);
-      height: 320px;
-      background: radial-gradient(ellipse at 50% 12%, rgba(228, 189, 145, 0.2) 0%, rgba(200, 138, 88, 0.05) 50%, transparent 80%);
+      width: min(760px, 96vw);
+      height: 420px;
+      background: radial-gradient(ellipse 46% 46% at 50% 50%, rgba(228, 189, 145, 0.15) 0%, rgba(200, 138, 88, 0.045) 48%, transparent 74%);
       pointer-events: none;
       z-index: -1;
     }
@@ -2065,12 +2067,15 @@
       transform: translateY(-2px);
       box-shadow: 0 10px 24px rgba(200, 138, 88, 0.25);
     }
+    html[data-theme="dark"] .owl-fly-btn:hover {
+      color: #1a1410;
+    }
     .owl-fly-btn:active {
       transform: translateY(0) scale(0.97);
     }
     .owl-fly-btn--secondary {
       border-color: var(--surface-border);
-      color: var(--ink-main);
+      color: var(--ink-primary);
     }
     .owl-fly-btn--secondary:hover {
       border-color: var(--accent-warm);
