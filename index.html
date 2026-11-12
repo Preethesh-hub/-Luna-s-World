@@ -1020,6 +1020,9 @@
       will-change: transform;
       transition: box-shadow 0.28s ease, border-color 0.28s ease;
     }
+    .work-feature.is-book-open {
+      overflow: visible;
+    }
     .work-feature:hover {
       box-shadow: 0 18px 42px rgba(48, 38, 33, 0.16);
       border-color: var(--accent-warm);
@@ -1028,11 +1031,172 @@
       box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65);
     }
 
+    /* Feature #4: Interactive 3D Page-Turning Book Cover */
     .work-cover {
       position: relative;
-      overflow: hidden;
-      min-height: 380px;
+      min-height: 410px;
+      perspective: 1600px;
+      transform-style: preserve-3d;
+      background: var(--card-alt);
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+      overflow: visible;
+    }
+    .work-book-pages {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      min-height: 410px;
+      padding: 28px 28px 24px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      background:
+        linear-gradient(90deg, rgba(110, 74, 42, 0.14) 0%, rgba(255, 252, 245, 0) 24px),
+        linear-gradient(180deg, #fbf4e6 0%, #f3e8d2 100%);
+      color: #2c221d;
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+      box-shadow: inset 12px 0 24px rgba(48, 34, 22, 0.12), inset 0 0 0 1px rgba(154, 118, 86, 0.28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease 0.15s;
+    }
+    html[data-theme="dark"] .work-book-pages {
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(36, 30, 26, 0) 24px),
+        linear-gradient(180deg, #241e1a 0%, #1a1512 100%);
+      color: var(--ink-primary);
+      box-shadow: inset 14px 0 26px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(228, 189, 145, 0.18);
+    }
+    .work-feature.is-book-open .work-book-pages {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .work-book-page-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(145, 108, 76, 0.35);
+    }
+    .work-book-chapter {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+    }
+    .work-book-close {
+      background: rgba(154, 118, 86, 0.14);
+      border: 1px solid rgba(154, 118, 86, 0.35);
+      color: inherit;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      display: inline-grid;
+      place-items: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .work-book-close:hover {
+      background: var(--accent-warm);
+      color: #ffffff;
+      transform: scale(1.06);
+    }
+    .work-book-excerpt {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.72;
+      font-style: italic;
+      margin: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    .work-book-excerpt.is-turning {
+      opacity: 0;
+      transform: translateX(-8px);
+    }
+    .work-book-dropcap::first-letter {
+      font-size: 2.35em;
+      font-weight: 700;
+      font-style: normal;
+      line-height: 0.9;
+      float: left;
+      padding-right: 7px;
+      color: var(--accent-warm);
+    }
+    .work-book-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(145, 108, 76, 0.32);
+    }
+    .work-book-page-num {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      letter-spacing: 0.6px;
+    }
+    .work-book-btn {
+      background: rgba(200, 152, 102, 0.16);
+      border: 1px solid rgba(200, 152, 102, 0.45);
+      color: inherit;
+      padding: 6px 13px;
+      border-radius: var(--radius-pill);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+    }
+    .work-book-btn:hover:not(:disabled) {
+      background: var(--accent-warm);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .work-book-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .work-book-lid {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
       background: var(--espresso);
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      transition: transform 0.85s cubic-bezier(0.24, 0.84, 0.28, 1), box-shadow 0.45s ease;
+      box-shadow: 4px 0 18px rgba(0, 0, 0, 0.24);
+    }
+    .work-feature.is-book-open .work-book-lid {
+      transform: rotateY(-142deg);
+      pointer-events: none;
+      box-shadow: -12px 8px 30px rgba(0, 0, 0, 0.38);
+    }
+    .work-book-lid::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 14px;
+      z-index: 3;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.42));
+      pointer-events: none;
     }
     .work-cover img {
       width: 100%;
@@ -1041,14 +1205,14 @@
       filter: saturate(0.85);
       transition: transform 0.8s ease;
     }
-    .work-feature:hover .work-cover img {
+    .work-feature:not(.is-book-open):hover .work-cover img {
       transform: scale(1.04);
     }
-    .work-cover::after {
+    .work-book-lid::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, rgba(34, 26, 22, 0.2) 20%, rgba(34, 26, 22, 0.85) 100%);
+      background: linear-gradient(160deg, rgba(34, 26, 22, 0.2) 20%, rgba(34, 26, 22, 0.88) 100%);
     }
 
     .work-cover-overlay {
@@ -1078,6 +1242,31 @@
       font-weight: 600;
       line-height: 1.12;
       text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+      margin-bottom: 12px;
+    }
+    .work-cover-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 250, 240, 0.16);
+      border: 1px solid rgba(255, 240, 215, 0.38);
+      backdrop-filter: blur(6px);
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff6e6;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .work-book-lid:hover .work-cover-hint {
+      background: rgba(228, 189, 145, 0.34);
+      transform: translateX(3px);
+    }
+    .work-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
     }
 
     .work-details {
@@ -2623,7 +2812,19 @@
         grid-template-columns: 1fr;
       }
       .work-cover {
-        min-height: 280px;
+        min-height: 320px;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      }
+      .work-book-pages, .work-book-lid {
+        min-height: 320px;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      }
+      .work-book-lid {
+        transform-origin: top center;
+      }
+      .work-feature.is-book-open .work-book-lid {
+        transform: rotateX(96deg);
+        opacity: 0;
       }
       .bribooks-grid {
         grid-template-columns: 1fr;
@@ -2654,6 +2855,329 @@
       .footer-inner {
         flex-direction: column;
         align-items: flex-start;
+      }
+    }
+
+    /* ========================================================================
+       COSMIC CORNER DOCK: FIREFLY JAR (#1) & STARDUST QUILL DRAW SKY (#5)
+       ======================================================================== */
+    body.is-quill-mode {
+      cursor: crosshair;
+    }
+    body.is-quill-mode a,
+    body.is-quill-mode button,
+    body.is-quill-mode input,
+    body.is-quill-mode textarea {
+      cursor: pointer;
+    }
+
+    .cosmic-dock {
+      position: fixed;
+      left: 24px;
+      bottom: 24px;
+      z-index: 880;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .cosmic-dock > * {
+      pointer-events: auto;
+    }
+
+    /* Glass Firefly Jar Button */
+    .firefly-jar-wrap {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+    }
+    .firefly-jar-btn {
+      position: relative;
+      width: 56px;
+      height: 66px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .firefly-jar-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+    .firefly-jar-btn.is-catching {
+      animation: jarCatchWiggle 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .firefly-jar-btn.is-releasing .jar-lid {
+      transform: translateY(-10px) rotate(-22deg);
+    }
+    @keyframes jarCatchWiggle {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(-10deg) scale(1.09); }
+      55% { transform: rotate(8deg) scale(1.06); }
+      80% { transform: rotate(-4deg) scale(1.02); }
+    }
+
+    .jar-lid {
+      width: 30px;
+      height: 8px;
+      border-radius: 4px 4px 2px 2px;
+      background: linear-gradient(90deg, #7e5939, #c89d70, #7a5435);
+      border: 1px solid rgba(56, 36, 20, 0.55);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+      z-index: 2;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .jar-neck {
+      width: 34px;
+      height: 5px;
+      background: rgba(255, 250, 238, 0.35);
+      border: 1px solid rgba(228, 189, 145, 0.55);
+      border-radius: 3px;
+      margin-top: -1px;
+    }
+    .jar-glass {
+      position: relative;
+      width: 46px;
+      height: 48px;
+      margin-top: -1px;
+      border-radius: 10px 10px 15px 15px;
+      background: linear-gradient(155deg, rgba(255, 250, 235, 0.38) 0%, rgba(228, 189, 145, 0.14) 55%, rgba(180, 130, 72, 0.22) 100%);
+      border: 1.5px solid rgba(212, 169, 118, 0.65);
+      box-shadow:
+        0 8px 20px rgba(32, 22, 14, 0.24),
+        inset 0 0 12px rgba(255, 222, 140, 0.18);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+    html[data-theme="dark"] .jar-glass {
+      background: linear-gradient(155deg, rgba(255, 240, 200, 0.14) 0%, rgba(28, 22, 18, 0.72) 60%, rgba(228, 189, 145, 0.2) 100%);
+      box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.55),
+        inset 0 0 16px rgba(245, 194, 107, 0.24);
+    }
+    .jar-glass::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      bottom: 8px;
+      width: 5px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.06));
+      pointer-events: none;
+    }
+    .jar-orbs {
+      position: absolute;
+      inset: 4px;
+      pointer-events: none;
+    }
+    .jar-orb {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff4c8;
+      box-shadow: 0 0 8px 3px rgba(247, 195, 92, 0.85);
+      animation: jarOrbDrift 2.8s ease-in-out infinite alternate;
+    }
+    @keyframes jarOrbDrift {
+      0% { transform: translate(0, 0) scale(0.85); opacity: 0.75; }
+      50% { transform: translate(4px, -6px) scale(1.15); opacity: 1; }
+      100% { transform: translate(-3px, -2px) scale(0.92); opacity: 0.82; }
+    }
+    .jar-count-badge {
+      position: absolute;
+      top: 0;
+      right: -4px;
+      min-width: 21px;
+      height: 21px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: var(--espresso);
+      color: #fff6e8;
+      border: 1.5px solid var(--accent-warm);
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-grid;
+      place-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+      z-index: 3;
+    }
+    html[data-theme="dark"] .jar-count-badge {
+      background: var(--accent-peach);
+      color: #1c1613;
+    }
+
+    /* Jar Whisper Popover */
+    .firefly-popover {
+      position: absolute;
+      left: 0;
+      bottom: 78px;
+      width: min(295px, calc(100vw - 36px));
+      padding: 16px 16px 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--accent-warm);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-hover);
+      color: var(--ink-primary);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px) scale(0.96);
+      transform-origin: bottom left;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    }
+    .firefly-popover.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .firefly-popover-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .firefly-popover-title {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--accent-warm);
+    }
+    .firefly-popover-close {
+      background: transparent;
+      border: none;
+      color: var(--ink-muted);
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 2px 6px;
+    }
+    .firefly-whisper-text {
+      font-family: var(--serif);
+      font-size: 14.5px;
+      line-height: 1.55;
+      font-style: italic;
+      color: var(--ink-secondary);
+      margin: 0 0 12px;
+      min-height: 44px;
+    }
+    .firefly-popover-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .firefly-meta {
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+    .firefly-release-btn {
+      padding: 6px 13px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-warm);
+      background: rgba(200, 138, 88, 0.14);
+      color: var(--ink-primary);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .firefly-release-btn:hover:not(:disabled) {
+      background: var(--accent-warm);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .firefly-release-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* Feature #5: Stardust Quill Toggle Pill */
+    .quill-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 15px;
+      border-radius: var(--radius-pill);
+      background: var(--card-bg);
+      color: var(--ink-primary);
+      border: 1px solid var(--surface-border);
+      box-shadow: var(--shadow-card);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .quill-toggle:hover {
+      border-color: var(--accent-warm);
+      transform: translateY(-2px);
+    }
+    .quill-toggle.is-active {
+      background: var(--espresso);
+      color: #fff6e8;
+      border-color: var(--accent-peach);
+      box-shadow: 0 8px 24px rgba(228, 189, 145, 0.42);
+    }
+    html[data-theme="dark"] .quill-toggle.is-active {
+      background: var(--accent-peach);
+      color: #1c1613;
+    }
+    .quill-hint-pill {
+      position: fixed;
+      left: 24px;
+      bottom: 96px;
+      z-index: 879;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(34, 26, 22, 0.85);
+      color: #fce8be;
+      border: 1px solid rgba(228, 189, 145, 0.45);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    body.is-quill-mode .quill-hint-pill {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      .cosmic-dock {
+        left: 14px;
+        bottom: 16px;
+        gap: 8px;
+      }
+      .quill-toggle {
+        padding: 9px 12px;
+        font-size: 12px;
+      }
+      .quill-hint-pill {
+        left: 14px;
+        bottom: 84px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .work-book-lid,
+      .firefly-jar-btn,
+      .jar-orb,
+      .firefly-popover {
+        animation: none !important;
+        transition: none !important;
       }
     }
   </style>
@@ -2885,13 +3409,35 @@
           <p class="section-description">Step into a story, unravel hidden secrets, and see where the pages take you.</p>
         </div>
 
-        <!-- Featured Novel: The Hidden Bloodline -->
-        <article class="work-feature reveal-on-scroll" aria-labelledby="featured-work-title">
+        <!-- Featured Novel: The Hidden Bloodline (Interactive 3D Book Cover) -->
+        <article class="work-feature reveal-on-scroll" id="featured-work-card" aria-labelledby="featured-work-title">
           <div class="work-cover">
-            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Misty enchanted twilight forest" loading="lazy">
-            <div class="work-cover-overlay">
-              <span class="work-cover-badge">Featured Novel · Wattpad</span>
-              <div class="work-cover-title">The Hidden<br>Bloodline</div>
+            <!-- Interior Embossed Parchment Pages (Revealed when Cover Opens) -->
+            <div class="work-book-pages" id="work-book-pages" aria-hidden="true">
+              <div class="work-book-page-top">
+                <span class="work-book-chapter" id="book-chapter-label">Prologue · Page I</span>
+                <button class="work-book-close" id="book-close-btn" type="button" aria-label="Close book cover">×</button>
+              </div>
+              <div class="work-book-excerpt" id="book-excerpt">
+                <p class="work-book-dropcap">Beneath a sky that remembered older names than kings, the lantern flickered violet—answering a pulse inside her wrists she had sworn was only myth.</p>
+              </div>
+              <div class="work-book-nav">
+                <button class="work-book-btn" id="book-prev-btn" type="button" disabled>← Prev</button>
+                <span class="work-book-page-num" id="book-page-num">Page 1 / 3</span>
+                <button class="work-book-btn" id="book-next-btn" type="button">Next →</button>
+              </div>
+            </div>
+
+            <!-- Swinging Hardcover Front Cover -->
+            <div class="work-book-lid" id="book-cover-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="work-book-pages" aria-label="Open The Hidden Bloodline hardcover preview">
+              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Misty enchanted twilight forest" loading="lazy">
+              <div class="work-cover-overlay">
+                <span class="work-cover-badge">Featured Novel · Wattpad</span>
+                <div>
+                  <div class="work-cover-title">The Hidden<br>Bloodline</div>
+                  <span class="work-cover-hint">✦ Click cover to open pages</span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="work-details">
@@ -2906,9 +3452,14 @@
               <span class="genre-pill">Bloodlines</span>
               <span class="genre-pill">Supernatural</span>
             </div>
-            <a class="btn-primary" href="https://www.wattpad.com/story/411413955-the-hidden-bloodline" target="_blank" rel="noopener noreferrer">
-              Read on Wattpad <span class="arrow" aria-hidden="true">↗</span>
-            </a>
+            <div class="work-actions">
+              <a class="btn-primary" href="https://www.wattpad.com/story/411413955-the-hidden-bloodline" target="_blank" rel="noopener noreferrer">
+                Read on Wattpad <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+              <button class="btn-secondary" id="book-preview-btn" type="button" aria-expanded="false" aria-controls="work-book-pages">
+                ✦ Open Book Preview
+              </button>
+            </div>
           </div>
         </article>
 
@@ -3533,6 +4084,42 @@
   </aside>
 
   <!-- ========================================================================
+       COSMIC CORNER DOCK: FIREFLY JAR (#1) & STARDUST QUILL DRAW SKY (#5)
+       ======================================================================== -->
+  <div class="cosmic-dock" id="cosmic-dock">
+    <div class="firefly-jar-wrap" id="firefly-jar-wrap">
+      <aside class="firefly-popover" id="firefly-popover" aria-label="Enchanted Firefly Jar" aria-hidden="true">
+        <div class="firefly-popover-head">
+          <span class="firefly-popover-title">✦ Firefly Jar</span>
+          <button class="firefly-popover-close" id="firefly-popover-close" type="button" aria-label="Close firefly jar details">×</button>
+        </div>
+        <p class="firefly-whisper-text" id="firefly-whisper-text">
+          Click drifting golden fireflies in the night sky to catch a quiet whisper from Luna.
+        </p>
+        <div class="firefly-popover-foot">
+          <span class="firefly-meta" id="firefly-meta">0 / 7 whispers glowing</span>
+          <button class="firefly-release-btn" id="release-fireflies-btn" type="button" disabled>Release ✦</button>
+        </div>
+      </aside>
+
+      <button class="firefly-jar-btn" id="firefly-jar-btn" type="button" aria-expanded="false" aria-controls="firefly-popover" aria-label="Open Firefly Jar">
+        <span class="jar-count-badge" id="jar-count-badge">0</span>
+        <span class="jar-lid" aria-hidden="true"></span>
+        <span class="jar-neck" aria-hidden="true"></span>
+        <span class="jar-glass" aria-hidden="true">
+          <span class="jar-orbs" id="jar-orbs"></span>
+        </span>
+      </button>
+    </div>
+
+    <button class="quill-toggle" id="quill-toggle" type="button" aria-pressed="false" title="Toggle Stardust Quill drawing mode">
+      <span aria-hidden="true">🪶</span>
+      <span id="quill-toggle-label">Draw Sky</span>
+    </button>
+  </div>
+  <div class="quill-hint-pill" id="quill-hint-pill" aria-hidden="true">✦ Move or drag across open sky to paint fading constellations</div>
+
+  <!-- ========================================================================
        SCRIPTS: SCROLL MOTION, STARFIELD, MOON TRACKER, BUTTERFLY
        ======================================================================== -->
   <script>
@@ -3639,6 +4226,12 @@
       let fireflies = [];
       let shootingStars = [];
       let magicSparkles = [];
+      let quillStrokes = [];
+      let quillMode = false;
+      let isPointerDown = false;
+      let lastQuillX = null;
+      let lastQuillY = null;
+      let quillDistAccum = 0;
       let animationFrameId;
       let mouseX = 0;
       let mouseY = 0;
@@ -3767,18 +4360,261 @@
       // Expose globally so external interactions (Moon, Butterfly, etc.) can emit sparkles
       window.addMagicalSparkle = addSparkle;
 
-      // 1. Magical Sparkles while moving cursor / mouse
+      // Subtle Web Audio Crystal Chime for Firefly Catch / Release
+      let cosmicAudioCtx = null;
+      function playCosmicChime(baseFreq = 740) {
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) return;
+          if (!cosmicAudioCtx) cosmicAudioCtx = new AudioCtx();
+          if (cosmicAudioCtx.state === 'suspended') cosmicAudioCtx.resume();
+          const now = cosmicAudioCtx.currentTime;
+          const osc = cosmicAudioCtx.createOscillator();
+          const gain = cosmicAudioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(baseFreq, now);
+          osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.48, now + 0.16);
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.032, now + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.28);
+          osc.connect(gain);
+          gain.connect(cosmicAudioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } catch (err) {
+          // Audio gracefully skipped when blocked
+        }
+      }
+
+      // Feature #1: Firefly Jar State & DOM Bindings
+      const jarBtn = document.getElementById('firefly-jar-btn');
+      const jarOrbsEl = document.getElementById('jar-orbs');
+      const jarCountBadge = document.getElementById('jar-count-badge');
+      const jarPopover = document.getElementById('firefly-popover');
+      const jarPopoverClose = document.getElementById('firefly-popover-close');
+      const jarWhisperText = document.getElementById('firefly-whisper-text');
+      const jarMetaText = document.getElementById('firefly-meta');
+      const releaseBtn = document.getElementById('release-fireflies-btn');
+      const quillToggleBtn = document.getElementById('quill-toggle');
+      const quillToggleLabel = document.getElementById('quill-toggle-label');
+
+      const jarWhispers = [
+        '“Some silence is not empty—it is simply waiting for a gentler ear.”',
+        '“Even a fractured constellation remembers how to draw light across dark water.”',
+        '“Write what trembles on the edge of sleep; daylight forgets too easily.”',
+        '“We carry small lanterns inside our ribs for nights when the moon arrives late.”',
+        '“Every shadow along the path proves a quiet fire is still burning behind you.”',
+        '“Ask the wind why it lingers near old notebooks—even air wants to be remembered.”',
+        '“You caught the seventh spark: may your own unwritten pages glow just as kindly.”'
+      ];
+
+      let jarCaughtCount = 0;
+      let jarBatchCount = 0;
+      let jarPinnedOpen = false;
+      let jarAutoCloseTimer = null;
+
+      function syncJarUI(whisperMessage) {
+        if (jarCountBadge) jarCountBadge.textContent = String(jarBatchCount);
+        if (jarMetaText) {
+          jarMetaText.textContent = `${jarBatchCount} / 7 inside · ${jarCaughtCount} caught`;
+        }
+        if (releaseBtn) releaseBtn.disabled = jarBatchCount === 0;
+        if (whisperMessage && jarWhisperText) jarWhisperText.textContent = whisperMessage;
+      }
+
+      function addJarOrbVisual() {
+        if (!jarOrbsEl) return;
+        if (jarOrbsEl.children.length >= 7) {
+          jarOrbsEl.removeChild(jarOrbsEl.firstElementChild);
+        }
+        const orb = document.createElement('span');
+        orb.className = 'jar-orb';
+        orb.style.left = `${14 + Math.random() * 68}%`;
+        orb.style.top = `${16 + Math.random() * 64}%`;
+        orb.style.animationDelay = `${(Math.random() * 1.8).toFixed(2)}s`;
+        jarOrbsEl.appendChild(orb);
+      }
+
+      function openJarPopover(pinned) {
+        if (!jarPopover || !jarBtn) return;
+        clearTimeout(jarAutoCloseTimer);
+        jarPopover.classList.add('is-open');
+        jarPopover.setAttribute('aria-hidden', 'false');
+        jarBtn.setAttribute('aria-expanded', 'true');
+        if (pinned) {
+          jarPinnedOpen = true;
+        } else if (!jarPinnedOpen) {
+          jarAutoCloseTimer = setTimeout(() => {
+            if (!jarPinnedOpen) closeJarPopover();
+          }, 4200);
+        }
+      }
+
+      function closeJarPopover() {
+        if (!jarPopover || !jarBtn) return;
+        clearTimeout(jarAutoCloseTimer);
+        jarPinnedOpen = false;
+        jarPopover.classList.remove('is-open');
+        jarPopover.setAttribute('aria-hidden', 'true');
+        jarBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      if (jarBtn) {
+        jarBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (jarPopover && jarPopover.classList.contains('is-open')) {
+            closeJarPopover();
+          } else {
+            openJarPopover(true);
+          }
+        });
+      }
+      if (jarPopoverClose) {
+        jarPopoverClose.addEventListener('click', (e) => {
+          e.stopPropagation();
+          closeJarPopover();
+        });
+      }
+      if (releaseBtn) {
+        releaseBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (jarBatchCount === 0) return;
+
+          const rect = jarBtn ? jarBtn.getBoundingClientRect() : { left: 48, top: height - 60, width: 46 };
+          const originX = rect.left + rect.width / 2;
+          const originY = rect.top + 10;
+          const burstCount = Math.min(12, Math.max(5, jarBatchCount + 4));
+
+          for (let i = 0; i < burstCount; i++) {
+            const launchAngle = -Math.PI * (0.15 + Math.random() * 0.7);
+            const launchSpeed = 1.6 + Math.random() * 2.2;
+            fireflies.push({
+              x: originX + (Math.random() - 0.5) * 14,
+              y: originY + (Math.random() - 0.5) * 10,
+              vx: Math.cos(launchAngle) * (0.4 + Math.random() * 0.5),
+              vy: Math.sin(launchAngle) * 0.65 - 0.25,
+              radius: Math.random() * 1.8 + 1.6,
+              phase: Math.random() * Math.PI * 2,
+              pulseSpeed: Math.random() * 0.03 + 0.02,
+              scatterX: Math.cos(launchAngle) * launchSpeed * 2.4,
+              scatterY: Math.sin(launchAngle) * launchSpeed * 2.4
+            });
+          }
+
+          if (fireflies.length > 18) {
+            fireflies.splice(0, fireflies.length - 18);
+          }
+
+          addSparkle(originX, originY, 24, 2.6, 'star');
+          playCosmicChime(587);
+
+          jarBatchCount = 0;
+          if (jarOrbsEl) jarOrbsEl.innerHTML = '';
+          if (jarBtn) {
+            jarBtn.classList.add('is-releasing');
+            setTimeout(() => jarBtn.classList.remove('is-releasing'), 700);
+          }
+          syncJarUI('Your caught fireflies swirled upward back into Luna’s enchanted sky ✦');
+        });
+      }
+
+      // Feature #5: Stardust Quill Toggle
+      function setQuillMode(active) {
+        quillMode = Boolean(active);
+        document.body.classList.toggle('is-quill-mode', quillMode);
+        if (quillToggleBtn) {
+          quillToggleBtn.classList.toggle('is-active', quillMode);
+          quillToggleBtn.setAttribute('aria-pressed', quillMode ? 'true' : 'false');
+        }
+        if (quillToggleLabel) {
+          quillToggleLabel.textContent = quillMode ? 'Drawing ✦' : 'Draw Sky';
+        }
+        if (!quillMode) {
+          lastQuillX = null;
+          lastQuillY = null;
+        }
+      }
+
+      if (quillToggleBtn) {
+        quillToggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setQuillMode(!quillMode);
+          const rect = quillToggleBtn.getBoundingClientRect();
+          addSparkle(rect.left + rect.width / 2, rect.top + rect.height / 2, 10, 1.5, 'star');
+        });
+      }
+
+      function recordQuillPoint(px, py, targetEl) {
+        if (!quillMode) return;
+        if (targetEl && targetEl.closest && targetEl.closest('.cosmic-dock, .chat-panel, .chat-launcher, .owl-interactive-wrap')) {
+          lastQuillX = null;
+          lastQuillY = null;
+          return;
+        }
+        if (lastQuillX !== null && lastQuillY !== null) {
+          const dist = Math.hypot(px - lastQuillX, py - lastQuillY);
+          if (dist > 3 && dist < 130) {
+            if (quillStrokes.length > 260) quillStrokes.shift();
+            quillStrokes.push({
+              x1: lastQuillX,
+              y1: lastQuillY,
+              x2: px,
+              y2: py,
+              alpha: 1,
+              width: isPointerDown ? 3.1 : 1.75
+            });
+            quillDistAccum += dist;
+            if (quillDistAccum >= 38) {
+              quillDistAccum = 0;
+              addSparkle(px, py, 1, 0.35, 'star');
+            }
+          }
+        }
+        lastQuillX = px;
+        lastQuillY = py;
+      }
+
+      window.addEventListener('pointerdown', (e) => {
+        isPointerDown = true;
+        if (quillMode) {
+          lastQuillX = e.clientX;
+          lastQuillY = e.clientY;
+        }
+      });
+      window.addEventListener('pointerup', () => {
+        isPointerDown = false;
+        if (quillMode) {
+          lastQuillX = null;
+          lastQuillY = null;
+        }
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (quillMode) setQuillMode(false);
+          if (jarPopover && jarPopover.classList.contains('is-open')) closeJarPopover();
+        }
+      });
+
+      // 1. Magical Sparkles while moving cursor / mouse (+ Stardust Quill)
       window.addEventListener('mousemove', (e) => {
         clientMouseX = e.clientX;
         clientMouseY = e.clientY;
         targetMouseX = (e.clientX - width / 2) * 0.05;
         targetMouseY = (e.clientY - height / 2) * 0.05;
 
-        // Spawn delicate fairy dust sparkle trail
-        if (Math.random() > 0.25) {
+        if (quillMode) {
+          recordQuillPoint(e.clientX, e.clientY, e.target);
+        } else if (Math.random() > 0.25) {
           addSparkle(e.clientX, e.clientY, 1, 0.7);
         }
       });
+
+      window.addEventListener('touchmove', (e) => {
+        if (!quillMode || !e.touches || !e.touches[0]) return;
+        const t = e.touches[0];
+        recordQuillPoint(t.clientX, t.clientY, e.target);
+      }, { passive: true });
 
       // 2. Magical Sparkles while scrolling
       window.addEventListener('scroll', () => {
@@ -3794,12 +4630,74 @@
         }
       }, { passive: true });
 
-      // 3. Magical Sparkles & Interactive Sky Meteor on Click / Tap
+      // 3. Firefly Catching (#1), Constellation Click (#5), & Sky Meteor
       window.addEventListener('click', (e) => {
+        const interactiveTarget = e.target.closest('button, a, input, textarea, select, .owl-interactive-wrap, .celestial-butterfly-wrap, .mini-butterfly-wrap, .form-control, .cosmic-dock, .chat-panel, .work-book-lid, .work-book-pages');
+
+        if (quillMode) {
+          if (!interactiveTarget) {
+            addSparkle(e.clientX, e.clientY, 10, 1.6, 'star');
+            playCosmicChime(880);
+          }
+          return;
+        }
+
+        // Check if visitor clicked near a drifting golden firefly to catch it!
+        if (!interactiveTarget && fireflies.length > 0) {
+          let nearestIdx = -1;
+          let nearestDist = 46;
+          for (let i = 0; i < fireflies.length; i++) {
+            const d = Math.hypot(fireflies[i].x - e.clientX, fireflies[i].y - e.clientY);
+            if (d < nearestDist) {
+              nearestDist = d;
+              nearestIdx = i;
+            }
+          }
+
+          if (nearestIdx !== -1) {
+            const caught = fireflies.splice(nearestIdx, 1)[0];
+            jarCaughtCount += 1;
+            jarBatchCount = Math.min(7, jarBatchCount + 1);
+            addJarOrbVisual();
+            addSparkle(caught.x, caught.y, 18, 2.3, 'star');
+            playCosmicChime(660 + jarBatchCount * 55);
+
+            if (jarBtn) {
+              jarBtn.classList.remove('is-catching');
+              void jarBtn.offsetWidth;
+              jarBtn.classList.add('is-catching');
+              setTimeout(() => jarBtn.classList.remove('is-catching'), 600);
+            }
+
+            const whisper = jarWhispers[(jarCaughtCount - 1) % jarWhispers.length];
+            syncJarUI(whisper);
+            openJarPopover(false);
+
+            // Calmly replenish ambient firefly count from screen edge
+            if (fireflies.length < 4) {
+              setTimeout(() => {
+                if (fireflies.length < 7) {
+                  fireflies.push({
+                    x: Math.random() > 0.5 ? -18 : width + 18,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.55,
+                    vy: (Math.random() - 0.5) * 0.55,
+                    radius: Math.random() * 1.8 + 1.5,
+                    phase: Math.random() * Math.PI * 2,
+                    pulseSpeed: Math.random() * 0.03 + 0.018,
+                    scatterX: 0,
+                    scatterY: 0
+                  });
+                }
+              }, 1100);
+            }
+            return;
+          }
+        }
+
         addSparkle(e.clientX, e.clientY, 15, 2.4);
 
         // If clicking on an open background area, shoot a brilliant meteor across the sky!
-        const interactiveTarget = e.target.closest('button, a, input, textarea, select, .owl-interactive-wrap, .celestial-butterfly-wrap, .mini-butterfly-wrap, .form-control');
         if (!interactiveTarget) {
           launchInteractiveMeteor(e.clientX, e.clientY);
         }
@@ -3923,13 +4821,13 @@
           ff.x += ff.vx + Math.sin(ff.phase * 0.7) * 0.45;
           ff.y += ff.vy + Math.cos(ff.phase * 0.5) * 0.45;
 
-          // React to cursor proximity: gently scatter away
+          // React to cursor proximity: gently drift away (still easy to catch on click)
           const distToMouse = Math.hypot(ff.x - clientMouseX, ff.y - clientMouseY);
-          if (distToMouse < 110) {
-            const push = (110 - distToMouse) / 110;
+          if (distToMouse < 88) {
+            const push = (88 - distToMouse) / 88;
             const pushAngle = Math.atan2(ff.y - clientMouseY, ff.x - clientMouseX);
-            ff.scatterX += Math.cos(pushAngle) * push * 2.2;
-            ff.scatterY += Math.sin(pushAngle) * push * 2.2;
+            ff.scatterX += Math.cos(pushAngle) * push * 1.1;
+            ff.scatterY += Math.sin(pushAngle) * push * 1.1;
           }
           ff.scatterX *= 0.91;
           ff.scatterY *= 0.91;
@@ -3967,6 +4865,17 @@
           ctx.arc(ff.x, ff.y, ff.radius * pulse, 0, Math.PI * 2);
           ctx.fillStyle = isDark ? `rgba(255, 255, 235, ${pulse})` : `rgba(160, 95, 45, ${pulse * 0.95})`;
           ctx.fill();
+
+          // Subtle catchable halo when cursor approaches a firefly (Feature #1)
+          if (!quillMode && distToMouse < 46) {
+            sCtx.save();
+            sCtx.beginPath();
+            sCtx.arc(ff.x, ff.y, 13 + Math.sin(ff.phase * 2) * 2, 0, Math.PI * 2);
+            sCtx.strokeStyle = isDark ? 'rgba(252, 228, 168, 0.55)' : 'rgba(184, 118, 62, 0.55)';
+            sCtx.lineWidth = 1.25;
+            sCtx.stroke();
+            sCtx.restore();
+          }
         }
 
         // Draw Shooting Stars & Interactive Meteors
@@ -4003,6 +4912,32 @@
           ctx.moveTo(tailX, tailY);
           ctx.lineTo(ss.x, ss.y);
           ctx.stroke();
+        }
+
+        // Update & Render Stardust Quill Calligraphy Trails (Feature #5)
+        for (let i = quillStrokes.length - 1; i >= 0; i--) {
+          const seg = quillStrokes[i];
+          seg.alpha -= 0.0085;
+          if (seg.alpha <= 0) {
+            quillStrokes.splice(i, 1);
+            continue;
+          }
+          sCtx.save();
+          sCtx.lineCap = 'round';
+          sCtx.strokeStyle = isDark ? `rgba(252, 228, 168, ${seg.alpha * 0.92})` : `rgba(184, 118, 62, ${seg.alpha * 0.88})`;
+          sCtx.lineWidth = seg.width;
+          sCtx.shadowColor = isDark ? '#f5c26b' : '#c88a58';
+          sCtx.shadowBlur = seg.width * 4.5;
+          sCtx.beginPath();
+          sCtx.moveTo(seg.x1, seg.y1);
+          sCtx.lineTo(seg.x2, seg.y2);
+          sCtx.stroke();
+
+          sCtx.strokeStyle = `rgba(255, 255, 245, ${seg.alpha * 0.55})`;
+          sCtx.lineWidth = Math.max(0.6, seg.width * 0.35);
+          sCtx.shadowBlur = 0;
+          sCtx.stroke();
+          sCtx.restore();
         }
 
         // Update & Render Foreground Magical Sparkles
@@ -4987,6 +5922,11 @@
         }
 
         card.addEventListener('mousemove', (e) => {
+          if (card.classList.contains('is-book-open')) {
+            card.style.transform = '';
+            sheen.style.opacity = '0';
+            return;
+          }
           const rect = card.getBoundingClientRect();
           const x = (e.clientX - rect.left) / rect.width;
           const y = (e.clientY - rect.top) / rect.height;
@@ -5008,6 +5948,134 @@
           sheen.style.opacity = '0';
         });
       });
+    })();
+
+    /* ==========================================================================
+       7. FEATURE #4: INTERACTIVE 3D PAGE-TURNING BOOK COVER
+       ========================================================================== */
+    (() => {
+      const workCard = document.getElementById('featured-work-card');
+      const coverTrigger = document.getElementById('book-cover-trigger');
+      const previewBtn = document.getElementById('book-preview-btn');
+      const pagesWrap = document.getElementById('work-book-pages');
+      const closeBtn = document.getElementById('book-close-btn');
+      const prevBtn = document.getElementById('book-prev-btn');
+      const nextBtn = document.getElementById('book-next-btn');
+      const chapterLabel = document.getElementById('book-chapter-label');
+      const pageNumLabel = document.getElementById('book-page-num');
+      const excerptEl = document.getElementById('book-excerpt');
+
+      if (!workCard || !coverTrigger || !pagesWrap || !excerptEl) return;
+
+      const bookPages = [
+        {
+          chapter: 'Prologue · Page I',
+          dropcap: true,
+          text: 'Beneath a sky that remembered older names than kings, the lantern flickered violet—answering a pulse inside her wrists she had sworn was only myth.'
+        },
+        {
+          chapter: 'Chapter I · Page II',
+          dropcap: false,
+          text: 'Every crest in the obsidian archive had been scrubbed smooth by time, yet the silver seal still warmed against her palm whenever the night wind crossed the courtyard.'
+        },
+        {
+          chapter: 'Chapter I · Page III',
+          dropcap: false,
+          text: 'If the ancient bloodline truly slumbered behind sealed gates, someone had left the final key inside her dreams—waiting for the courage to open the dark.'
+        }
+      ];
+
+      let currentPage = 0;
+
+      function renderPage(animate = true) {
+        const page = bookPages[currentPage];
+        const applyContent = () => {
+          if (chapterLabel) chapterLabel.textContent = page.chapter;
+          if (pageNumLabel) pageNumLabel.textContent = `Page ${currentPage + 1} / ${bookPages.length}`;
+          excerptEl.innerHTML = `<p class="${page.dropcap ? 'work-book-dropcap' : ''}">${page.text}</p>`;
+          if (prevBtn) prevBtn.disabled = currentPage === 0;
+          if (nextBtn) nextBtn.disabled = currentPage === bookPages.length - 1;
+        };
+
+        if (animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          excerptEl.classList.add('is-turning');
+          setTimeout(() => {
+            applyContent();
+            excerptEl.classList.remove('is-turning');
+          }, 160);
+        } else {
+          applyContent();
+        }
+      }
+
+      function setBookOpen(open) {
+        workCard.classList.toggle('is-book-open', open);
+        if (open) workCard.style.transform = '';
+        coverTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        pagesWrap.setAttribute('aria-hidden', open ? 'false' : 'true');
+        if (previewBtn) {
+          previewBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          previewBtn.textContent = open ? '← Close Book Preview' : '✦ Open Book Preview';
+        }
+        if (open && typeof window.addMagicalSparkle === 'function') {
+          const rect = workCard.getBoundingClientRect();
+          window.addMagicalSparkle(rect.left + rect.width * 0.25, rect.top + rect.height * 0.5, 14, 1.8, 'star');
+        }
+      }
+
+      coverTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setBookOpen(true);
+      });
+      coverTrigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setBookOpen(!workCard.classList.contains('is-book-open'));
+        }
+      });
+
+      if (previewBtn) {
+        previewBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setBookOpen(!workCard.classList.contains('is-book-open'));
+        });
+      }
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setBookOpen(false);
+        });
+      }
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (currentPage > 0) {
+            currentPage -= 1;
+            renderPage(true);
+          }
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (currentPage < bookPages.length - 1) {
+            currentPage += 1;
+            renderPage(true);
+          }
+        });
+      }
+
+      pagesWrap.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && workCard.classList.contains('is-book-open')) {
+          setBookOpen(false);
+        }
+      });
+
+      renderPage(false);
     })();
   </script>
 </body>
