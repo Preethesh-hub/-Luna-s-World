@@ -852,12 +852,14 @@
 
     .poem-grid {
       display: grid;
+      grid-auto-rows: 1fr;
       gap: 28px;
     }
 
     .poem-card {
       display: grid;
       grid-template-columns: 0.88fr 1.12fr;
+      height: 100%;
       min-height: 340px;
       background: var(--card-bg);
       border: 1px solid var(--surface-border);
@@ -900,13 +902,18 @@
 
     .poem-image-wrap {
       position: relative;
+      min-height: 340px;
+      height: 100%;
       overflow: hidden;
       background: var(--espresso);
     }
     .poem-image {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
       filter: saturate(0.85);
       transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -1136,6 +1143,7 @@
     .bribooks-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: 1fr;
       gap: 28px;
     }
 
@@ -1144,6 +1152,7 @@
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-md);
       overflow: hidden;
+      height: 100%;
       display: flex;
       flex-direction: column;
       box-shadow: var(--shadow-card);
@@ -1163,14 +1172,19 @@
 
     .bribooks-cover {
       aspect-ratio: 16 / 10;
+      width: 100%;
+      flex-shrink: 0;
       position: relative;
       overflow: hidden;
       background: var(--espresso);
     }
     .bribooks-cover img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
       filter: saturate(0.85);
       transition: transform 0.6s ease;
     }
@@ -2588,11 +2602,16 @@
         align-items: flex-start;
         gap: 16px;
       }
+      .poem-grid {
+        grid-auto-rows: auto;
+      }
       .poem-card {
         grid-template-columns: 1fr;
+        height: auto;
         min-height: auto;
       }
       .poem-image-wrap {
+        min-height: 0;
         height: 240px;
       }
       .work-feature {
@@ -2603,6 +2622,10 @@
       }
       .bribooks-grid {
         grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+      }
+      .bribooks-card {
+        height: auto;
       }
       .menu-toggle {
         display: grid;
@@ -2804,7 +2827,7 @@
         <article class="poem-card reveal-on-scroll delay-1" aria-labelledby="poem-05-title">
           <div class="poem-image-wrap">
             <span class="poem-read-time">✦ 3 Min Read</span>
-            <img class="poem-image" src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Warm candle flame burning steadily in dark room" loading="lazy">
+            <img class="poem-image" src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&amp;fit=crop&amp;w=900&amp;h=600&amp;q=85" alt="Warm candle flame burning steadily in dark room" loading="lazy">
           </div>
           <div class="poem-content">
             <span class="poem-tag">ENTRY 05 · FREE TO READ</span>
@@ -2923,7 +2946,7 @@
             <!-- Book 3 -->
             <article class="bribooks-card reveal-on-scroll delay-3">
               <div class="bribooks-cover">
-                <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Warm fire flame glowing in shadows" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&amp;fit=crop&amp;w=900&amp;h=600&amp;q=85" alt="Warm fire flame glowing in shadows" loading="lazy">
               </div>
               <div class="bribooks-content">
                 <span class="bribooks-genre">Poetry · Fire &amp; Feeling</span>
