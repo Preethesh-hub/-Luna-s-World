@@ -5,11 +5,11 @@
 
 /* Light Mode Creamy Background & Variables */
 :root {
-  --bg: #f7f2e7;
-  --paper: #f7f2e7;
-  --card-bg: #fffcf5;
-  --card-alt: #f1ebd9;
-  --cream: #eee7d7;
+  --bg: #f3e8d2;
+  --paper: #f3e8d2;
+  --card-bg: #faf1de;
+  --card-alt: #efe1c4;
+  --cream: #e8d8b9;
   --charcoal: #231d19;
   --ink: #231d19;
   --ink-soft: #5c5045;
@@ -22,7 +22,7 @@ body {
 }
 
 .topbar {
-  background: rgba(247, 242, 231, 0.94);
+  background: rgba(243, 232, 210, 0.94);
 }
 
 /* Dark Mode Variables & Resets */

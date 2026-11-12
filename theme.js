@@ -12,7 +12,7 @@
   function applyTheme(theme) {
     document.documentElement.dataset.theme = theme;
     const themeColor = document.querySelector('meta[name="theme-color"]');
-    if (themeColor) themeColor.content = theme === 'dark' ? '#1f1d1a' : '#fbfaf7';
+    if (themeColor) themeColor.content = theme === 'dark' ? '#1f1d1a' : '#f3e8d2';
   }
 
   applyTheme(initialTheme);
