@@ -1581,9 +1581,28 @@
       filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.72));
     }
 
-    /* Real Painted Owl Wings (Extracted directly from artwork for true articulated flight) */
-    .wizard-owl-img {
+    /* Real Painted Owl Eye Rig (Golden iris bg + cursor-tracking pupils behind outer face rims) */
+    .wizard-owl-eyes-bg-img,
+    .wizard-owl-pupils-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+    .wizard-owl-eyes-bg-img {
       z-index: 2;
+    }
+    .wizard-owl-pupils-img {
+      z-index: 3;
+      will-change: transform;
+      transition: transform 0.08s ease-out;
+    }
+    .wizard-owl-img {
+      z-index: 4;
     }
     .wizard-owl-wing-left-img,
     .wizard-owl-wing-right-img {
@@ -1604,7 +1623,7 @@
       transform: rotate(0deg);
     }
     .wizard-owl-wing-right-img {
-      z-index: 3;
+      z-index: 5;
       transform-origin: 57.6% 45.4%;
       opacity: 1;
       transform: rotate(0deg);
@@ -1820,7 +1839,7 @@
       user-select: none;
       -webkit-user-drag: none;
       pointer-events: none;
-      z-index: 4;
+      z-index: 7;
       opacity: 0;
       clip-path: inset(29% 0 71% 0);
       animation: owl-blink 4.6s ease-in-out infinite;
@@ -1882,12 +1901,12 @@
       100% { opacity: 0; transform: translate(16px, -30px) scale(1.12); }
     }
 
-    /* Nocturnal Amber Eye Gleam (Active in dark mode at z-index 3, softly covered during blinks) */
+    /* Nocturnal Amber Eye Gleam (Active in dark mode at z-index 6, softly covered during blinks) */
     .owl-night-eye-gleam {
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
-      z-index: 3;
+      z-index: 6;
       opacity: 0;
       transform: translate(-50%, -50%);
       background: radial-gradient(circle, rgba(255, 228, 128, 0.72) 0%, rgba(255, 190, 74, 0.28) 52%, transparent 78%);
@@ -1929,7 +1948,7 @@
       transform: translate(-50%, -50%) scale(0.6);
       border-radius: 50%;
       pointer-events: none;
-      z-index: 5;
+      z-index: 8;
       opacity: 0;
       background: radial-gradient(circle, rgba(255, 248, 200, 0.95) 0%, rgba(246, 206, 118, 0.55) 40%, transparent 72%);
       transition: opacity 0.3s ease, transform 0.35s ease;
@@ -2064,8 +2083,9 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .owl-flyer, .branch-group, .wizard-owl-breathe, .wizard-owl-blink-img, .wizard-owl-wing-left-img, .wizard-owl-wing-right-img, .wizard-owl-tail-fly-img, .owl-zzz-float, .owl-night-eye-gleam, .owl-falling-feather {
+      .owl-flyer, .branch-group, .wizard-owl-breathe, .wizard-owl-pupils-img, .wizard-owl-blink-img, .wizard-owl-wing-left-img, .wizard-owl-wing-right-img, .wizard-owl-tail-fly-img, .owl-zzz-float, .owl-night-eye-gleam, .owl-falling-feather {
         animation: none !important;
+        transition: none !important;
         transform: none !important;
       }
       .owl-downside-wrap:not(.has-landed):not(.is-flying) .owl-flyer {
@@ -3004,6 +3024,8 @@
             <div class="wizard-owl-breathe">
               <img class="wizard-owl-tail-fly-img" src="assets/wizard-owl-tail-fly.png" alt="" draggable="false" aria-hidden="true">
               <img class="wizard-owl-wing-left-img" src="assets/wizard-owl-wing-left.png" alt="" draggable="false" aria-hidden="true">
+              <img class="wizard-owl-eyes-bg-img" src="assets/wizard-owl-eyes-bg.png" alt="" draggable="false" aria-hidden="true">
+              <img class="wizard-owl-pupils-img" id="owl-pupils" src="assets/wizard-owl-pupils.png" alt="" draggable="false" aria-hidden="true">
               <img class="wizard-owl-img" src="assets/wizard-owl.png" alt="Enchanted wizard owl wearing a pointed witch hat perched on a slanted oak branch" draggable="false">
               <img class="wizard-owl-wing-right-img" src="assets/wizard-owl-wing-right.png" alt="" draggable="false" aria-hidden="true">
               <div class="owl-night-eye-gleam owl-night-eye-gleam--left" aria-hidden="true"></div>
@@ -4023,6 +4045,7 @@
       const poemBtn = document.getElementById('owl-poem-btn');
       const soundBtn = document.getElementById('owl-sound-toggle');
       const hatGlint = document.getElementById('owl-hat-glint');
+      const pupilsEl = document.getElementById('owl-pupils');
 
       if (!downsideWrap || !owlInteractive) return;
 
@@ -4241,6 +4264,7 @@
         if (isFlying) return;
         isFlying = true;
         if (flyer) flyer.style.transform = '';
+        if (pupilsEl) pupilsEl.style.transform = '';
 
         downsideWrap.classList.remove('has-landed', 'is-perched', 'is-re-flying', 'is-tail-perched');
         downsideWrap.classList.add('is-landing', 'is-flying');
@@ -4262,6 +4286,7 @@
         if (isFlying) return;
         isFlying = true;
         if (flyer) flyer.style.transform = '';
+        if (pupilsEl) pupilsEl.style.transform = '';
 
         owlInteractive.classList.add('is-hooting');
         if (!preserveBubble && bubble) {
@@ -4398,11 +4423,27 @@
         setTimeout(triggerFlyInAndPerch, 1000);
       }
 
-      // Subtle 3D attentive gaze tilt & hat-tip spell shimmer when hovered over the hat
+      // Attentive cursor-tracking pupils & subtle 3D head tilt + hat-tip shimmer
       window.addEventListener('mousemove', (e) => {
-        if (!flyer || isFlying || !downsideWrap.classList.contains('has-landed')) return;
+        if (!flyer || isFlying || isReducedMotion() || !downsideWrap.classList.contains('has-landed')) return;
         const rect = owlInteractive.getBoundingClientRect();
         if (rect.top > window.innerHeight || rect.bottom < 0) return;
+
+        // Track eyes directly toward pointer around owl's real eye center (45% x, 34.5% y)
+        const eyeCenterX = rect.left + rect.width * 0.45;
+        const eyeCenterY = rect.top + rect.height * 0.345;
+        const dx = e.clientX - eyeCenterX;
+        const dy = e.clientY - eyeCenterY;
+        const dist = Math.hypot(dx, dy) || 1;
+        const reach = Math.min(1, dist / 240);
+        const nx = (dx / dist) * reach;
+        const ny = (dy / dist) * reach;
+
+        if (pupilsEl) {
+          const offsetX = (nx * 1.05).toFixed(3);
+          const offsetY = (ny * 0.8).toFixed(3);
+          pupilsEl.style.transform = `translate3d(${offsetX}%, ${offsetY}%, 0)`;
+        }
 
         const centerX = rect.left + rect.width * 0.45;
         const centerY = rect.top + rect.height * 0.4;
@@ -4428,6 +4469,7 @@
 
       document.addEventListener('mouseleave', () => {
         if (flyer && !isFlying) flyer.style.transform = '';
+        if (pupilsEl && !isFlying) pupilsEl.style.transform = '';
       });
     })();
 
